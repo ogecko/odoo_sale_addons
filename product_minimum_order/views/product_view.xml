@@ -13,5 +13,22 @@
 		</field>
 	</record>
 
+	<!-- Add data-min to Optional Product Modal input box -->
+	<template id="modal" inherit_id="website_sale_options.modal" name="Optional products">
+		<xpath expr="//*[@id='product_confirmation']/td[4]/div/input" position="replace">
+			<input type="text" class="js_quantity form-control quantity" name="add_qty" 
+			t-att-data-min="int(product.min_quantity)" t-att-value="int(product.min_quantity) or '1'"/>
+		</xpath>
+	</template>
+
+	<!-- Add data-min to Shopping Cart Lines input box -->
+    <template id="cart_lines" inherit_id="website_sale.cart_lines" name="Shopping Cart Lines">
+		<xpath expr="//*[@id='td-qty']/div/input" position="replace">
+    		<input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" 
+			t-att-data-min="int(line.product_id.min_quantity)" 
+			t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" />
+		</xpath>
+	</template>
+
 </odoo>
 
