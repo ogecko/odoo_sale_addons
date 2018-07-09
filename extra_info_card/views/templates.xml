@@ -35,23 +35,23 @@
                                 <h3 class="page-header mt16">Personalised Card</h3>
                                 <form action="/website_form/" method="post" class="s_website_form" enctype="multipart/form-data" 
                                       data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-12">
                                         <label class="control-label" for="x_to">A Posy For</label>
                                         <input type="text" name="x_to" class="form-control"/>
                                     </div>
                                     <div class="clearfix" />
                                     <div class="form-group col-md-12">
                                         <label class="control-label" for="x_message">Message</label>
-                                        <textarea class="form-control" name="x_message"/>
+                                        <textarea class="form-control" name="x_message" rows="3"/>
                                     </div>
                                     <div class="clearfix" />
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-12">
                                         <label class="control-label" for="x_from">From</label>
                                         <input type="text" name="x_from" class="form-control"/>
                                     </div>
                                     <div class="clearfix" />
                                     <div class="form-group">
-                                        <span class="btn btn-primary pull-right o_website_form_send o_default_snippet_text">
+                                        <span class="btn btn-primary pull-right o_website_form_send o_default_snippet_text mb32">
                                             <span>Next </span><span class="fa fa-long-arrow-right" />
                                         </span>
                                         <span id="o_website_form_result" class="text-danger ml8" />
