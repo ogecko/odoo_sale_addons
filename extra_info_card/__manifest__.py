@@ -20,7 +20,7 @@ For this form to be visible in the checkout process you will need to enable the 
 
     # any module necessary for this one to work correctly
     'depends': [
-        'base','sale', 'website_sale',
+        'base', 'sale', 'website_sale', 'website_form',
     ],
     # always loaded
     'data': [

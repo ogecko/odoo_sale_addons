@@ -2,14 +2,12 @@
 
 from odoo import models, fields, api
 
-# class extra_info_card(models.Model):
-#     _name = 'extra_info_card.extra_info_card'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+class sale_order(models.Model):
+
+    _inherit = 'sale.order'
+
+    x_to = fields.Char(string="To")
+    x_from = fields.Char(string="Message")
+    x_message = fields.Text(string="From")
+

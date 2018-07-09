@@ -1,5 +1,26 @@
 <odoo>
     <data>
+
+	<!-- Add data-min to Optional Product Modal input box -->
+    <record id="sale.view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+   		<field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page string="Card Info">
+                    <group>
+                        <group string="Personalised Card" name="card">
+                            <field name="x_to" />
+                            <field name="x_message" />
+                            <field name="x_from" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
     <!-- Fully replace the extra info template -->
     <template id="website_sale.extra_info" name="Checkout Extra Info">
         <t t-call="website.layout">
@@ -8,54 +29,50 @@
                     <t t-call="website_sale.wizard_checkout">
                         <t t-set="step" t-value="30" />
                     </t>
-                    <h1 class="mb32">Personalised Card</h1>
+                    <div class="row">
+                        <div class="col-md-9 oe_cart">
+                            <div class="row">
+                                <h3 class="page-header mt16">Personalised Card</h3>
+                                <form action="/website_form/" method="post" class="s_website_form" enctype="multipart/form-data" 
+                                      data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
+                                    <div class="form-group col-md-8">
+                                        <label class="control-label" for="x_to">A Posy For</label>
+                                        <input type="text" name="x_to" class="form-control"/>
+                                    </div>
+                                    <div class="clearfix" />
+                                    <div class="form-group col-md-12">
+                                        <label class="control-label" for="x_message">Message</label>
+                                        <textarea class="form-control" name="x_message"/>
+                                    </div>
+                                    <div class="clearfix" />
+                                    <div class="form-group col-md-8">
+                                        <label class="control-label" for="x_from">From</label>
+                                        <input type="text" name="x_from" class="form-control"/>
+                                    </div>
+                                    <div class="clearfix" />
+                                    <div class="form-group">
+                                        <span class="btn btn-primary pull-right o_website_form_send o_default_snippet_text">
+                                            <span>Next </span><span class="fa fa-long-arrow-right" />
+                                        </span>
+                                        <span id="o_website_form_result" class="text-danger ml8" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 text-muted">
+                                <h3 class="page-header mt16 text-center">Your Order</h3>
+                                <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                <t t-call="website_sale.total"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="oe_structure">
-                    <form action="/website_form/" method="post" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-force_action="shop.sale.order" data-model_name="sale.order" data-success_page="/shop/payment">
-                        <div class="form-group form-field o_website_form_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="x_to">
-                                  A Posy For
-                                </label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="x_to"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="x_message">Message</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <textarea class="form-control o_website_form_input" name="x_message" />
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_custom">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="x_from">
-                                  From
-                                </label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input type="text" class="form-control o_website_form_input" name="x_from"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                                <span class="btn btn-primary pull-right o_website_form_send o_default_snippet_text">
-                                    <span>Next </span><span class="fa fa-long-arrow-right" />
-                                </span>
-                                <span id="o_website_form_result" class="text-danger ml8" />
-                            </div>
-                        </div>
-                    </form>
+
                     <!--
                         <t t-set="website_sale_order" t-value="website.sale_get_order()" />
                         <script>
                             $("input[name='x_to']").val(_.unescape('<t t-esc="escape(website_sale_order.x_to or '') or ''"/>'));
                         </script>
                     -->
-                </div>
             </div>
         </t>
     </template>
