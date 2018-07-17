@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+    <!-- explicit list view of cities -->
+    <record id="country_state_city_list" model="ir.ui.view">
+      <field name="name">city list</field>
+      <field name="model">res.country.state.city</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="postcode"/>
+          <field name="region"/>
+          <field name="state_id"/>
+          <field name="delivery_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- define filters and search fields for cities -->
+    <record id="country_state_city_search" model="ir.ui.view">
+      <field name="name">city search</field>
+      <field name="model">res.country.state.city</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="postcode"/>
+          <field name="region"/>
+          <filter name="filter_region" string="by Region" context="{'group_by': 'region'}"/>
+          <filter name="filter_delivery" string="by Delivery" context="{'group_by': 'delivery_id'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- explicit detailed form for a city -->
+    <record id="view_country_state_city_form" model="ir.ui.view">
+        <field name="name">city form</field>
+        <field name="model">res.country.state.city</field>
+        <field name="arch" type="xml">
+            <form string="City">
+                <group>
+                    <field name="name"/>
+                    <field name="postcode"/>
+                    <field name="region"/>
+                    <field name="state_id" options="{'no_open': True}"/>
+                    <field name="delivery_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record id="country_state_city.action_window" model="ir.actions.act_window">
+      <field name="name">Delivery Cities</field>
+      <field name="res_model">res.country.state.city</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- menu items on Website Admin/Catalog/Cities -->
+    <menuitem id="menu_catalog_cities" 
+      name="Delivery Cities" parent="website_sale.menu_ecommerce_settings" 
+      action="country_state_city.action_window" 
+      sequence="10"/>
+
+  </data>
+</odoo>
