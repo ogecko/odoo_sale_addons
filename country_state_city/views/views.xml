@@ -24,6 +24,8 @@
           <field name="name"/>
           <field name="postcode"/>
           <field name="region"/>
+          <field name="metro"/>
+          <filter name="filter_metro" string="by Metro" context="{'group_by': 'metro'}"/>
           <filter name="filter_region" string="by Region" context="{'group_by': 'region'}"/>
           <filter name="filter_delivery" string="by Delivery" context="{'group_by': 'delivery_id'}"/>
         </search>
@@ -40,6 +42,7 @@
                     <field name="name"/>
                     <field name="postcode"/>
                     <field name="region"/>
+                    <field name="metro"/>
                     <field name="state_id" options="{'no_open': True}"/>
                     <field name="delivery_id"/>
                 </group>

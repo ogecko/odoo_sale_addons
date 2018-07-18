@@ -1,0 +1,5 @@
+id,name,fixed_price,delivery_type
+delivery_zone_0,Free Delivery,0,Fixed Price
+delivery_zone_1,Mid Zone Delivery,5,Fixed Price
+delivery_zone_2,Outer Zone Delivery,10,Fixed Price
+delivery_zone_3,Out of Delivery Zone,30,Fixed Price

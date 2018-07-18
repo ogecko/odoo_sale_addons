@@ -20,6 +20,7 @@ class CountryStateCity(models.Model):
 
     name = fields.Char(string='City Name', required=True, help='City, Suburb, or Town name.')
     region = fields.Char(string='Region', help='The region or area that the city is within.', required=True)
+    metro = fields.Char(string='Metropolitan Area', help='The wider metro area or capital city name.', required=True)
     postcode = fields.Char(string='Post Code', help='The postal code for the city.', required=True)
     state_id = fields.Many2one('res.country.state', string='State', required=True)
     delivery_id = fields.Many2one('delivery.carrier', string='Delivery', required=True)
