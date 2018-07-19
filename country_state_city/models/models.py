@@ -24,4 +24,5 @@ class CountryStateCity(models.Model):
     postcode = fields.Char(string='Post Code', help='The postal code for the city.', required=True)
     state_id = fields.Many2one('res.country.state', string='State', required=True)
     delivery_id = fields.Many2one('delivery.carrier', string='Delivery', required=True)
+    geometry = fields.Text(string='GeoJSON Geometry', help='The geometry of the City area as a GEOJSON Geometry Object.')
 

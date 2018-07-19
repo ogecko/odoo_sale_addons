@@ -46,6 +46,7 @@
                     <field name="metro"/>
                     <field name="state_id" options="{'no_open': True}"/>
                     <field name="delivery_id"/>
+                    <field name="geometry"/>
                 </group>
             </form>
         </field>
