@@ -9,6 +9,7 @@
           <field name="name"/>
           <field name="postcode"/>
           <field name="region"/>
+          <field name="metro"/>
           <field name="state_id"/>
           <field name="delivery_id"/>
         </tree>
