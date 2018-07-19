@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_leaflet_map_widget_website_leaflet_map_widget,website_leaflet_map_widget.website_leaflet_map_widget,model_website_leaflet_map_widget_website_leaflet_map_widget,,1,0,0,0
