@@ -90,8 +90,10 @@ res_city_88,Brighton-Le-Sands,2216,St George & Sutherland Shire,Sydney,delivery_
 res_city_89,Bringelly,2556,Macarthur Region,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_90,Bronte,2024,Eastern Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_91,Brooklyn,2083,North Shore,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_91b,Ku-ring-gai Chase,2083,North Shore,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_92,Brookvale,2100,Northern Beaches,Sydney,delivery_zone_free,base.state_au_2
 res_city_93,Bundeena,2230,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_93b,Port Hacking,2229,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_94,Bungarribee,2767,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_95,Burwood,2134,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_96,Burwood Heights,2136,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
@@ -177,6 +179,7 @@ res_city_175,Cremorne Junction,2090,North Shore,Sydney,delivery_zone_free,base.s
 res_city_176,Cremorne Point,2090,North Shore,Sydney,delivery_zone_free,base.state_au_2
 res_city_177,Cromer,2099,Northern Beaches,Sydney,delivery_zone_free,base.state_au_2
 res_city_178,Cronulla,2230,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_178b,Burraneer,2230,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_179,Crows Nest,2065,North Shore,Sydney,delivery_zone_free,base.state_au_2
 res_city_180,Croydon,2132,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_181,Croydon Park,2133,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
@@ -229,12 +232,15 @@ res_city_227,Elizabeth Bay,2011,Central & Inner Metropolitan,Sydney,delivery_zon
 res_city_228,Elizabeth Hills,2171,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_229,Ellis Lane,2570,Macarthur Region,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_230,Elvina Bay,2105,Northern Beaches,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_230b,Lovett Bay,2105,Northern Beaches,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_230c,Morning Bay,2105,Northern Beaches,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_231,Emerton,2770,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_232,Emu Heights,2750,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_233,Emu Plains,2750,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_234,Enfield,2136,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_235,Enfield South,2136,Western Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_236,Engadine,2233,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_236b,Lucas Heights,2233,St George & Sutherland Shire,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_237,Englorie Park,2560,Macarthur Region,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_238,Enmore,2042,Central & Inner Metropolitan,Sydney,delivery_zone_free,base.state_au_2
 res_city_239,Epping,2121,Gladesville-Ryde-Eastwood,Sydney,delivery_zone_1,base.state_au_2
@@ -449,6 +455,7 @@ res_city_447,Mount Pritchard,2170,South Western Suburbs,Sydney,delivery_zone_exc
 res_city_448,Mount Vernon,2178,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_449,Mulgoa,2745,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_450,Mulgrave,2756,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_451b,Narellan,2567,Macarthur Region,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_451,Narellan Vale,2567,Macarthur Region,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_452,Naremburn,2065,North Shore,Sydney,delivery_zone_free,base.state_au_2
 res_city_453,Narrabeen,2101,Northern Beaches,Sydney,delivery_zone_free,base.state_au_2
@@ -498,6 +505,7 @@ res_city_496,Padstow,2211,South Western Suburbs,Sydney,delivery_zone_exclude,bas
 res_city_497,Padstow Heights,2211,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_498,Pagewood,2035,Eastern Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_499,Palm Beach,2108,Northern Beaches,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_499b,Whale Beach,2107,Northern Beaches,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_500,Panania,2213,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_501,Parklea,2768,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_502,Parliament House,2000,Central & Inner Metropolitan,Sydney,delivery_zone_free,base.state_au_2
@@ -515,6 +523,7 @@ res_city_513,Phillip Bay,2036,Eastern Suburbs,Sydney,delivery_zone_exclude,base.
 res_city_514,Picnic Point,2213,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_515,Pitt Town,2756,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_516,Pleasure Point,2172,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
+res_city_516b,Sandy Point,2172,South Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_517,Plumpton,2761,Outer Western Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
 res_city_518,Point Piper,2027,Eastern Suburbs,Sydney,delivery_zone_1,base.state_au_2
 res_city_519,Port Botany,2036,Eastern Suburbs,Sydney,delivery_zone_exclude,base.state_au_2
