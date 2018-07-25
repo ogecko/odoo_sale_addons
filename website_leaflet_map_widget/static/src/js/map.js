@@ -82,7 +82,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             self._super(self);
             self.$el.css('width','100%');
             self.$el.css('height','100%');
-            self.map = L.map(self.$el[0]).setView([-33.8469759, 150.3715249], 11);
+            self.map = L.map(self.$el[0]).setView([-33.804521,151.0051], 11);
 
             // add the background map tile layer
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={token}', {
