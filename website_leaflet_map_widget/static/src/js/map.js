@@ -26,9 +26,9 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             this.geojson = undefined;
             this.zones = [
                 "Free Delivery", 
-                "Mid Zone Delivery",
-                "Outer Zone Delivery",
-                "Out of Delivery Zone",
+                "$5 Delivery",
+                "$10 Delivery",
+                "No Deliveries",
             ];
         },
 
@@ -74,9 +74,9 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
               // get color depending on delivery zone value
             function getColor(d) {
                 return d == "Free Delivery" ? 'hsla(120,100%,40%,40%)' :  // '#800026' :
-                		d == "Mid Zone Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
-                		d == "Outer Zone Delivery"  ? 'hsla(0,75%,64%,70%)' :  //'#FD8D3C' :
-                		d == "Out of Delivery Zone"  ? 'hsla(340,100%,25%,56%)' :  //'#FED976' :
+                		d == "$5 Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
+                		d == "$10 Delivery"  ? 'hsla(0,75%,64%,70%)' :  //'#FD8D3C' :
+                		d == "No Deliveries"  ? 'hsla(340,100%,25%,56%)' :  //'#FED976' :
                 					'blue';
             }
         
@@ -149,10 +149,10 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             addInfoWindow(self);
 
             // add the city polygon layer
-            addCityLayer(self, { delivery_id: 'Free Delivery'});
-            addCityLayer(self, { delivery_id: 'Mid Zone Delivery'});
-            addCityLayer(self, { delivery_id: 'Outer Zone Delivery'});
-            addCityLayer(self, { delivery_id: 'Out of Delivery Zone'});
+            addCityLayer(self, { delivery_id: self.zones[0]});
+            addCityLayer(self, { delivery_id: self.zones[1]});
+            addCityLayer(self, { delivery_id: self.zones[2]});
+            addCityLayer(self, { delivery_id: self.zones[3]});
         
         },
 
