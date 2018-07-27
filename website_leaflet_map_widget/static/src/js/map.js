@@ -95,8 +95,9 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             // add the city polygon layer
             self.rpc('/web/geojson/city',{})            
             .done(function (cityData) {
-                self.geojson = L.geoJson(JSON.parse(cityData), {
-                    style: style,
+                // self.geojson = L.geoJson(JSON.parse(cityData), {
+                self.geojson = L.geoJson(cityData, {
+                        style: style,
                     onEachFeature: onEachFeature,
                 }).addTo(self.map);
             });
