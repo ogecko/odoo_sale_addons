@@ -24,6 +24,12 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             this.mapstyle = this.options.mapstyle;
             this.attribution = this.options.attribution;
             this.geojson = undefined;
+            this.zones = [
+                "Free Delivery", 
+                "Mid Zone Delivery",
+                "Outer Zone Delivery",
+                "Out of Delivery Zone",
+            ];
         },
 
         // startup of Widget now DOM is ready
@@ -34,6 +40,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             function highlightFeature(e) {
                 var layer = e.target;
         
+                self.info.update(layer.feature);
+
                 layer.setStyle({
                     weight: 5,
                     color: '#666',
@@ -47,6 +55,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             }
         
             function resetHighlight(e) {
+                self.info.update();
                 self.geojson.resetStyle(e.target);
             }
         
@@ -64,10 +73,10 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
         
               // get color depending on delivery zone value
             function getColor(d) {
-                return d == "Free Delivery" ? '#800026' :
-                		d == "Mid Zone Delivery"  ? '#E31A1C' :
-                		d == "Outer Zone Delivery"  ? '#FD8D3C' :
-                		d == "Out of Delivery Zone"  ? '#FED976' :
+                return d == "Free Delivery" ? 'hsla(120,100%,40%,40%)' :  // '#800026' :
+                		d == "Mid Zone Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
+                		d == "Outer Zone Delivery"  ? 'hsla(0,75%,64%,70%)' :  //'#FD8D3C' :
+                		d == "Out of Delivery Zone"  ? 'hsla(340,100%,25%,56%)' :  //'#FED976' :
                 					'blue';
             }
         
@@ -78,7 +87,50 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                     fillColor: getColor(feature.properties.delivery_id)
                 };
             }
-        
+            
+            function addInfoWindow(self) {
+                self.info = L.control();
+                self.info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+                    this.update();
+                    return this._div;
+                };
+                // method that we will use to update the control based on feature properties passed
+                self.info.update = function (feature) {
+                    this._div.innerHTML = '<h4>Delivery Suburbs</h4>' +  (feature?
+                        '<b>' + feature.id + '</b><br />' + feature.properties.delivery_id 
+                        : 'Hover over a suburb');
+                };
+                self.info.addTo(self.map);
+            }
+
+            function addLegend(self) {
+                self.legend = L.control({position: 'bottomright'});
+                self.legend.onAdd = function (map) {
+                    var div = L.DomUtil.create('div', 'info legend');
+
+                    // loop through our zones, inserting an icon and label
+                    for (var i = 0; i < self.zones.length; i++) {
+                        div.innerHTML +=
+                            '<i style="background:' + getColor(self.zones[i]) + '"></i> ' +
+                            self.zones[i] + (self.zones[i + 1] ? '<br>' : '');
+                    }
+                    return div;
+                };
+                
+                self.legend.addTo(self.map);
+            }
+
+            function addCityLayer(self, domain) {
+                self.rpc('/web/geojson/city', domain)            
+                .done(function (cityData) {
+                    self.geojson = L.geoJson(cityData, {
+                        style: style,
+                        onEachFeature: onEachFeature,
+                    }).addTo(self.map);
+                });
+            }
+
             self._super(self);
             self.$el.css('width','100%');
             self.$el.css('height','100%');
@@ -92,15 +144,15 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 token: self.token,
             }).addTo(self.map);
             
+            // add the legend and info Window
+            addLegend(self);
+            addInfoWindow(self);
+
             // add the city polygon layer
-            self.rpc('/web/geojson/city',{})            
-            .done(function (cityData) {
-                // self.geojson = L.geoJson(JSON.parse(cityData), {
-                self.geojson = L.geoJson(cityData, {
-                        style: style,
-                    onEachFeature: onEachFeature,
-                }).addTo(self.map);
-            });
+            addCityLayer(self, { delivery_id: 'Free Delivery'});
+            addCityLayer(self, { delivery_id: 'Mid Zone Delivery'});
+            addCityLayer(self, { delivery_id: 'Outer Zone Delivery'});
+            addCityLayer(self, { delivery_id: 'Out of Delivery Zone'});
         
         },
 

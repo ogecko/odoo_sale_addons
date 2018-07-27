@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "website_leaflet_map_widget",
+    'name': "Website Leaflet Map Widget",
 
     'summary': "Adds Widget for a Leaflet map",
 

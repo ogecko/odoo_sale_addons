@@ -4,6 +4,7 @@
         <template id="assets_frontend" inherit_id="web.assets_frontend">
             <xpath expr="script[last()]" position="after">
                 <link href="/website_leaflet_map_widget/static/src/css/leaflet.css" rel="stylesheet"></link>
+                <link href="/website_leaflet_map_widget/static/src/css/map.css" rel="stylesheet"></link>
                 <script type="text/javascript" src="/website_leaflet_map_widget/static/src/js/leaflet.js"></script>
                 <script type="text/javascript" src="/website_leaflet_map_widget/static/src/js/map.js"></script>
             </xpath>
