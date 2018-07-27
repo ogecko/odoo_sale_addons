@@ -9,8 +9,8 @@ class WebsiteLeafletMapWidget(http.Controller):
         domain = ['!',('geometry','=?', '')]
         if 'delivery_id' in kw:
             domain.insert(0,('delivery_id.name','=', kw['delivery_id']))
-            
-        cities = http.request.env["res.country.state.city"].search(domain)
+
+        cities = http.request.env["res.country.state.city"].sudo().search(domain)
         res = { 
             "type": "FeatureCollection",
             "features": [] 
