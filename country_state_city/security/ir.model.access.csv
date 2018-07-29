@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_country_state_city_country_state_city,country_state_city.country_state_city,model_country_state_city_country_state_city,,1,0,0,0
+access_city_all,access_city_all,country_state_city.model_res_country_state_city,,1,0,0,0
+access_city_employee,access_city_employee,country_state_city.model_res_country_state_city,base.group_user,1,1,0,0

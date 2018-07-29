@@ -61,7 +61,7 @@
 
     <!-- menu items on Website Admin/Catalog/Cities -->
     <menuitem id="menu_catalog_cities" 
-      name="Delivery Cities" parent="website_sale.menu_ecommerce_settings" 
+      name="Delivery Cities" parent="website_sale.menu_catalog" 
       action="country_state_city.action_window" 
       sequence="10"/>
 
