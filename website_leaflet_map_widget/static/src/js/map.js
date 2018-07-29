@@ -18,7 +18,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             this.options = _.defaults(options || {}, {
                 'token': 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
                 'mapstyle': 'mapbox.light',
-                'attribution': '©PSMA Australia Ltd',
+                'attribution': 'Map Data © OpenStreetMap, Boundaries ©PSMA Australia Ltd',
             });
             this.token = this.options.token;
             this.mapstyle = this.options.mapstyle;
@@ -137,12 +137,14 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             self.map = L.map(self.$el[0]).setView([-33.804521,151.0051], 11);
 
             // add the background map tile layer
-            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={token}', {
-                maxZoom: 18, 
-                id: self.mapstyle,
-                attribution: self.attribution,
-                token: self.token,
-            }).addTo(self.map);
+            setTimeout(function(){
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={token}', {
+                    maxZoom: 18, 
+                    id: self.mapstyle,
+                    attribution: self.attribution,
+                    token: self.token,
+                }).addTo(self.map);
+            },200);
             
             // add the legend and info Window
             addLegend(self);
