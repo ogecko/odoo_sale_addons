@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="assets_frontend" inherit_id="web.assets_frontend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/web_vue/static/src/js/vue.min.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

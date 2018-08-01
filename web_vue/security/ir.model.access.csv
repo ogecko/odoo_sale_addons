@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_web_vue_web_vue,web_vue.web_vue,model_web_vue_web_vue,,1,0,0,0
