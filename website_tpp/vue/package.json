@@ -1,0 +1,18 @@
+{
+  "name": "website_tpp",
+  "version": "1.0.0",
+  "description": "Website tailoring for The Posy Place",
+  "main": "index.js",
+  "scripts": {
+    "serve": "vue serve",
+    "build": "vue build --target lib --name order_form OrderForm.vue && cp dist/order_form.umd.min.js ../static/src/js && cp dist/order_form.umd.js ../static/src/js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Morrison <jdmorriso@gmail.com> (www.ogekco.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "less": "^3.8.0",
+    "less-loader": "^4.1.0",
+    "vue": "^2.5.16"
+  }
+}

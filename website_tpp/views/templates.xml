@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+
+        <template id="assets_frontend" inherit_id="web.assets_frontend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/website_tpp/static/src/js/order_form.umd.js"></script>
+            </xpath>
+        </template>
+
+        <template id="order_form">
+            <div id="app" class="container"><order_form /></div>
+            <script>vm = new Vue({ el: '#app', components: { order_form } });</script>
+        </template>
+
+    </data>
+</odoo>
