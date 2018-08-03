@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import FormGroup from './FormGroup.vue'
-import FieldInput from './FieldInput.vue'
+import FormGroup from '@/components/FormGroup.vue'
+import FieldInput from '@/components/FieldInput.vue'
 
 export default {
     data: function () {

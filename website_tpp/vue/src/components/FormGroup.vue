@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3 class="page-header clearfix">
+  <div class="row">
+    <h3 class="page-header col-md-12">
         {{label}}
     </h3>
     <slot />

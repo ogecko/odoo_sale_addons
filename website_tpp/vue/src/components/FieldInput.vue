@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import validate from './validate.js';
+import validate from '@/helpers/validate.js';
 
 export default {
   data: function() {
