@@ -44,5 +44,14 @@ describe('validate.js', () => {
     it('Can confirm a valid tel', () => {
         expect(validate('02 3457 8923','tel')).toEqual('');
     })
-  })
+
+    it('Can check for an invalid text field', () => {
+        expect(validate(9,'text')).toEqual('Please enter a text value into this field.');
+    })
+
+    it('Can confirm a valid text', () => {
+        expect(validate('02 3457 8923','text')).toEqual('');
+    })
+
+})
   

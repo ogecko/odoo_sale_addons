@@ -59,8 +59,11 @@ export default {
         'has-success': this.helpState=="isSuccess", 
       }
     },
+    check: function(s) {
+      this.helpText=validate(s, this.types);
+    },
     onInput: function(event) {
-      this.helpText=validate(event.target.value, this.types);
+      this.check(event.target.value);
       this.$emit('input', event.target.value);
     },
   },

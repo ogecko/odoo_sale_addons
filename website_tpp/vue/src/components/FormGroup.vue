@@ -18,7 +18,10 @@
 <script>
 export default {
   props: {
-    label: { type: String, default: 'Default Label' },
+    label: { type: String, default: 'Default Label' }, 
   },
+  data: function() {
+    return {};
+  }
 }
 </script>

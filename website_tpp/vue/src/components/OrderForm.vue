@@ -51,7 +51,7 @@ export default {
             card: {
                 from: 'Joe',
                 to: 'Mary',
-                message: 'Just for you'
+                message: 'Just for you' 
             },
         }
     },

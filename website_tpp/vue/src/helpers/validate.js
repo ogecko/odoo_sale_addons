@@ -3,6 +3,10 @@ const checkFor = {
         helpText: 'This field is required.',
         isMatched: s => ! /.+/.test(s),
     },
+    text: {
+        helpText: 'Please enter a text value into this field.',
+        isMatched: s => ! (typeof(s)=='string'),
+    },
     email: {
         helpText: 'Please enter a valid email address.',
         isMatched: s => !  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(s),
@@ -15,12 +19,12 @@ const checkFor = {
 
 
 
-export default function validate(str, terms) {
+export default function validate(value, terms) {
 
     function checkStringForRequiredTerm(acc, term) {
         const tterm = term.trim();
         const msg = ! checkFor[tterm] ? `Cannot find validation check "${tterm}".`
-                    : checkFor[tterm].isMatched(str, tterm) ? checkFor[tterm].helpText
+                    : checkFor[tterm].isMatched(value, tterm) ? checkFor[tterm].helpText
                     : undefined;
 
         if (msg)  acc.push(msg)
