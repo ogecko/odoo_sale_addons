@@ -1,7 +1,7 @@
 <template>
   <textarea 
     class="form-control"
-    rows=3
+    rows=3 maxLength=200
     :placeholder="placeholder"
     v-model="localValue"
   ></textarea>

@@ -16,7 +16,7 @@ const checkFor = {
     },
     tel: {
         validationMsg: 'Please enter a valid phone number.',
-        isValid: s => /^([0-9()+ ]+|)$/.test(s),
+        isValid: s => /^([0-9()+ ]{0,20}|)$/.test(s),
       },
 
     // <textarea> types
