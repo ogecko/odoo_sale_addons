@@ -1,10 +1,10 @@
 <template>
-  <input 
+  <textarea 
     class="form-control"
-    :type="type"
+    rows=3
     :placeholder="placeholder"
     v-model="localValue"
-  >
+  ></textarea>
 </template>
 
 <script>
@@ -15,11 +15,8 @@
       }
     },
     props: {
-      type: { type: String, default: 'text' },
       value: { type: String },
       placeholder: { type: String, default: '' },
-    },
-    computed: {
     },
     watch: {
       localValue: function(newVal) {

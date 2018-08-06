@@ -1,36 +1,40 @@
 <template>
     <div>
         <FormGroup label="Sender">
-            <FieldInput label="Name" v-model="sender.name" types="text,required" class="col-md-4"/>
-            <FieldInput label="Email" v-model="sender.email" types="email,required" class="col-md-4"/>
-            <FieldInput label="Phone" v-model="sender.phone" types="tel,required" class="col-md-4"/>
+            <Field label="Name" v-model="sender.name" types="text,required" class="col-md-4"/>
+            <Field label="Email" v-model="sender.email" types="email,required" class="col-md-4"/>
+            <Field label="Phone" v-model="sender.phone" types="tel" class="col-md-4"/>
         </FormGroup>
         <FormGroup label="Recipient">
-            <FieldInput label="Name" v-model="receiver.name" class="col-md-4"/>
-            <FieldInput label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
-            <FieldInput label="Phone" v-model="receiver.phone" types="tel" class="col-md-4"/>
-            <FieldInput label="Delivery Address" types="textarea" placeholder="Street Address, City, Postcode" class="col-md-6"/>
-            <FieldInput label="Special Delivery Instructions" types="textarea" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
+            <Field label="Name" v-model="receiver.name" class="col-md-4"/>
+            <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
+            <Field label="Phone" v-model="receiver.phone" types="tel" class="col-md-4"/>
+            <Field label="Delivery Address" v-model="receiver.address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="col-md-6"/>
+            <Field label="Special Delivery Instructions" v-model="receiver.special" types="textarea" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <FieldInput label="No. Deliveries" v-model="sender.name" class="col-md-4"/>
-            <FieldInput label="Frequency" v-model="sender.name" class="col-md-4"/>
-            <FieldInput label="Starting Day" v-model="sender.name" class="col-md-4"/>
-            <FieldInput label="Delivery Days" class="col-md-12"/>
+            <Field label="No. Deliveries" v-model="delivery.number" class="col-md-4"/>
+            <Field label="Frequency" v-model="delivery.freq" class="col-md-4"/>
+            <Field label="Starting Day" v-model="delivery.start" class="col-md-4"/>
+            <Field label="Delivery Days" v-model="delivery.days" class="col-md-12"/>
         </FormGroup>
         <FormGroup label="Personalised Card">
-            <FieldInput label="A Posy For" v-model="card.to" class="col-md-6"/>
-            <FieldInput label="From" v-model="card.from" class="col-md-6"/>
-            <FieldInput label="Message" v-model="card.message" types="textarea" class="col-md-12"/>
+            <Field label="A Posy For" v-model="card.to" class="col-md-6"/>
+            <Field label="From" v-model="card.from" class="col-md-6"/>
+            <Field label="Message" v-model="card.message" types="textarea" class="col-md-12"/>
         </FormGroup>
     </div>
 </template>
 
 <script>
 import FormGroup from '@/components/FormGroup.vue'
-import FieldInput from '@/components/FieldInput.vue'
+import Field from '@/components/Field.vue'
 
 export default {
+    components: {
+        FormGroup,
+        Field,
+    },
     data: function () {
         return {
             sender: {
@@ -46,6 +50,9 @@ export default {
                 special: 'Unit 5',
             },
             delivery: {
+                number: '1',
+                freq: 'Once a Week',
+                start: '1/1/2018',
                 days: '1/1/2018',
             },
             card: {
@@ -55,9 +62,7 @@ export default {
             },
         }
     },
-    components: {
-        FormGroup,
-        FieldInput,
-    }
+    methods: {
+    },
 }
 </script>

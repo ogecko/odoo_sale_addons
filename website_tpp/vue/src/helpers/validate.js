@@ -1,8 +1,11 @@
 const checkFor = {
+    // validation types
     required: {
         helpText: 'This field is required.',
         isMatched: s => ! /.+/.test(s),
     },
+
+    // <input> types
     text: {
         helpText: 'Please enter a text value into this field.',
         isMatched: s => ! (typeof(s)=='string'),
@@ -15,6 +18,12 @@ const checkFor = {
         helpText: 'Please enter a valid phone number.',
         isMatched: s => ! /^[0-9()+ ]+$/.test(s),
       },
+
+    // <textarea> types
+    textarea: {
+        helpText: 'Please enter a text value into this field.',
+        isMatched: s => ! (typeof(s)=='string'),
+    },
   }
 
 
