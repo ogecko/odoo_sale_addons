@@ -4,6 +4,7 @@
   <div :class="localClasses">
     <label class="control-label" :for="vModelName()" >
       {{ localLabel }}
+      <small v-if="helpMsg" class="text-muted">({{helpMsg}})</small>
     </label>
     <FieldTextArea v-if="isFieldTextArea"
       :name="vModelName()" :id="vModelName()"
@@ -43,6 +44,7 @@ export default {
   props: {
     label: { type: String, default: 'Default Label' },
     placeholder: { type: String, default: '' },
+    helpMsg: { type: String, default: '' },
     types: { type: String, default: 'text' },
     value: { type: String },
   },

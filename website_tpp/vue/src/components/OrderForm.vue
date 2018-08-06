@@ -3,12 +3,12 @@
         <FormGroup label="Sender">
             <Field label="Name" v-model="sender.name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="sender.email" types="email,required" class="col-md-4"/>
-            <Field label="Phone" v-model="sender.phone" types="tel" class="col-md-4"/>
+            <Field label="Phone" v-model="sender.phone" types="tel" helpMsg="in case of order issues" class="col-md-4"/>
         </FormGroup>
         <FormGroup label="Recipient">
             <Field label="Name" v-model="receiver.name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
-            <Field label="Phone" v-model="receiver.phone" types="tel" class="col-md-4"/>
+            <Field label="Phone" v-model="receiver.phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
             <Field label="Delivery Address" v-model="receiver.address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="col-md-6"/>
             <Field label="Special Delivery Instructions" v-model="receiver.special" types="textarea" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
         </FormGroup>
@@ -21,7 +21,7 @@
         <FormGroup label="Personalised Card">
             <Field label="A Posy For" v-model="card.to" class="col-md-6"/>
             <Field label="From" v-model="card.from" class="col-md-6"/>
-            <Field label="Message" v-model="card.message" types="textarea" class="col-md-12"/>
+            <Field label="Message" v-model="card.message" types="textarea" helpMsg="maximum 200 characters" class="col-md-12"/>
         </FormGroup>
     </div>
 </template>
