@@ -3,15 +3,15 @@
 <template>
   <div :class="localClasses">
     <label class="control-label" :for="vModelName()" >
-      {{ label }}
+      {{ localLabel }}
     </label>
-    <FieldTextArea v-if="isFieldTextArea()"
+    <FieldTextArea v-if="isFieldTextArea"
       :name="vModelName()" :id="vModelName()"
       :placeholder="placeholder"
       :value="value"
       @input="handleInput"
     ></FieldTextArea>
-    <FieldInput v-if="isFieldInput()" 
+    <FieldInput v-if="isFieldInput" 
       :name="vModelName()" :id="vModelName()"
       :placeholder="placeholder"
       :type="type"
@@ -53,20 +53,25 @@ export default {
         this.validationMsg ? 'has-error' : '',
       ];
     },
+    localLabel: function() {
+      return this.label + (this.isRequired() ? ' *' : '');
+    },
     type: function() {
       return this.types.split(',')[0];
     },
-
-},
-  methods: {
     isFieldInput: function () {
       return (this.type!="textarea")
     },
     isFieldTextArea: function () {
       return (this.type=="textarea")
     },
+},
+  methods: {
     vModelName: function() {
       return property(['$vnode','data','model','expression'])(this);
+    },
+    isRequired: function() {
+      return this.types.split(',').includes('required');
     },
     handleInput: function(newVal) {
       this.validationMsg = validate(newVal, this.types);

@@ -1,28 +1,28 @@
 const checkFor = {
     // validation types
     required: {
-        helpText: 'This field is required.',
-        isMatched: s => ! /.+/.test(s),
+        validationMsg: 'This field is required.',
+        isValid: s => /.+/.test(s),
     },
 
     // <input> types
     text: {
-        helpText: 'Please enter a text value into this field.',
-        isMatched: s => ! (typeof(s)=='string'),
+        validationMsg: 'Please enter a text value into this field.',
+        isValid: s => (typeof(s)=='string'),
     },
     email: {
-        helpText: 'Please enter a valid email address.',
-        isMatched: s => !  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(s),
+        validationMsg: 'Please enter a valid email address.',
+        isValid: s => /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*|)$/.test(s),
     },
     tel: {
-        helpText: 'Please enter a valid phone number.',
-        isMatched: s => ! /^[0-9()+ ]+$/.test(s),
+        validationMsg: 'Please enter a valid phone number.',
+        isValid: s => /^([0-9()+ ]+|)$/.test(s),
       },
 
     // <textarea> types
     textarea: {
-        helpText: 'Please enter a text value into this field.',
-        isMatched: s => ! (typeof(s)=='string'),
+        validationMsg: 'Please enter a text value into this field.',
+        isValid: s => (typeof(s)=='string'),
     },
   }
 
@@ -33,8 +33,8 @@ export default function validate(value, terms) {
     function checkStringForRequiredTerm(acc, term) {
         const tterm = term.trim();
         const msg = ! checkFor[tterm] ? `Cannot find validation check "${tterm}".`
-                    : checkFor[tterm].isMatched(value, tterm) ? checkFor[tterm].helpText
-                    : undefined;
+                    : checkFor[tterm].isValid(value, tterm) ? undefined
+                    : checkFor[tterm].validationMsg;
 
         if (msg)  acc.push(msg)
 

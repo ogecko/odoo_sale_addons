@@ -6,7 +6,7 @@
             <Field label="Phone" v-model="sender.phone" types="tel" class="col-md-4"/>
         </FormGroup>
         <FormGroup label="Recipient">
-            <Field label="Name" v-model="receiver.name" class="col-md-4"/>
+            <Field label="Name" v-model="receiver.name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="receiver.phone" types="tel" class="col-md-4"/>
             <Field label="Delivery Address" v-model="receiver.address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="col-md-6"/>

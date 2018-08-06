@@ -21,20 +21,24 @@ describe('validate.js', () => {
         expect(validate('ok','required')).toEqual('');
     })
 
+    it('Can confirm a valid email', () => {
+        expect(validate('joe@gmail.com','email')).toEqual('');
+    })
+
+    it('Can confirm a blank field is a valid email', () => {
+        expect(validate('','email')).toEqual('');
+    })
+
     it('Can check for an invalid email field', () => {
         expect(validate('joe','email')).toEqual('Please enter a valid email address.');
     })
 
     it('Can check for an invalid and required email field', () => {
-        expect(validate('','email,required')).toEqual('Please enter a valid email address. This field is required.');
+        expect(validate('','email,required')).toEqual('This field is required.');
     })
 
     it('Allow for spaces between check terms', () => {
-        expect(validate('','email, required')).toEqual('Please enter a valid email address. This field is required.');
-    })
-
-    it('Can confirm a valid email', () => {
-        expect(validate('joe@gmail.com','email')).toEqual('');
+        expect(validate('','email, required')).toEqual('This field is required.');
     })
 
     it('Can check for an invalid tel field', () => {
@@ -43,6 +47,10 @@ describe('validate.js', () => {
 
     it('Can confirm a valid tel', () => {
         expect(validate('02 3457 8923','tel')).toEqual('');
+    })
+
+    it('Can confirm a blank field is a valid tel', () => {
+        expect(validate('','tel')).toEqual('');
     })
 
     it('Can check for an invalid text field', () => {
