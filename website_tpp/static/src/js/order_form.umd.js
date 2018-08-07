@@ -315,6 +315,26 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "2fdb":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// 21.1.3.7 String.prototype.includes(searchString, position = 0)
+
+var $export = __webpack_require__("5ca1");
+var context = __webpack_require__("d2c8");
+var INCLUDES = 'includes';
+
+$export($export.P + $export.F * __webpack_require__("5147")(INCLUDES), 'String', {
+  includes: function includes(searchString /* , position = 0 */) {
+    return !!~context(this, searchString, INCLUDES)
+      .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "32e9":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -325,6 +345,19 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 } : function (object, key, value) {
   object[key] = value;
   return object;
+};
+
+
+/***/ }),
+
+/***/ "4588":
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
 
@@ -345,6 +378,25 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
+/***/ "5147":
+/***/ (function(module, exports, __webpack_require__) {
+
+var MATCH = __webpack_require__("2b4c")('match');
+module.exports = function (KEY) {
+  var re = /./;
+  try {
+    '/./'[KEY](re);
+  } catch (e) {
+    try {
+      re[MATCH] = false;
+      return !'/./'[KEY](re);
+    } catch (f) { /* empty */ }
+  } return true;
+};
+
+
+/***/ }),
+
 /***/ "5537":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -360,6 +412,102 @@ var store = global[SHARED] || (global[SHARED] = {});
   mode: __webpack_require__("2d00") ? 'pure' : 'global',
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
+
+
+/***/ }),
+
+/***/ "5ca1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("7726");
+var core = __webpack_require__("8378");
+var hide = __webpack_require__("32e9");
+var redefine = __webpack_require__("2aba");
+var ctx = __webpack_require__("9b43");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if (target) redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
+/***/ "626a":
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__("2d95");
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+
+/***/ "6762":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://github.com/tc39/Array.prototype.includes
+var $export = __webpack_require__("5ca1");
+var $includes = __webpack_require__("c366")(true);
+
+$export($export.P, 'Array', {
+  includes: function includes(el /* , fromIndex = 0 */) {
+    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+__webpack_require__("9c6c")('includes');
+
+
+/***/ }),
+
+/***/ "6821":
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__("626a");
+var defined = __webpack_require__("be13");
+module.exports = function (it) {
+  return IObject(defined(it));
+};
 
 
 /***/ }),
@@ -418,6 +566,20 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 /***/ }),
 
+/***/ "77f1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__("4588");
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
 /***/ "79e5":
 /***/ (function(module, exports) {
 
@@ -459,6 +621,60 @@ exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defin
   if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
   if ('value' in Attributes) O[P] = Attributes.value;
   return O;
+};
+
+
+/***/ }),
+
+/***/ "9b43":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("d8e8");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
+/***/ "9c6c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = __webpack_require__("2b4c")('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__("32e9")(ArrayProto, UNSCOPABLES, {});
+module.exports = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+
+
+/***/ }),
+
+/***/ "9def":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__("4588");
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 
@@ -509,6 +725,36 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "c366":
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__("6821");
+var toLength = __webpack_require__("9def");
+var toAbsoluteIndex = __webpack_require__("77f1");
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+
 /***/ "c69a":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -543,11 +789,37 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "d2c8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// helper for String#{startsWith, endsWith, includes}
+var isRegExp = __webpack_require__("aae3");
+var defined = __webpack_require__("be13");
+
+module.exports = function (that, searchString, NAME) {
+  if (isRegExp(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
+  return String(defined(that));
+};
+
+
+/***/ }),
+
 /***/ "d3f4":
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "d8e8":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
 };
 
 
@@ -562,12 +834,12 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("1eb2");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/OrderForm.vue?vue&type=template&id=e58a0fb8&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('FormGroup',{attrs:{"label":"Sender"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","types":"text,required"},model:{value:(_vm.sender.name),callback:function ($$v) {_vm.$set(_vm.sender, "name", $$v)},expression:"sender.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email,required"},model:{value:(_vm.sender.email),callback:function ($$v) {_vm.$set(_vm.sender, "email", $$v)},expression:"sender.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel"},model:{value:(_vm.sender.phone),callback:function ($$v) {_vm.$set(_vm.sender, "phone", $$v)},expression:"sender.phone"}})],1),_c('FormGroup',{attrs:{"label":"Recipient"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name"},model:{value:(_vm.receiver.name),callback:function ($$v) {_vm.$set(_vm.receiver, "name", $$v)},expression:"receiver.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email"},model:{value:(_vm.receiver.email),callback:function ($$v) {_vm.$set(_vm.receiver, "email", $$v)},expression:"receiver.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel"},model:{value:(_vm.receiver.phone),callback:function ($$v) {_vm.$set(_vm.receiver, "phone", $$v)},expression:"receiver.phone"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Address","types":"textarea,required","placeholder":"Street Address, City, Postcode"},model:{value:(_vm.receiver.address),callback:function ($$v) {_vm.$set(_vm.receiver, "address", $$v)},expression:"receiver.address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Special Delivery Instructions","types":"textarea","placeholder":"Business Name, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.receiver.special),callback:function ($$v) {_vm.$set(_vm.receiver, "special", $$v)},expression:"receiver.special"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"No. Deliveries"},model:{value:(_vm.delivery.number),callback:function ($$v) {_vm.$set(_vm.delivery, "number", $$v)},expression:"delivery.number"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Frequency"},model:{value:(_vm.delivery.freq),callback:function ($$v) {_vm.$set(_vm.delivery, "freq", $$v)},expression:"delivery.freq"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Starting Day"},model:{value:(_vm.delivery.start),callback:function ($$v) {_vm.$set(_vm.delivery, "start", $$v)},expression:"delivery.start"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Delivery Days"},model:{value:(_vm.delivery.days),callback:function ($$v) {_vm.$set(_vm.delivery, "days", $$v)},expression:"delivery.days"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For"},model:{value:(_vm.card.to),callback:function ($$v) {_vm.$set(_vm.card, "to", $$v)},expression:"card.to"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From"},model:{value:(_vm.card.from),callback:function ($$v) {_vm.$set(_vm.card, "from", $$v)},expression:"card.from"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Message","types":"textarea"},model:{value:(_vm.card.message),callback:function ($$v) {_vm.$set(_vm.card, "message", $$v)},expression:"card.message"}})],1)],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/OrderForm.vue?vue&type=template&id=7e95c5b6&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('FormGroup',{attrs:{"label":"Sender"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","types":"text,required"},model:{value:(_vm.sender.name),callback:function ($$v) {_vm.$set(_vm.sender, "name", $$v)},expression:"sender.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email,required"},model:{value:(_vm.sender.email),callback:function ($$v) {_vm.$set(_vm.sender, "email", $$v)},expression:"sender.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel","helpMsg":"in case of order issues"},model:{value:(_vm.sender.phone),callback:function ($$v) {_vm.$set(_vm.sender, "phone", $$v)},expression:"sender.phone"}})],1),_c('FormGroup',{attrs:{"label":"Recipient"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","types":"text,required"},model:{value:(_vm.receiver.name),callback:function ($$v) {_vm.$set(_vm.receiver, "name", $$v)},expression:"receiver.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email"},model:{value:(_vm.receiver.email),callback:function ($$v) {_vm.$set(_vm.receiver, "email", $$v)},expression:"receiver.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel","helpMsg":"in case of delivery issues"},model:{value:(_vm.receiver.phone),callback:function ($$v) {_vm.$set(_vm.receiver, "phone", $$v)},expression:"receiver.phone"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Address","types":"textarea,required","placeholder":"Street Address, City, Postcode"},model:{value:(_vm.receiver.address),callback:function ($$v) {_vm.$set(_vm.receiver, "address", $$v)},expression:"receiver.address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Special Delivery Instructions","types":"textarea","placeholder":"Business Name, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.receiver.special),callback:function ($$v) {_vm.$set(_vm.receiver, "special", $$v)},expression:"receiver.special"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"No. Deliveries"},model:{value:(_vm.delivery.number),callback:function ($$v) {_vm.$set(_vm.delivery, "number", $$v)},expression:"delivery.number"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Frequency"},model:{value:(_vm.delivery.freq),callback:function ($$v) {_vm.$set(_vm.delivery, "freq", $$v)},expression:"delivery.freq"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Starting Day"},model:{value:(_vm.delivery.start),callback:function ($$v) {_vm.$set(_vm.delivery, "start", $$v)},expression:"delivery.start"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Delivery Days"},model:{value:(_vm.delivery.days),callback:function ($$v) {_vm.$set(_vm.delivery, "days", $$v)},expression:"delivery.days"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For"},model:{value:(_vm.card.to),callback:function ($$v) {_vm.$set(_vm.card, "to", $$v)},expression:"card.to"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From"},model:{value:(_vm.card.from),callback:function ($$v) {_vm.$set(_vm.card, "from", $$v)},expression:"card.from"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Message","types":"textarea","helpMsg":"maximum 200 characters"},model:{value:(_vm.card.message),callback:function ($$v) {_vm.$set(_vm.card, "message", $$v)},expression:"card.message"}})],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/OrderForm.vue?vue&type=template&id=e58a0fb8&
+// CONCATENATED MODULE: ./src/components/OrderForm.vue?vue&type=template&id=7e95c5b6&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FormGroup.vue?vue&type=template&id=c4951d1e&
 var FormGroupvue_type_template_id_c4951d1e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('h3',{staticClass:"page-header col-md-12"},[_vm._v("\n      "+_vm._s(_vm.label)+"\n  ")]),_vm._t("default")],2)}
@@ -726,12 +998,18 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var FormGroup = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=8cefdbb2&
-var Fieldvue_type_template_id_8cefdbb2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[_c('label',{staticClass:"control-label",attrs:{"for":_vm.vModelName()}},[_vm._v("\n    "+_vm._s(_vm.label)+"\n  ")]),(_vm.isFieldTextArea())?_c('FieldTextArea',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput())?_c('FieldInput',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")])],1)}
-var Fieldvue_type_template_id_8cefdbb2_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=cacd6a76&
+var Fieldvue_type_template_id_cacd6a76_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[_c('label',{staticClass:"control-label",attrs:{"for":_vm.vModelName()}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")])],1)}
+var Fieldvue_type_template_id_cacd6a76_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=8cefdbb2&
+// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=cacd6a76&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
+var es7_array_includes = __webpack_require__("6762");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
+var es6_string_includes = __webpack_require__("2fdb");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.split.js
 var es6_regexp_split = __webpack_require__("28a5");
@@ -741,42 +1019,42 @@ var es6_regexp_split = __webpack_require__("28a5");
 var checkFor = {
   // validation types
   required: {
-    helpText: 'This field is required.',
-    isMatched: function isMatched(s) {
-      return !/.+/.test(s);
+    validationMsg: 'This field is required.',
+    isValid: function isValid(s) {
+      return /.+/.test(s);
     }
   },
   // <input> types
   text: {
-    helpText: 'Please enter a text value into this field.',
-    isMatched: function isMatched(s) {
-      return !(typeof s == 'string');
+    validationMsg: 'Please enter a text value into this field.',
+    isValid: function isValid(s) {
+      return typeof s == 'string';
     }
   },
   email: {
-    helpText: 'Please enter a valid email address.',
-    isMatched: function isMatched(s) {
-      return !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(s);
+    validationMsg: 'Please enter a valid email address.',
+    isValid: function isValid(s) {
+      return /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*|)$/.test(s);
     }
   },
   tel: {
-    helpText: 'Please enter a valid phone number.',
-    isMatched: function isMatched(s) {
-      return !/^[0-9()+ ]+$/.test(s);
+    validationMsg: 'Please enter a valid phone number.',
+    isValid: function isValid(s) {
+      return /^([0-9()+ ]{0,20}|)$/.test(s);
     }
   },
   // <textarea> types
   textarea: {
-    helpText: 'Please enter a text value into this field.',
-    isMatched: function isMatched(s) {
-      return !(typeof s == 'string');
+    validationMsg: 'Please enter a text value into this field.',
+    isValid: function isValid(s) {
+      return typeof s == 'string';
     }
   }
 };
 function validate(value, terms) {
   function checkStringForRequiredTerm(acc, term) {
     var tterm = term.trim();
-    var msg = !checkFor[tterm] ? "Cannot find validation check \"".concat(tterm, "\".") : checkFor[tterm].isMatched(value, tterm) ? checkFor[tterm].helpText : undefined;
+    var msg = !checkFor[tterm] ? "Cannot find validation check \"".concat(tterm, "\".") : checkFor[tterm].isValid(value, tterm) ? undefined : checkFor[tterm].validationMsg;
     if (msg) acc.push(msg);
     return acc;
   }
@@ -815,12 +1093,12 @@ function deepGet(obj, path) {
 
   return length ? obj : void 0;
 }
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldTextArea.vue?vue&type=template&id=52db831a&
-var FieldTextAreavue_type_template_id_52db831a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control",attrs:{"rows":"3","placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})}
-var FieldTextAreavue_type_template_id_52db831a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/jdm/Projects/tpp-ecommerce/odoo_sale_addons/website_tpp/vue/node_modules/.cache/vue-loader","cacheIdentifier":"20bb32e6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldTextArea.vue?vue&type=template&id=11a3cd9b&
+var FieldTextAreavue_type_template_id_11a3cd9b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control",attrs:{"rows":"3","maxLength":"200","placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})}
+var FieldTextAreavue_type_template_id_11a3cd9b_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldTextArea.vue?vue&type=template&id=52db831a&
+// CONCATENATED MODULE: ./src/components/FieldTextArea.vue?vue&type=template&id=11a3cd9b&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldTextArea.vue?vue&type=script&lang=js&
 //
@@ -865,8 +1143,8 @@ var FieldTextAreavue_type_template_id_52db831a_staticRenderFns = []
 
 var FieldTextArea_component = normalizeComponent(
   components_FieldTextAreavue_type_script_lang_js_,
-  FieldTextAreavue_type_template_id_52db831a_render,
-  FieldTextAreavue_type_template_id_52db831a_staticRenderFns,
+  FieldTextAreavue_type_template_id_11a3cd9b_render,
+  FieldTextAreavue_type_template_id_11a3cd9b_staticRenderFns,
   false,
   null,
   null,
@@ -942,6 +1220,9 @@ var FieldInput_component = normalizeComponent(
 /* harmony default export */ var FieldInput = (FieldInput_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=script&lang=js&
 
+
+
+//
 //
 //
 //
@@ -991,6 +1272,10 @@ var FieldInput_component = normalizeComponent(
       type: String,
       default: ''
     },
+    helpMsg: {
+      type: String,
+      default: ''
+    },
     types: {
       type: String,
       default: 'text'
@@ -1003,19 +1288,25 @@ var FieldInput_component = normalizeComponent(
     localClasses: function localClasses() {
       return ['form-group', this.validationMsg ? 'has-error' : ''];
     },
+    localLabel: function localLabel() {
+      return this.label + (this.isRequired() ? ' *' : '');
+    },
     type: function type() {
       return this.types.split(',')[0];
-    }
-  },
-  methods: {
+    },
     isFieldInput: function isFieldInput() {
       return this.type != "textarea";
     },
     isFieldTextArea: function isFieldTextArea() {
       return this.type == "textarea";
-    },
+    }
+  },
+  methods: {
     vModelName: function vModelName() {
       return property(['$vnode', 'data', 'model', 'expression'])(this);
+    },
+    isRequired: function isRequired() {
+      return this.types.split(',').includes('required');
     },
     handleInput: function handleInput(newVal) {
       this.validationMsg = validate(newVal, this.types);
@@ -1035,8 +1326,8 @@ var FieldInput_component = normalizeComponent(
 
 var Field_component = normalizeComponent(
   components_Fieldvue_type_script_lang_js_,
-  Fieldvue_type_template_id_8cefdbb2_render,
-  Fieldvue_type_template_id_8cefdbb2_staticRenderFns,
+  Fieldvue_type_template_id_cacd6a76_render,
+  Fieldvue_type_template_id_cacd6a76_staticRenderFns,
   false,
   null,
   null,

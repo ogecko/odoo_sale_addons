@@ -1,8 +1,6 @@
 <template>
   <input 
-    class="form-control"
-    :type="type"
-    :placeholder="placeholder"
+    type="checkbox"
     v-model="localValue"
   >
 </template>
@@ -15,9 +13,7 @@
       }
     },
     props: {
-      type: { type: String, default: 'text' },
-      value: { type: String },  
-      placeholder: { type: String, default: '' },
+      value: { type: Boolean },
     },
     computed: {
     },

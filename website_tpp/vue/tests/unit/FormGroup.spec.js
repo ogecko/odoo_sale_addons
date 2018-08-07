@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import FormGroup from '@/components/FormGroup.vue'
+import FormGroup from '@/layout/FormGroup.vue'
 
 describe('FormGroup.vue', () => {
   it('Renders a simple h3 with the label', () => {

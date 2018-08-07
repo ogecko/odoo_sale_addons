@@ -24,7 +24,14 @@ const checkFor = {
         validationMsg: 'Please enter a text value into this field.',
         isValid: s => (typeof(s)=='string'),
     },
-  }
+
+    // <checkbox> types
+    boolean: {
+        validationMsg: 'Please enter a true or false value into this field.',
+        isValid: s => (typeof(s)=='boolean'),
+    },
+
+}
 
 
 

@@ -9,30 +9,40 @@
             <Field label="Name" v-model="receiver.name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="receiver.phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
+            <FormBreak />
             <Field label="Delivery Address" v-model="receiver.address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="col-md-6"/>
             <Field label="Special Delivery Instructions" v-model="receiver.special" types="textarea" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <Field label="No. Deliveries" v-model="delivery.number" class="col-md-4"/>
-            <Field label="Frequency" v-model="delivery.freq" class="col-md-4"/>
-            <Field label="Starting Day" v-model="delivery.start" class="col-md-4"/>
-            <Field label="Delivery Days" v-model="delivery.days" class="col-md-12"/>
+            <Field :label="delivery.subscription? 'Starting Day' : 'Delivery Day'" v-model="delivery.start" class="col-md-6"/>
+            <Field label="Subscription Posy" v-model="delivery.subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
+            <FormBreak />
+            <FormTransition :show="delivery.subscription">
+                <Field label="Number of Deliveries" v-model="delivery.number" class="col-md-6"/>
+                <Field label="Frequency" v-model="delivery.freq" class="col-md-6"/>
+                <Field label="Delivery Days" v-model="delivery.days" class="col-md-12"/>
+            </FormTransition>
         </FormGroup>
         <FormGroup label="Personalised Card">
             <Field label="A Posy For" v-model="card.to" class="col-md-6"/>
             <Field label="From" v-model="card.from" class="col-md-6"/>
+            <FormBreak />
             <Field label="Message" v-model="card.message" types="textarea" helpMsg="maximum 200 characters" class="col-md-12"/>
         </FormGroup>
     </div>
 </template>
 
 <script>
-import FormGroup from '@/components/FormGroup.vue'
+import FormGroup from '@/layout/FormGroup.vue'
+import FormBreak from '@/layout/FormBreak.vue'
+import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
 
 export default {
     components: {
         FormGroup,
+        FormBreak,
+        FormTransition,
         Field,
     },
     data: function () {
@@ -50,9 +60,10 @@ export default {
                 special: 'Unit 5',
             },
             delivery: {
-                number: '1',
-                freq: 'Once a Week',
                 start: '1/1/2018',
+                subscription: false,
+                number: '3',
+                freq: 'Once a Week',
                 days: '1/1/2018',
             },
             card: {

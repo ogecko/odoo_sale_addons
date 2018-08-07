@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import OrderForm from '@/components/OrderForm.vue'
+import OrderForm from '@/forms/OrderForm.vue'
 
 describe('OrderForm.vue', () => {
   it('Renders a simple h3 with the label', () => {

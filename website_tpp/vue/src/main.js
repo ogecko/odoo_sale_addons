@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from '@/components/OrderForm.vue'
+import App from '@/forms/OrderForm.vue'
 
 Vue.config.productionTip = false
 
