@@ -31,6 +31,12 @@ const checkFor = {
         isValid: s => (typeof(s)=='boolean'),
     },
 
+    // <radio> types
+    enum: {
+        validationMsg: 'Please choose one of the options.',
+        isValid: s => (typeof(s)=='string'),
+    },
+    
 }
 
 

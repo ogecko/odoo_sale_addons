@@ -35,6 +35,14 @@
       @input="handleInput"
     ></FieldInput>
 
+    <FieldRadio v-if="isFieldRadio" 
+      :name="vModelName()" :id="vModelName()"
+      :options="options"
+      :type="type"
+      :value="value"
+      @input="handleInput"
+    ></FieldRadio>
+
     <small class="help-block">
       {{ validationMsg }}
     </small>
@@ -47,12 +55,14 @@ import property from '@/helpers/property.js';
 import FieldTextArea from '@/components/FieldTextArea.vue'
 import FieldInput from '@/components/FieldInput.vue'
 import FieldCheckbox from '@/components/FieldCheckbox.vue'
+import FieldRadio from '@/components/FieldRadio.vue'
 
 export default {
   components: {
       FieldTextArea,
       FieldInput,
       FieldCheckbox,
+      FieldRadio,
   },
   data: function() {
     return {
@@ -65,6 +75,7 @@ export default {
     helpMsg: { type: String, default: '' },
     types: { type: String, default: 'text' },
     value: { type: [ String, Boolean ] },
+    options: { type: Array },
   },
   computed: {
     localClasses: function() {
@@ -80,13 +91,16 @@ export default {
       return this.types.split(',')[0];
     },
     isFieldInput: function () {
-      return (this.type!="textarea" && this.type!="boolean")
+      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum")
     },
     isFieldTextArea: function () {
       return (this.type=="textarea")
     },
     isFieldCheckbox: function () {
       return (this.type=="boolean")
+    },
+    isFieldRadio: function () {
+      return (this.type=="enum")
     },
 },
   methods: {

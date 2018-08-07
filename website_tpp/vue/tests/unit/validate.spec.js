@@ -77,6 +77,9 @@ describe('validate.js', () => {
         expect(validate('true','boolean')).toEqual('Please enter a true or false value into this field.');
     })
 
+    it('Can confirm a valid enum field', () => {
+        expect(validate('one','enum')).toEqual('');
+    })
 
 })
   
