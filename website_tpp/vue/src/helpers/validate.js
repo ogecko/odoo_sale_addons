@@ -36,6 +36,12 @@ const checkFor = {
         validationMsg: 'Please choose one of the options.',
         isValid: s => (typeof(s)=='string'),
     },
+
+    // <integer> types
+    integer: {
+        validationMsg: 'Please enter a whole number.',
+        isValid: s => (typeof(s)=='number'),
+    },
     
 }
 

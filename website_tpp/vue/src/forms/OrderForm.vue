@@ -18,7 +18,7 @@
             <Field label="Subscription Posy" v-model="delivery.subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
             <FormBreak />
             <FormTransition :show="delivery.subscription">
-                <Field label="Number of Deliveries" v-model="delivery.number" class="col-md-6"/>
+                <Field label="Number of Deliveries" v-model="delivery.number" types="integer" class="col-md-6"/>
                 <Field label="Delivery Frequency" v-model="delivery.freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
                 <Field label="Delivery Days" v-model="delivery.days" class="col-md-12"/>
             </FormTransition>
@@ -62,7 +62,7 @@ export default {
             delivery: {
                 start: '1/1/2018',
                 subscription: false,
-                number: '3',
+                number: 3,
                 freq: 'Weekly',
                 days: '1/1/2018',
             },

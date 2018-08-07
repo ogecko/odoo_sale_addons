@@ -6,7 +6,7 @@ describe('FieldRadio.vue', () => {
     const wrapper = shallowMount(FieldRadio, {
       propsData: { value: 'three', options: ['one', 'two', 'three'] }
     })
-    expect(wrapper.find('span').classes()).toContain('btn-group');
+    expect(wrapper.find('div').classes()).toContain('btn-group');
     expect(wrapper.find('.btn-primary').text()).toEqual('three');
   })
 

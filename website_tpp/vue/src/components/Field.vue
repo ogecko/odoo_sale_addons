@@ -8,8 +8,8 @@
       <small v-if="helpMsg && !isFieldCheckbox" class="text-muted">({{helpMsg}})</small>
     </label>
 
-    <div  class="checkbox">
-      <label v-if="isFieldCheckbox">
+    <div v-if="isFieldCheckbox" class="checkbox" >
+      <label >
         <FieldCheckbox 
         :name="vModelName()" :id="vModelName()"
         :value="value"
@@ -43,6 +43,12 @@
       @input="handleInput"
     ></FieldRadio>
 
+    <FieldInteger v-if="isFieldInteger" 
+      :name="vModelName()" :id="vModelName()"
+      :value="value"
+      @input="handleInput"
+    ></FieldInteger>
+
     <small class="help-block">
       {{ validationMsg }}
     </small>
@@ -56,6 +62,7 @@ import FieldTextArea from '@/components/FieldTextArea.vue'
 import FieldInput from '@/components/FieldInput.vue'
 import FieldCheckbox from '@/components/FieldCheckbox.vue'
 import FieldRadio from '@/components/FieldRadio.vue'
+import FieldInteger from '@/components/FieldInteger.vue'
 
 export default {
   components: {
@@ -63,6 +70,7 @@ export default {
       FieldInput,
       FieldCheckbox,
       FieldRadio,
+      FieldInteger,
   },
   data: function() {
     return {
@@ -74,7 +82,7 @@ export default {
     placeholder: { type: String, default: '' },
     helpMsg: { type: String, default: '' },
     types: { type: String, default: 'text' },
-    value: { type: [ String, Boolean ] },
+    value: { type: [ String, Boolean, Number ] },
     options: { type: Array },
   },
   computed: {
@@ -91,7 +99,7 @@ export default {
       return this.types.split(',')[0];
     },
     isFieldInput: function () {
-      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum")
+      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer")
     },
     isFieldTextArea: function () {
       return (this.type=="textarea")
@@ -101,6 +109,9 @@ export default {
     },
     isFieldRadio: function () {
       return (this.type=="enum")
+    },
+    isFieldInteger: function () {
+      return (this.type=="integer")
     },
 },
   methods: {

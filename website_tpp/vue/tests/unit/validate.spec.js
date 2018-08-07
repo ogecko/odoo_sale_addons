@@ -73,12 +73,24 @@ describe('validate.js', () => {
         expect(validate(true,'boolean')).toEqual('');
     })
 
-    it('Can confirm an in-valid boolean field', () => {
+    it('Can confirm an invalid boolean field', () => {
         expect(validate('true','boolean')).toEqual('Please enter a true or false value into this field.');
     })
 
     it('Can confirm a valid enum field', () => {
         expect(validate('one','enum')).toEqual('');
+    })
+
+    it('Can confirm a invalid integer field', () => {
+        expect(validate(1,'enum')).toEqual('Please choose one of the options.');
+    })
+
+    it('Can confirm a valid integer field', () => {
+        expect(validate(1,'integer')).toEqual('');
+    })
+
+    it('Can confirm a invalid integer field', () => {
+        expect(validate('one','integer')).toEqual('Please enter a whole number.');
     })
 
 })

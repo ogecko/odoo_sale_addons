@@ -2,7 +2,7 @@
   <div class="clearfix" />
 </template>
 
-<style>
+<style scoped>
     .clearfix {
         display: block;
         clear: both;

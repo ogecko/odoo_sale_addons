@@ -1,5 +1,5 @@
 <template>
-  <span class="btn-group">
+  <div class="input-group btn-group">
       <button v-for="option in options" 
         :key="option"
         :class="localClass(option)"
@@ -7,7 +7,7 @@
       >
           {{option}}
       </button>
-  </span>
+  </div>
 </template>
 
 <script>
