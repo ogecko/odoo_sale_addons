@@ -72,7 +72,7 @@ export default {
       FieldRadio,
       FieldInteger,
   },
-  data: function() {
+  data() {
     return {
       validationMsg : '',
     }
@@ -86,42 +86,42 @@ export default {
     options: { type: Array },
   },
   computed: {
-    localClasses: function() {
+    localClasses() {
       return [ 
         'form-group',
         this.validationMsg ? 'has-error' : '',
       ];
     },
-    localLabel: function() {
+    localLabel() {
       return this.label + (this.isRequired() ? ' *' : '');
     },
-    type: function() {
+    type() {
       return this.types.split(',')[0];
     },
-    isFieldInput: function () {
+    isFieldInput () {
       return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer")
     },
-    isFieldTextArea: function () {
+    isFieldTextArea () {
       return (this.type=="textarea")
     },
-    isFieldCheckbox: function () {
+    isFieldCheckbox () {
       return (this.type=="boolean")
     },
-    isFieldRadio: function () {
+    isFieldRadio () {
       return (this.type=="enum")
     },
-    isFieldInteger: function () {
+    isFieldInteger () {
       return (this.type=="integer")
     },
 },
   methods: {
-    vModelName: function() {
+    vModelName() {
       return property(['$vnode','data','model','expression'])(this);
     },
-    isRequired: function() {
+    isRequired() {
       return this.types.split(',').includes('required');
     },
-    handleInput: function(newVal) {
+    handleInput(newVal) {
       this.validationMsg = validate(newVal, this.types);
       this.$emit('input', newVal);
     },

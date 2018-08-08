@@ -17,4 +17,12 @@ describe('FieldTextArea.vue', () => {
     expect(wrapper.emitted()).toEqual({ input: [ [ 'test' ] ] });
   })
 
+  it('Should update localValue when new value is sent down via props', () => {
+    const wrapper = shallowMount(FieldTextArea, {
+      propsData: { value: 'abc' }
+    })
+    wrapper.setProps({ value: 'def'});
+    expect(wrapper.vm.localValue).toEqual('def');
+  })
+  
 })

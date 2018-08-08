@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    data: function() {
+    data() {
       return {
         localValue: this.value,
       }
@@ -19,7 +19,10 @@
       placeholder: { type: String, default: '' },
     },
     watch: {
-      localValue: function(newVal) {
+      value(newVal) {
+        this.localValue = this.value;
+      },
+      localValue(newVal) {
         this.$emit('input',newVal);
       },
     },

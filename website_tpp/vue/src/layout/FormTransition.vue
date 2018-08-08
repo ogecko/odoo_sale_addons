@@ -30,7 +30,7 @@ export default {
   props: {
     show: { type: Boolean, default: true }, 
   },
-  data: function() {
+  data() {
     return {};
   }
 }

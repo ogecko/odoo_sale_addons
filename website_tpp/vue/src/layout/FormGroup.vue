@@ -20,7 +20,7 @@ export default {
   props: {
     label: { type: String, default: 'Default Label' }, 
   },
-  data: function() {
+  data() {
     return {};
   }
 }

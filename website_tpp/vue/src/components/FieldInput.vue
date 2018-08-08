@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    data: function() {
+    data() {
       return {
         localValue: this.value,
       }
@@ -22,7 +22,10 @@
     computed: {
     },
     watch: {
-      localValue: function(newVal) {
+      value(newVal) {
+        this.localValue = this.value;
+      },
+      localValue(newVal) {
         this.$emit('input',newVal);
       },
     },

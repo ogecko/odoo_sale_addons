@@ -18,4 +18,12 @@ describe('FieldInput.vue', () => {
     expect(wrapper.emitted()).toEqual({ input: [ [ 'test' ] ] });
   })
 
+  it('Should update localValue when new value is sent down via props', () => {
+    const wrapper = shallowMount(FieldInput, {
+      propsData: { value: 'a' }
+    })
+    wrapper.setProps({ value: 'abc'});
+    expect(wrapper.vm.localValue).toEqual('abc');
+  })
+
 })

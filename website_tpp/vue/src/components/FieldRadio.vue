@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    data: function() {
+    data() {
       return {
         localValue: this.value,
       }
@@ -22,7 +22,7 @@
       options: { type: Array }, // an Array of Strings
     },
     methods: {
-        localClass: function(option) {
+        localClass(option) {
             return [
                 'btn',
                 { 'btn-primary' : this.localValue == option },
@@ -31,7 +31,10 @@
         },
     },
     watch: {
-      localValue: function(newVal) {
+      value(newVal) {
+        this.localValue = this.value;
+      },
+      localValue(newVal) {
         this.$emit('input', newVal);
       },
     },

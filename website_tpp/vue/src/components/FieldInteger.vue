@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    data: function() {
+    data() {
       return {
         localValue: this.value,
       }
@@ -26,15 +26,18 @@
     computed: {
     },
     methods: {
-      decValue: function() {
+      decValue() {
         this.localValue -= 1;
       },
-      incValue: function() {
+      incValue() {
         this.localValue += 1;
       },
     },
     watch: {
-      localValue: function(newVal) {
+      value(newVal) {
+        this.localValue = this.value;
+      },
+      localValue(newVal) {
         this.$emit('input',newVal);
       },
     },

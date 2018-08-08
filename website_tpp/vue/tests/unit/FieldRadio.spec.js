@@ -18,5 +18,12 @@ describe('FieldRadio.vue', () => {
     expect(wrapper.emitted()).toEqual({ input: [ [ 'two' ] ] });
   })
 
+  it('Should update localValue when new value is sent down via props', () => {
+    const wrapper = shallowMount(FieldRadio, {
+      propsData: { value: 'three', options: ['one', 'two', 'three'] }
+    })
+    wrapper.setProps({ value: 'two'});
+    expect(wrapper.vm.localValue).toEqual('two');
+  })
 
 })
