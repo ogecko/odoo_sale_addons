@@ -26,4 +26,12 @@ describe('FieldInteger.vue', () => {
     expect(wrapper.vm.localValue).toEqual(19);
   })
 
+  it('Should update localValue when new value is sent down via props', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 20 }
+    })
+    wrapper.setProps({ value: 30});
+    expect(wrapper.vm.localValue).toEqual(30);
+  })
+
 })

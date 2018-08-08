@@ -18,8 +18,8 @@
             <Field label="Subscription Posy" v-model="delivery.subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
             <FormBreak />
             <FormTransition :show="delivery.subscription">
-                <Field label="Number of Deliveries" v-model="delivery.number" types="integer" class="col-md-6"/>
                 <Field label="Delivery Frequency" v-model="delivery.freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
+                <Field label="Number of Deliveries" v-model="delivery.number" types="integer" class="col-md-6"/>
                 <Field label="Delivery Days" v-model="delivery.days" class="col-md-12"/>
             </FormTransition>
         </FormGroup>
@@ -37,6 +37,7 @@ import FormGroup from '@/layout/FormGroup.vue'
 import FormBreak from '@/layout/FormBreak.vue'
 import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
+import deliveryDays from '@/helpers/deliveryDays';
 
 export default {
     components: {
@@ -45,7 +46,7 @@ export default {
         FormTransition,
         Field,
     },
-    data: function () {
+    data() {
         return {
             sender: {
                 name: 'Joe Blogs',
@@ -75,5 +76,19 @@ export default {
     },
     methods: {
     },
+    watch: {
+        'delivery.start'() {
+            this.delivery.days = deliveryDays(this.delivery.start, this.delivery.freq, this.delivery.number, this.delivery.days);
+        },
+        'delivery.freq'() {
+            this.delivery.days = deliveryDays(this.delivery.start, this.delivery.freq, this.delivery.number, this.delivery.days);
+        },
+        'delivery.number'() {
+            this.delivery.days = deliveryDays(this.delivery.start, this.delivery.freq, this.delivery.number, this.delivery.days);
+        },
+    }
 }
+
+
+
 </script>
