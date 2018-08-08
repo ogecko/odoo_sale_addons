@@ -3,7 +3,8 @@
 
         <template id="assets_frontend" inherit_id="web.assets_frontend">
             <xpath expr="script[last()]" position="after">
-                <script type="text/javascript" src="/website_tpp/static/src/js/order_form.umd.js"></script>
+               <link rel="stylesheet" href="/website_tpp/static/src/css/order_form.css"></link>
+               <script type="text/javascript" src="/website_tpp/static/src/js/order_form.umd.js"></script>
             </xpath>
         </template>
 

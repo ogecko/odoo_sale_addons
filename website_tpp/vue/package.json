@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name order_form src/components/OrderForm.vue && cp dist/order_form.umd.min.js ../static/src/js && cp dist/order_form.umd.js ../static/src/js",
+    "build": "vue-cli-service build --target lib --name order_form src/forms/OrderForm.vue && cp dist/order_form.umd.min.js ../static/src/js && cp dist/order_form.umd.js ../static/src/js && cp dist/order_form.css ../static/src/css",
     "lint": "vue-cli-service lint src/App.vue",
     "test:unit": "vue-cli-service test:unit --coverage",
     "test:unitw": "vue-cli-service test:unit --coverage --watch --no-cache",
