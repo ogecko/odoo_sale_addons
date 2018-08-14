@@ -1,11 +1,6 @@
 <template>
     <div>
-        <FormGroup label="Sender">
-            <Field label="Name" v-model="sender.name" types="text,required" class="col-md-4"/>
-            <Field label="Email" v-model="sender.email" types="email,required" class="col-md-4"/>
-            <Field label="Phone" v-model="sender.phone" types="tel" helpMsg="in case of order issues" class="col-md-4"/>
-        </FormGroup>
-        <FormGroup label="Recipient">
+        <FormGroup label="Recipient" top>
             <Field label="Name" v-model="receiver.name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="receiver.phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
@@ -21,11 +16,6 @@
                 <Field label="Delivery Days" v-model="delivery.days" class="clearfix col-md-12" types="text, days"/>
             </FormTransition>
         </FormGroup>
-        <FormGroup label="Personalised Card">
-            <Field label="A Posy For" v-model="card.to" class="col-md-6"/>
-            <Field label="From" v-model="card.from" class="col-md-6"/>
-            <Field label="Message" v-model="card.message" types="textarea" helpMsg="maximum 200 characters" class="clearfix col-md-12"/>
-        </FormGroup>
     </div>
 </template>
 
@@ -33,7 +23,7 @@
 import FormGroup from '@/layout/FormGroup.vue'
 import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
-import deliveryDays from '@/helpers/deliveryDays'
+import deliveryDays from '@/helpers/deliveryDays';
 
 
 export default {

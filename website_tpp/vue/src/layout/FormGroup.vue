@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <h3 class="page-header col-md-12">
+  <div class="clearfix">
+    <h3 :class="[ 'page-header', 'col-md-12', { mt16: top }]">
         {{label}}
     </h3>
     <slot />
@@ -19,6 +19,7 @@
 export default {
   props: {
     label: { type: String, default: 'Default Label' }, 
+    top: { type: Boolean, default: false },
   },
   data() {
     return {};

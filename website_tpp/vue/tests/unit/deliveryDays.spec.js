@@ -1,4 +1,6 @@
 import deliveryDays from '@/helpers/deliveryDays.js'
+import { next90DeliveryDays } from '@/helpers/deliveryDays.js'
+
 describe('deliveryDays.js', () => {
  
     it('Caters for no parameters', () => {
@@ -58,6 +60,10 @@ describe('deliveryDays.js', () => {
     it('Monthly frequency skips Christmas', () => {
         expect(deliveryDays('25-Nov-18','Monthly',3))
         .toEqual('26-Nov-2018, 27-Dec-2018, 25-Jan-2019');
+    });
+
+    it('Can give a list of next 90 Delivery Days', () => {
+        expect(next90DeliveryDays().length).toEqual(90);
     });
 
 });

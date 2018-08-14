@@ -4,6 +4,6 @@ import OrderForm from '@/forms/OrderForm.vue'
 describe('OrderForm.vue', () => {
   it('Renders a simple h3 with the label', () => {
     const wrapper = shallowMount(OrderForm, {})
-  expect(wrapper.find('formgroup-stub').props()).toEqual({"label": "Sender"});
+  expect(wrapper.find('formgroup-stub').props()).toEqual({"label": "Sender", "top": false});
   })
 })

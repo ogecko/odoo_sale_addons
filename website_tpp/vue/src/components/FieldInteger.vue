@@ -35,7 +35,7 @@
     },
     watch: {
       value(newVal) {
-        this.localValue = this.value;
+        this.localValue = newVal;
       },
       localValue(newVal) {
         this.$emit('input',newVal);

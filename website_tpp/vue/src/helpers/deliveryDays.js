@@ -30,10 +30,15 @@ const daily = {
         { D: [19,22], M: [4], Y: [2030], h: [13], },
     ],
 };
+export function next90DeliveryDays() {
+    later.date.localTime();
+    moment.locale();
+    return later.schedule(daily).next(90,moment());
+}
 
-
-export default function deliveryDays(start, freq, number, oldDays) {
+export default function deliveryDays(start, freq, number) {
     const startDate = moment(start,['DD-MM-YYYY','DD-MMM-YYYY']);
+    if (!startDate.isValid()) return '';
     const weekly = {
         schedules: [ 
             { d: [startDate.day()+1], wm: [1,2,3,4,5,6], h: [13], },        // Starting day of week (2-6) for every Week of the month at 1pm

@@ -35,6 +35,14 @@
       @input="handleInput"
     ></FieldInput>
 
+    <FieldDatePicker v-if="isFieldDatePicker" 
+      :name="vModelName()" :id="vModelName()"
+      :placeholder="placeholder"
+      :type="type"
+      :value="value"
+      @input="handleInput"
+    ></FieldDatePicker>
+
     <FieldRadio v-if="isFieldRadio" 
       :name="vModelName()" :id="vModelName()"
       :options="options"
@@ -63,6 +71,7 @@ import FieldInput from '@/components/FieldInput.vue'
 import FieldCheckbox from '@/components/FieldCheckbox.vue'
 import FieldRadio from '@/components/FieldRadio.vue'
 import FieldInteger from '@/components/FieldInteger.vue'
+import FieldDatePicker from '@/components/FieldDatePicker.vue'
 
 export default {
   components: {
@@ -71,6 +80,7 @@ export default {
       FieldCheckbox,
       FieldRadio,
       FieldInteger,
+      FieldDatePicker,
   },
   data() {
     return {
@@ -99,7 +109,7 @@ export default {
       return this.types.split(',')[0];
     },
     isFieldInput () {
-      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer")
+      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer" && this.type!="date")
     },
     isFieldTextArea () {
       return (this.type=="textarea")
@@ -112,6 +122,9 @@ export default {
     },
     isFieldInteger () {
       return (this.type=="integer")
+    },
+    isFieldDatePicker () {
+      return (this.type=="date")
     },
 },
   methods: {

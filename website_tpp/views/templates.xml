@@ -8,9 +8,72 @@
             </xpath>
         </template>
 
-        <template id="order_form">
-            <div id="app" class="container"><order_form /></div>
-            <script>vm = new Vue({ el: '#app', components: { order_form } });</script>
+        <template id="order_form_sender">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container oe_website_sale">
+                        <t t-call="website_sale.wizard_checkout">
+                            <t t-set="step" t-value="20"/>
+                        </t>
+                        <div class="row">
+                            <div class="col-md-9 oe_cart">
+                                <div class="row">
+                                    <div id="vueapp" class="container">
+                                    <Widget 
+                                        t-att-name="order.partner_id.name"
+                                        t-att-email="order.partner_id.email"
+                                        t-att-phone="order.partner_id.phone"
+                                        t-att-x_to="order.x_to"
+                                        t-att-x_from="order.x_from"
+                                        t-att-x_message="order.x_message"/>
+                                    </div>
+                                    <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Sender } });</script>
+                                </div>
+                                <div class="clearfix"/>
+                                <div>
+                                    <a href="/shop/cart" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
+                                    <a href="/shop/delivery" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 text-muted">
+                                    <h3 class="page-header mt16 text-center">Your Order</h3>
+                                    <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                    <t t-call="website_sale.total"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="order_form_delivery">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container oe_website_sale">
+                        <t t-call="website_sale.wizard_checkout">
+                            <t t-set="step" t-value="30"/>
+                        </t>
+                        <div class="row">
+                            <div class="col-md-9 oe_cart">
+                                <div class="row">
+                                    <div id="vueapp" class="container"><Widget /></div>
+                                    <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Delivery } });</script>
+                                </div>
+                                <div class="clearfix"/>
+                                <div>
+                                    <a href="/shop/checkout" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
+                                    <a href="/shop/confirm_order" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 text-muted">
+                                    <h3 class="page-header mt16 text-center">Your Order</h3>
+                                    <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                    <t t-call="website_sale.total"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
         </template>
 
     </data>

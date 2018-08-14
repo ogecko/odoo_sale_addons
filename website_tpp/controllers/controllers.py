@@ -1,20 +1,44 @@
 # -*- coding: utf-8 -*-
 from odoo import http
+from odoo.http import request
+from odoo.addons.website_sale.controllers.main import WebsiteSale
 
-# class WebsiteShopOrderInfo(http.Controller):
-#     @http.route('/website_shop_order_info/website_shop_order_info/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+# extend the WebsiteSale Class
+class WebsiteSaleTPP(WebsiteSale):
 
-#     @http.route('/website_shop_order_info/website_shop_order_info/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('website_shop_order_info.listing', {
-#             'root': '/website_shop_order_info/website_shop_order_info',
-#             'objects': http.request.env['website_shop_order_info.website_shop_order_info'].search([]),
-#         })
+# override the /shop/checkout route (with its ugly billing/shipping address forms)
+    @http.route(['/shop/checkout'], type='http', auth="public", website=True)
+    def checkout(self, **post):
+        order = request.website.sale_get_order()
 
-#     @http.route('/website_shop_order_info/website_shop_order_info/objects/<model("website_shop_order_info.website_shop_order_info"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('website_shop_order_info.object', {
-#             'object': obj
-#         })
+        redirection = self.checkout_redirection(order)
+        if redirection:
+            return redirection
+
+        values = {
+            'order': order,
+        }
+
+         # Avoid useless rendering if called in ajax
+        if post.get('xhr'):
+            return 'ok'
+        return request.render("website_tpp.order_form_sender", values)
+
+# add the /shop/delivery route
+    @http.route(['/shop/delivery'], type='http', auth="public", website=True)
+    def delivery(self, **post):
+        order = request.website.sale_get_order()
+
+        redirection = self.checkout_redirection(order)
+        if redirection:
+            return redirection
+
+        values = {
+            'order': order,
+        }
+
+         # Avoid useless rendering if called in ajax
+        if post.get('xhr'):
+            return 'ok'
+        return request.render("website_tpp.order_form_delivery", values)
+

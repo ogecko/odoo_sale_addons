@@ -93,5 +93,17 @@ describe('validate.js', () => {
         expect(validate('one','integer')).toEqual('Please enter a whole number.');
     })
 
+    it('Can confirm an invalid days field', () => {
+        expect(validate('one','days')).toEqual('Please enter dates, separated by commas. Need to change "one"');
+    })
+
+    it('Can confirm a blank invalid days field', () => {
+        expect(validate('','days')).toEqual('Please enter dates, separated by commas.');
+    })
+
+    it('Can confirm an invalid type for days field', () => {
+        expect(validate(5,'days')).toEqual('Please enter a text value into this field.');
+    })
+
 })
   
