@@ -10,6 +10,7 @@
 
         <template id="order_form_sender">
             <t t-call="website.layout">
+                <input type="hidden" name="csrf_token" form="vueform" t-att-value="request.csrf_token()"/>
                 <div id="wrap">
                     <div class="container oe_website_sale">
                         <t t-call="website_sale.wizard_checkout">
@@ -19,7 +20,7 @@
                             <div class="col-md-9 oe_cart">
                                 <div class="row">
                                     <div id="vueapp" class="container">
-                                    <Widget 
+                                    <Widget id="vueform"
                                         t-att-name="order.partner_id.name"
                                         t-att-email="order.partner_id.email"
                                         t-att-phone="order.partner_id.phone"
@@ -28,11 +29,6 @@
                                         t-att-x_message="order.x_message"/>
                                     </div>
                                     <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Sender } });</script>
-                                </div>
-                                <div class="clearfix"/>
-                                <div>
-                                    <a href="/shop/cart" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
-                                    <a href="/shop/delivery" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 text-muted">
@@ -48,6 +44,7 @@
 
         <template id="order_form_delivery">
             <t t-call="website.layout">
+                <input type="hidden" name="csrf_token" form="vueform" t-att-value="request.csrf_token()"/>
                 <div id="wrap">
                     <div class="container oe_website_sale">
                         <t t-call="website_sale.wizard_checkout">
@@ -56,13 +53,10 @@
                         <div class="row">
                             <div class="col-md-9 oe_cart">
                                 <div class="row">
-                                    <div id="vueapp" class="container"><Widget /></div>
+                                    <div id="vueapp" class="container">
+                                        <Widget id="vueform"/>
+                                    </div>
                                     <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Delivery } });</script>
-                                </div>
-                                <div class="clearfix"/>
-                                <div>
-                                    <a href="/shop/checkout" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
-                                    <a href="/shop/confirm_order" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 text-muted">

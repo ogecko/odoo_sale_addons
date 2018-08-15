@@ -31,14 +31,17 @@ const daily = {
     ],
 };
 export function next90DeliveryDays() {
-    later.date.localTime();
     moment.locale();
+    later.date.localTime();
     return later.schedule(daily).next(90,moment());
 }
 
 export default function deliveryDays(start, freq, number) {
+    moment.locale();
+    later.date.localTime();
     const startDate = moment(start,['DD-MM-YYYY','DD-MMM-YYYY']);
     if (!startDate.isValid()) return '';
+
     const weekly = {
         schedules: [ 
             { d: [startDate.day()+1], wm: [1,2,3,4,5,6], h: [13], m: [0] },        // Starting day of week (2-6) for every Week of the month at 1pm
@@ -49,22 +52,19 @@ export default function deliveryDays(start, freq, number) {
             { D: [Math.min(startDate.date(),28)], M: [1,2,3,4,5,6,7,8,9,10,11,12], h: [13], m: [0] },    // Starting day of month (1-28) for every Month of the year at 1pm
         ],
     }
+    const availableSchedules = {
+        Daily: (number, startDate) => later.schedule(daily).next(number, startDate),
+        Weekly: (number, startDate) => later.schedule(weekly).next(number, startDate),
+        Fortnightly: (number, startDate) => later.schedule(weekly).next(number*2,startDate).filter((d,i) => (i%2 == 0)),
+        Monthly: (number, startDate) => later.schedule(monthly).next(number, startDate),
+    }
 
     let days = [];
-    later.date.localTime();
-    if (freq =='Daily') {
-        days = later.schedule(daily).next(number,startDate);
-    } else if (freq == 'Weekly') {
-        days = later.schedule(weekly).next(number,startDate);
-        days = ensureValidDays(days);
-    } else if (freq == 'Fortnightly') {
-        days = later.schedule(weekly).next(number*2,startDate);
-        days = days.filter((d,i) => (i%2 == 0));    // every 2nd week
-        days = ensureValidDays(days);
-    } else if (freq == 'Monthly') {
-        days = later.schedule(monthly).next(number,startDate);
+    if (availableSchedules[freq]) {
+        days = availableSchedules[freq](number, startDate);
         days = ensureValidDays(days);
     }
+
     return days.map(d=>moment(d).format('DD-MMM-YYYY')).join(', ');
 }
 

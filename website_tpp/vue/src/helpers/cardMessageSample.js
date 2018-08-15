@@ -17,10 +17,10 @@ const sampleMessages = {
 		"Happy Birthday!",
 		"Hoping the sun is shining for your birthday today :) May your day be filled with laughter, love and cake!!!",
 		"Lots of birthday love from all of us!",
-		"Lots of love xx",
-		"Lots of love",
+		"Lots of love xx. Happy Birthday!",
+		"Lots of birthday love",
 		"Wishing you a very happy birthday.",
-		"XX Can't wait to see you",
+		"XX Can't wait to see you. Happy Birthday",
         "Wishing you a wonderful birthday filled with flowers, hugs and laughter. May the coming year bless you with prosperity, good health and happiness. ",
         "Wishing you the happiest of birthdays. Always thinking of you.",
     ], 
@@ -103,7 +103,8 @@ function getRandomInt(max) {
 export default function cardMessageSample(theme) {
     let id = theme;
 
-    // if no matching theme then just choose one randomly
+	// if no matching theme then just choose one randomly
+	/* istanbul ignore else */
     if (!sampleMessages[id]) {
         const themes = Object.keys(sampleMessages);
         const numThemes = themes.length;

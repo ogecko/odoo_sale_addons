@@ -15,6 +15,16 @@ class WebsiteSaleTPP(WebsiteSale):
         if redirection:
             return redirection
 
+        # if form posted
+        if 'name' in post:
+            values = {}
+            for field_name, field_value in post.items():
+                if field_name in request.env['sale.order']._fields and field_name.startswith('x_'):
+                    values[field_name] = field_value
+            if values:
+                order.write(values)
+            return request.redirect("/shop/delivery")
+
         values = {
             'order': order,
         }
@@ -32,6 +42,16 @@ class WebsiteSaleTPP(WebsiteSale):
         redirection = self.checkout_redirection(order)
         if redirection:
             return redirection
+
+        # if form posted
+        if 'name' in post:
+            values = {}
+            for field_name, field_value in post.items():
+                if field_name in request.env['sale.order']._fields and field_name.startswith('x_'):
+                    values[field_name] = field_value
+            if values:
+                order.write(values)
+            return request.redirect("/shop/payment")
 
         values = {
             'order': order,

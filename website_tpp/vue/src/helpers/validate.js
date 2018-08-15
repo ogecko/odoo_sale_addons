@@ -28,7 +28,7 @@ const validationFunctions = {
             return 'Please enter a valid email address.';
     },
     tel(s) {
-        if (!/^([0-9()+ ]{0,20}|)$/.test(s))
+        if (!/^([0-9()+ *#,;/]{0,40}|)$/.test(s))
             return 'Please enter a valid phone number.';
     },
     // <textarea> types

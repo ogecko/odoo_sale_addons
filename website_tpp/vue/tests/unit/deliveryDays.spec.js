@@ -7,6 +7,10 @@ describe('deliveryDays.js', () => {
         expect(deliveryDays()).toEqual('');
     })
 
+    it('Caters for no matching freq parameters', () => {
+        expect(deliveryDays('10-Aug-18','Junk',3)).toEqual('');
+    })
+
     it('Daily frequency skips weekends', () => {
         expect(deliveryDays('10-Aug-18','Daily',3))
         .toEqual('10-Aug-2018, 13-Aug-2018, 14-Aug-2018');

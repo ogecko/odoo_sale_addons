@@ -158,6 +158,83 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
+/***/ "01f9":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY = __webpack_require__("2d00");
+var $export = __webpack_require__("5ca1");
+var redefine = __webpack_require__("2aba");
+var hide = __webpack_require__("32e9");
+var Iterators = __webpack_require__("84f2");
+var $iterCreate = __webpack_require__("41a0");
+var setToStringTag = __webpack_require__("7f20");
+var getPrototypeOf = __webpack_require__("38fd");
+var ITERATOR = __webpack_require__("2b4c")('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+
+/***/ }),
+
 /***/ "02fb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3088,6 +3165,26 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "38fd":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __webpack_require__("69a8");
+var toObject = __webpack_require__("4bf8");
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+
+/***/ }),
+
 /***/ "39a6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4016,6 +4113,27 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "41a0":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var create = __webpack_require__("2aeb");
+var descriptor = __webpack_require__("4630");
+var setToStringTag = __webpack_require__("7f20");
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__("32e9")(IteratorPrototype, __webpack_require__("2b4c")('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
 /***/ "423e":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4215,6 +4333,22 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
     return lb;
 
 })));
+
+
+/***/ }),
+
+/***/ "456d":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__("4bf8");
+var $keys = __webpack_require__("0d58");
+
+__webpack_require__("5eda")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
 
 
 /***/ }),
@@ -4892,6 +5026,18 @@ webpackContext.id = "4678";
     return hr;
 
 })));
+
+
+/***/ }),
+
+/***/ "4bf8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __webpack_require__("be13");
+module.exports = function (it) {
+  return Object(defined(it));
+};
 
 
 /***/ }),
@@ -5876,6 +6022,23 @@ module.exports = function (that, target, C) {
   if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
     setPrototypeOf(that, P);
   } return that;
+};
+
+
+/***/ }),
+
+/***/ "5eda":
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__("5ca1");
+var core = __webpack_require__("8378");
+var fails = __webpack_require__("79e5");
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
 
@@ -7523,6 +7686,20 @@ module.exports = function (exec) {
 
 /***/ }),
 
+/***/ "7f20":
+/***/ (function(module, exports, __webpack_require__) {
+
+var def = __webpack_require__("86cc").f;
+var has = __webpack_require__("69a8");
+var TAG = __webpack_require__("2b4c")('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+
+/***/ }),
+
 /***/ "7f33":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7583,6 +7760,29 @@ module.exports = function (exec) {
     return yo;
 
 })));
+
+
+/***/ }),
+
+/***/ "7f7f":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("86cc").f;
+var FProto = Function.prototype;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
+
+// 19.2.4.2 name
+NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
+  configurable: true,
+  get: function () {
+    try {
+      return ('' + this).match(nameRE)[1];
+    } catch (e) {
+      return '';
+    }
+  }
+});
 
 
 /***/ }),
@@ -8084,6 +8284,14 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
     return bg;
 
 })));
+
+
+/***/ }),
+
+/***/ "84f2":
+/***/ (function(module, exports) {
+
+module.exports = {};
 
 
 /***/ }),
@@ -9914,6 +10122,25 @@ module.exports = !__webpack_require__("79e5")(function () {
 
 /***/ }),
 
+/***/ "a481":
+/***/ (function(module, exports, __webpack_require__) {
+
+// @@replace logic
+__webpack_require__("214f")('replace', 2, function (defined, REPLACE, $replace) {
+  // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
+  return [function replace(searchValue, replaceValue) {
+    'use strict';
+    var O = defined(this);
+    var fn = searchValue == undefined ? undefined : searchValue[REPLACE];
+    return fn !== undefined
+      ? fn.call(searchValue, O, replaceValue)
+      : $replace.call(String(O), searchValue, replaceValue);
+  }, $replace];
+});
+
+
+/***/ }),
+
 /***/ "a7fa":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10024,6 +10251,71 @@ module.exports = function (it) {
   var isRegExp;
   return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
 };
+
+
+/***/ }),
+
+/***/ "ac6a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $iterators = __webpack_require__("cadf");
+var getKeys = __webpack_require__("0d58");
+var redefine = __webpack_require__("2aba");
+var global = __webpack_require__("7726");
+var hide = __webpack_require__("32e9");
+var Iterators = __webpack_require__("84f2");
+var wks = __webpack_require__("2b4c");
+var ITERATOR = wks('iterator');
+var TO_STRING_TAG = wks('toStringTag');
+var ArrayValues = Iterators.Array;
+
+var DOMIterables = {
+  CSSRuleList: true, // TODO: Not spec compliant, should be false.
+  CSSStyleDeclaration: false,
+  CSSValueList: false,
+  ClientRectList: false,
+  DOMRectList: false,
+  DOMStringList: false,
+  DOMTokenList: true,
+  DataTransferItemList: false,
+  FileList: false,
+  HTMLAllCollection: false,
+  HTMLCollection: false,
+  HTMLFormElement: false,
+  HTMLSelectElement: false,
+  MediaList: true, // TODO: Not spec compliant, should be false.
+  MimeTypeArray: false,
+  NamedNodeMap: false,
+  NodeList: true,
+  PaintRequestList: false,
+  Plugin: false,
+  PluginArray: false,
+  SVGLengthList: false,
+  SVGNumberList: false,
+  SVGPathSegList: false,
+  SVGPointList: false,
+  SVGStringList: false,
+  SVGTransformList: false,
+  SourceBufferList: false,
+  StyleSheetList: true, // TODO: Not spec compliant, should be false.
+  TextTrackCueList: false,
+  TextTrackList: false,
+  TouchList: false
+};
+
+for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++) {
+  var NAME = collections[i];
+  var explicit = DOMIterables[NAME];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  var key;
+  if (proto) {
+    if (!proto[ITERATOR]) hide(proto, ITERATOR, ArrayValues);
+    if (!proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+    Iterators[NAME] = ArrayValues;
+    if (explicit) for (key in $iterators) if (!proto[key]) redefine(proto, key, $iterators[key], true);
+  }
+}
 
 
 /***/ }),
@@ -17288,6 +17580,48 @@ module.exports = function (key) {
 
 /***/ }),
 
+/***/ "cadf":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__("9c6c");
+var step = __webpack_require__("d53b");
+var Iterators = __webpack_require__("84f2");
+var toIObject = __webpack_require__("6821");
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__("01f9")(Array, 'Array', function (iterated, kind) {
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return step(1);
+  }
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+
+/***/ }),
+
 /***/ "cb7c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17868,6 +18202,16 @@ module.exports = function (that, searchString, NAME) {
 
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "d53b":
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
 };
 
 
@@ -19360,19 +19704,19 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("1eb2");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormSender.vue?vue&type=template&id=576a1e5e&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('FormGroup',{attrs:{"label":"Your Contact Details","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","value":_vm.name,"types":"text,required"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","value":_vm.email,"types":"email,required"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","value":_vm.phone,"types":"tel","helpMsg":"in case of order issues"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For","value":_vm.x_to}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From","value":_vm.x_from}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Message","value":_vm.x_message,"types":"textarea","helpMsg":"maximum 200 characters"}})],1)],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormSender.vue?vue&type=template&id=2c5ca8f5&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Your Contact Details","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","value":_vm.name,"types":"text,required"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","value":_vm.email,"types":"email,required"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","value":_vm.phone,"types":"tel","helpMsg":"in case of order issues"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For","name":"x_to","value":_vm.x_to}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From","name":"x_from","value":_vm.x_from}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Message","name":"x_message","types":"textarea","helpMsg":"maximum 200 characters"},model:{value:(_vm.localMessage),callback:function ($$v) {_vm.localMessage=$$v},expression:"localMessage"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Help me choose a message","helpMsg":"browse through sample messages","value":"","options":['Birthday','Anniversary','Thanks','Congrats','Sorry','Random'],"types":"enum"},on:{"input":_vm.getCardMessage}})],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/checkout"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/forms/OrderFormSender.vue?vue&type=template&id=576a1e5e&
+// CONCATENATED MODULE: ./src/forms/OrderFormSender.vue?vue&type=template&id=2c5ca8f5&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormGroup.vue?vue&type=template&id=5f9414ca&
-var FormGroupvue_type_template_id_5f9414ca_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"clearfix"},[_c('h3',{class:[ 'page-header', 'col-md-12', { mt16: _vm.top }]},[_vm._v("\n      "+_vm._s(_vm.label)+"\n  ")]),_vm._t("default")],2)}
-var FormGroupvue_type_template_id_5f9414ca_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormGroup.vue?vue&type=template&id=3c91b5be&
+var FormGroupvue_type_template_id_3c91b5be_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"clearfix"},[_c('h3',{class:[ 'page-header', 'col-md-12', { mt16: _vm.top }]},[_vm._v("\n      "+_vm._s(_vm.label)+"\n  ")]),_vm._t("default")],2)}
+var FormGroupvue_type_template_id_3c91b5be_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/layout/FormGroup.vue?vue&type=template&id=5f9414ca&
+// CONCATENATED MODULE: ./src/layout/FormGroup.vue?vue&type=template&id=3c91b5be&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormGroup.vue?vue&type=script&lang=js&
 //
@@ -19395,8 +19739,7 @@ var FormGroupvue_type_template_id_5f9414ca_staticRenderFns = []
 /* harmony default export */ var FormGroupvue_type_script_lang_js_ = ({
   props: {
     label: {
-      type: String,
-      default: 'Default Label'
+      type: String
     },
     top: {
       type: Boolean,
@@ -19518,8 +19861,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   layout_FormGroupvue_type_script_lang_js_,
-  FormGroupvue_type_template_id_5f9414ca_render,
-  FormGroupvue_type_template_id_5f9414ca_staticRenderFns,
+  FormGroupvue_type_template_id_3c91b5be_render,
+  FormGroupvue_type_template_id_3c91b5be_staticRenderFns,
   false,
   null,
   null,
@@ -19529,12 +19872,12 @@ var component = normalizeComponent(
 
 component.options.__file = "FormGroup.vue"
 /* harmony default export */ var FormGroup = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=788fcb44&
-var Fieldvue_type_template_id_788fcb44_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[_c('label',{staticClass:"control-label",attrs:{"for":_vm.vModelName()}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"value":_vm.value},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.vModelName(),"id":_vm.vModelName(),"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")])],1)}
-var Fieldvue_type_template_id_788fcb44_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=73bbc43d&
+var Fieldvue_type_template_id_73bbc43d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[_c('label',{staticClass:"control-label",attrs:{"for":_vm.localName}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.localName,"id":_vm.localName,"value":_vm.value},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.localName,"id":_vm.localName,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.localName,"id":_vm.localName,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.localName,"id":_vm.localName,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.localName,"id":_vm.localName,"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.localName,"id":_vm.localName,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")])],1)}
+var Fieldvue_type_template_id_73bbc43d_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=788fcb44&
+// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=73bbc43d&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
 var es7_array_includes = __webpack_require__("6762");
@@ -19544,6 +19887,12 @@ var es6_string_includes = __webpack_require__("2fdb");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.split.js
 var es6_regexp_split = __webpack_require__("28a5");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
+var es6_function_name = __webpack_require__("7f7f");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
+var es6_regexp_replace = __webpack_require__("a481");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -19579,7 +19928,7 @@ var validationFunctions = {
     if (!/^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*|)$/.test(s)) return 'Please enter a valid email address.';
   },
   tel: function tel(s) {
-    if (!/^([0-9()+ ]{0,20}|)$/.test(s)) return 'Please enter a valid phone number.';
+    if (!/^([0-9()+ *#,;/]{0,40}|)$/.test(s)) return 'Please enter a valid phone number.';
   },
   // <textarea> types
   textarea: function textarea(s) {
@@ -19833,12 +20182,12 @@ var FieldCheckbox_component = normalizeComponent(
 
 FieldCheckbox_component.options.__file = "FieldCheckbox.vue"
 /* harmony default export */ var FieldCheckbox = (FieldCheckbox_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldRadio.vue?vue&type=template&id=473a9fea&
-var FieldRadiovue_type_template_id_473a9fea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group btn-group"},_vm._l((_vm.options),function(option){return _c('button',{key:option,class:_vm.localClass(option),on:{"click":function($event){_vm.localValue = option}}},[_vm._v("\n        "+_vm._s(option)+"\n    ")])}))}
-var FieldRadiovue_type_template_id_473a9fea_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldRadio.vue?vue&type=template&id=75db07e8&
+var FieldRadiovue_type_template_id_75db07e8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group btn-group"},_vm._l((_vm.options),function(option){return _c('button',{key:option,class:_vm.localClass(option),on:{"click":function($event){$event.preventDefault();_vm.handleClick(option)}}},[_vm._v("\n        "+_vm._s(option)+"\n    ")])}))}
+var FieldRadiovue_type_template_id_75db07e8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldRadio.vue?vue&type=template&id=473a9fea&
+// CONCATENATED MODULE: ./src/components/FieldRadio.vue?vue&type=template&id=75db07e8&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldRadio.vue?vue&type=script&lang=js&
 //
@@ -19875,14 +20224,15 @@ var FieldRadiovue_type_template_id_473a9fea_staticRenderFns = []
       }, {
         'btn-default': this.localValue != option
       }];
+    },
+    handleClick: function handleClick(newVal) {
+      this.localValue = newVal;
+      this.$emit('input', newVal);
     }
   },
   watch: {
     value: function value(newVal) {
       this.localValue = newVal;
-    },
-    localValue: function localValue(newVal) {
-      this.$emit('input', newVal);
     }
   }
 });
@@ -19898,8 +20248,8 @@ var FieldRadiovue_type_template_id_473a9fea_staticRenderFns = []
 
 var FieldRadio_component = normalizeComponent(
   components_FieldRadiovue_type_script_lang_js_,
-  FieldRadiovue_type_template_id_473a9fea_render,
-  FieldRadiovue_type_template_id_473a9fea_staticRenderFns,
+  FieldRadiovue_type_template_id_75db07e8_render,
+  FieldRadiovue_type_template_id_75db07e8_staticRenderFns,
   false,
   null,
   null,
@@ -19989,12 +20339,12 @@ var FieldInteger_component = normalizeComponent(
 
 FieldInteger_component.options.__file = "FieldInteger.vue"
 /* harmony default export */ var FieldInteger = (FieldInteger_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldDatePicker.vue?vue&type=template&id=6ef8103a&
-var FieldDatePickervue_type_template_id_6ef8103a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group date"},[_vm._m(0),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control date-style",attrs:{"type":"text","placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"focus":_vm.showDatePicker,"blur":_vm.hideDatePicker,"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})])}
-var FieldDatePickervue_type_template_id_6ef8103a_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-calendar",attrs:{"aria-hidden":"true"}})])}]
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldDatePicker.vue?vue&type=template&id=067ead4a&
+var FieldDatePickervue_type_template_id_067ead4a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group date"},[_vm._m(0),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control date-style",attrs:{"type":"text","placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"focus":_vm.showDatePicker,"blur":_vm.hideDatePicker,"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})])}
+var FieldDatePickervue_type_template_id_067ead4a_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-calendar",attrs:{"aria-hidden":"true"}})])}]
 
 
-// CONCATENATED MODULE: ./src/components/FieldDatePicker.vue?vue&type=template&id=6ef8103a&
+// CONCATENATED MODULE: ./src/components/FieldDatePicker.vue?vue&type=template&id=067ead4a&
 
 // EXTERNAL MODULE: ./src/helpers/later.js
 var later = __webpack_require__("77f3");
@@ -20010,168 +20360,199 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment_moment);
 var daily = {
   schedules: [{
     d: [2, 3, 4, 5, 6],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Weekdays: Mon, Tue, Wed, Thu, Fri at 1pm
   {
     D: [14],
     M: [2],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Valentines Day: 14th of February at 1pm
   {
     dc: [2],
     d: [1],
     M: [3],
-    h: [13]
+    h: [13],
+    m: [0]
   }],
   exceptions: [{
     D: [25],
     M: [12],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Christmas Day: 25th of December at 1pm
   {
     D: [26],
     M: [12],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Boxing Day: 26th of December at 1pm
   {
     D: [1],
     M: [1],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // New Years Day: 1st of January at 1pm
   {
     D: [26],
     M: [1],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Australia: 26th of January at 1pm
   {
     D: [25],
     M: [4],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Anzac Day: 25th of April at 1pm
   {
     dc: [2],
     d: [2],
     M: [6],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // Queens Birthday: 2nd Monday of June at 1pm
   {
     dc: [1],
     d: [2],
     M: [10],
-    h: [13]
+    h: [13],
+    m: [0]
   }, // NSW Labour Day: 1st Monday of October at 1pm
   // Easter Friday and Monday for the next 10 years
   {
     D: [19, 22],
     M: [4],
     Y: [2019],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [10, 13],
     M: [4],
     Y: [2020],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [2, 5],
     M: [4],
     Y: [2021],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [15, 18],
     M: [4],
     Y: [2022],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [7, 10],
     M: [4],
     Y: [2023],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [29],
     M: [3],
     Y: [2024],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [1],
     M: [4],
     Y: [2024],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [18, 21],
     M: [4],
     Y: [2025],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [3, 6],
     M: [4],
     Y: [2026],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [26, 29],
     M: [3],
     Y: [2027],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [14, 17],
     M: [4],
     Y: [2028],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [30],
     M: [3],
     Y: [2029],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [2],
     M: [4],
     Y: [2029],
-    h: [13]
+    h: [13],
+    m: [0]
   }, {
     D: [19, 22],
     M: [4],
     Y: [2030],
-    h: [13]
+    h: [13],
+    m: [0]
   }]
 };
 function next90DeliveryDays() {
-  later_default.a.date.localTime();
   moment_default.a.locale();
+  later_default.a.date.localTime();
   return later_default.a.schedule(daily).next(90, moment_default()());
 }
 function deliveryDays(start, freq, number) {
+  moment_default.a.locale();
+  later_default.a.date.localTime();
   var startDate = moment_default()(start, ['DD-MM-YYYY', 'DD-MMM-YYYY']);
   if (!startDate.isValid()) return '';
   var weekly = {
     schedules: [{
       d: [startDate.day() + 1],
       wm: [1, 2, 3, 4, 5, 6],
-      h: [13]
+      h: [13],
+      m: [0]
     }]
   };
   var monthly = {
     schedules: [{
       D: [Math.min(startDate.date(), 28)],
       M: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      h: [13]
+      h: [13],
+      m: [0]
     }]
   };
+  var availableSchedules = {
+    Daily: function Daily(number, startDate) {
+      return later_default.a.schedule(daily).next(number, startDate);
+    },
+    Weekly: function Weekly(number, startDate) {
+      return later_default.a.schedule(weekly).next(number, startDate);
+    },
+    Fortnightly: function Fortnightly(number, startDate) {
+      return later_default.a.schedule(weekly).next(number * 2, startDate).filter(function (d, i) {
+        return i % 2 == 0;
+      });
+    },
+    Monthly: function Monthly(number, startDate) {
+      return later_default.a.schedule(monthly).next(number, startDate);
+    }
+  };
   var days = [];
-  later_default.a.date.localTime();
 
-  if (freq == 'Daily') {
-    days = later_default.a.schedule(daily).next(number, startDate);
-  } else if (freq == 'Weekly') {
-    days = later_default.a.schedule(weekly).next(number, startDate);
-    days = ensureValidDays(days);
-  } else if (freq == 'Fortnightly') {
-    days = later_default.a.schedule(weekly).next(number * 2, startDate);
-    days = days.filter(function (d, i) {
-      return i % 2 == 0;
-    }); // every 2nd week
-
-    days = ensureValidDays(days);
-  } else if (freq == 'Monthly') {
-    days = later_default.a.schedule(monthly).next(number, startDate);
+  if (availableSchedules[freq]) {
+    days = availableSchedules[freq](number, startDate);
     days = ensureValidDays(days);
   }
 
@@ -20293,12 +20674,13 @@ function ensureValidDay(d) {
 
       var events = ['hide', 'show', 'change', 'error', 'update'];
       events.forEach(function (name) {
+        /* istanbul ignore next */
         _this.elem.on("dp.".concat(name), function () {
           for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
           }
 
-          _this.$emit.apply(_this, ["dp-".concat(name)].concat(args));
+          return _this.$emit.apply(_this, ["dp-".concat(name)].concat(args));
         });
       });
     }
@@ -20320,8 +20702,8 @@ var FieldDatePickervue_type_style_index_0_lang_css_ = __webpack_require__("eef6"
 
 var FieldDatePicker_component = normalizeComponent(
   components_FieldDatePickervue_type_script_lang_js_,
-  FieldDatePickervue_type_template_id_6ef8103a_render,
-  FieldDatePickervue_type_template_id_6ef8103a_staticRenderFns,
+  FieldDatePickervue_type_template_id_067ead4a_render,
+  FieldDatePickervue_type_template_id_067ead4a_staticRenderFns,
   false,
   null,
   null,
@@ -20336,7 +20718,8 @@ FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
 
 
 
-//
+
+
 //
 //
 //
@@ -20418,15 +20801,13 @@ FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
     FieldInteger: FieldInteger,
     FieldDatePicker: FieldDatePicker
   },
-  data: function data() {
-    return {
-      validationMsg: ''
-    };
-  },
   props: {
     label: {
       type: String,
       default: ''
+    },
+    name: {
+      type: String
     },
     placeholder: {
       type: String,
@@ -20447,7 +20828,22 @@ FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
       type: Array
     }
   },
+  data: function data() {
+    return {
+      validationMsg: '',
+      id: null
+    };
+  },
+  mounted: function mounted() {
+    this.id = this._uid;
+  },
   computed: {
+    localName: function localName() {
+      // use the explicit name, the v-model binding name, the label or the Vue uid
+      var vModelName = property(['$vnode', 'data', 'model', 'expression'])(this);
+      var labelName = this.label ? this.label.replace(/ /g, '_').toLowerCase() : '';
+      return this.name ? this.name : vModelName ? vModelName : labelName ? labelName : this.id;
+    },
     localClasses: function localClasses() {
       return ['form-group', this.validationMsg ? 'has-error' : ''];
     },
@@ -20477,9 +20873,6 @@ FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
     }
   },
   methods: {
-    vModelName: function vModelName() {
-      return property(['$vnode', 'data', 'model', 'expression'])(this);
-    },
     isRequired: function isRequired() {
       return this.types.split(',').includes('required');
     },
@@ -20501,8 +20894,8 @@ FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
 
 var Field_component = normalizeComponent(
   components_Fieldvue_type_script_lang_js_,
-  Fieldvue_type_template_id_788fcb44_render,
-  Fieldvue_type_template_id_788fcb44_staticRenderFns,
+  Fieldvue_type_template_id_73bbc43d_render,
+  Fieldvue_type_template_id_73bbc43d_staticRenderFns,
   false,
   null,
   null,
@@ -20512,6 +20905,45 @@ var Field_component = normalizeComponent(
 
 Field_component.options.__file = "Field.vue"
 /* harmony default export */ var Field = (Field_component.exports);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __webpack_require__("456d");
+
+// CONCATENATED MODULE: ./src/helpers/cardMessageSample.js
+
+
+
+var sampleMessages = {
+  Birthday: ["A belated birthday bouquet for you my friend. i hope you had a wonder day.", "Birthday wishes, we hope you have a great birthday, much love.", "Happiest of Birthdays to our dearest friend. We wish you lots of joy this year ahead and hope to share many laughs and memories with you. This is our small reminder that we love you and cherish our friendship with you. Happy Birthday", "Happy (belated) birthday", "Happy belated Birthday to a special girl!  Let the birthday celebrations continue all week xxx", "Happy birthday beautiful!", "Happy Birthday for tomorrow, sorry I can't be there xxx", "Happy Birthday Gorgeous! Hope you have a fab day, wish i was there! Can't wait to see you soon! Love you Lots!", "Happy birthday man! Hope you get spoilt and have a brilliant day! Lots of love.", "Happy Birthday, and wishing you peace and contentment and grace.", "Happy Birthday!  I hope you have a wonderful day and can get out and enjoy the sunshine.", "Happy Birthday! Enjoy your celebrations and have a sweet Birthday! Hope all your wishes come true this year xxx", "Happy Birthday! Hope you have a wonderful day!", "Happy Birthday! You deserve all the happiness in the world. Xx", "Happy Birthday!", "Hoping the sun is shining for your birthday today :) May your day be filled with laughter, love and cake!!!", "Lots of birthday love from all of us!", "Lots of love xx. Happy Birthday!", "Lots of birthday love", "Wishing you a very happy birthday.", "XX Can't wait to see you. Happy Birthday", "Wishing you a wonderful birthday filled with flowers, hugs and laughter. May the coming year bless you with prosperity, good health and happiness. ", "Wishing you the happiest of birthdays. Always thinking of you."],
+  Anniversary: ["Happy Anniversary!", "Happy Anniversary.  Can you believe that you have been in this building for so many years with me. xxx", "Mazeltov on your first year wedding anniversary. Love you lots xx", "Bon Anniversaire! With Love", "Happy 1st Anniversary love birds xxx", "Happy 5 years Anniversary! Je t'aime Ã  la folie. ", "Happy 10th Anniversary xxx ", "Happy 20th Anniversary xxx ", "Happy 50th Anniversary XX. Lots of love xxx", "Happy Anniversary babe xx I love you more each day and i couldn't imagine my life without you xx", "Happy Anniversary, Love you so much and am very lucky to have found you.", "Happy anniversary guys! Thanks for the stable upbringing and for your never-ending love and support xxx", "Happy Anniversary my love", "Happy Anniversary Sweets, I am so lucky to have you in my life. With all my love xx", "Happy Anniversary! I love you!", "Happy Anniversary. My Good Thing is that I'm grateful you're with me.", "Happy Wedding Anniversary, love you both xx "],
+  Thanks: ["A little something for you to say thank you for all that you have done for me and for being such a beautiful person.", "All the best. Thanks.", "I just wanted to say thank you for all your support, patience and flexibility over the last 6 months. You've made a difficult time so much easier.", "I will miss you so very much.", "Thank you for all your help. We will miss you so much.", "Thank you for being the beautiful person you are xxx ", "Thank you for everything you do for me. Love ya", "Thank you for everything! I have loved working with you and will miss you very much.  xox", "Thank you for everything!", "Thank you for everything. Amazing year.", "Thank you for everything. I'll miss you.", "Thank you so much for my new Escape Bag - it is fabulous and I love it!", "Thank you xx", "Thank You!", "Thanks for all your efforts, cakes, treats and laughs.", "Thanks for all your time and effort!", "Thanks for being such a wonderful friend. Lots of love x", "Thanks for tolerating me. Love you.", "A million thank yous for the last few days - I would not have survived without you!", "Thank you for everything you do for us! Love you xoxo"],
+  Congrats: ["A huge congratulations on the arrival of your new baby. We hope for a fast recovery and a beautiful start to a new journey with your little one, enjoy every min. God bless", "A huge congratulations to you both. Know its been a tough few months but so so pleased about the new arrival", "A little birdie told me that a special delivery had arrived!  Congratulations to you both.  We hope your beautiful baby brings you much joy in your new family xo", "Biggest love and congratulations to the next, better chapter my darling. Love you so much!", "Congraduations!!!", "Congrats. You will probably think these flowers are cheesy and feel slightly uncomfortable. So my job is done.", "Congratulations baby, I'm so proud of you! xxxx", "Congratulations lovely xx", "Congratulations on your engagement!", "Such an exciting day for you and such an exciting year too. Love you  long time.", "We watch on in awe ... you did an amazing job last night. Congrats!"],
+  Sorry: ["Break a leg! :) sorry I'm not there to cheer you on, and missing you heaps xx", "Hello darling, I'm sorry we haven't caught up. I want you to know I'm thinking of you and I'll give you a call soon. X", "I am so sorry to hear the sad news. Thinking of you and sending all my love to all the family xxx", "Just wanted to let you know we are thinking of you.  Sorry that you are fighting this battle, but we know you have got this - you're too fabulous not to win.  Sending  our love and best wishes always xx", "Love you xxx", "So sorry to hear about the sad news. Am sure he will forever watch over you and be in our hearts and on social media. :)", "Sorry about the mess in your shop this morning!", "Sorry I messed up", "Sorry about the mess in your shop this morning!", "Sorry I was sick and couldn't come yesterday.", "Sorry xx", "Very sorry for your loss, thoughts are with you and your family.", "We are so sorry for your loss and  thinking of you and the family in this very difficult time.  All our love", "There is a saying that friends are the family we choose for ourselves and you are my family. I am so sorry you have been sad lately. You don't deserve it.  xxxxxx"]
+};
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function cardMessageSample(theme) {
+  var id = theme; // if no matching theme then just choose one randomly
+
+  /* istanbul ignore else */
+
+  if (!sampleMessages[id]) {
+    var themes = Object.keys(sampleMessages);
+    var numThemes = themes.length;
+    id = themes[getRandomInt(numThemes)];
+  }
+
+  var numSamples = sampleMessages[id].length;
+  return sampleMessages[id][getRandomInt(numSamples)];
+}
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormSender.vue?vue&type=script&lang=js&
 //
 //
@@ -20528,6 +20960,14 @@ Field_component.options.__file = "Field.vue"
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ var OrderFormSendervue_type_script_lang_js_ = ({
@@ -20556,9 +20996,15 @@ Field_component.options.__file = "Field.vue"
     Field: Field
   },
   data: function data() {
-    return {};
+    return {
+      localMessage: this.x_message
+    };
   },
-  methods: {},
+  methods: {
+    getCardMessage: function getCardMessage(theme) {
+      this.localMessage = cardMessageSample(theme);
+    }
+  },
   watch: {}
 });
 // CONCATENATED MODULE: ./src/forms/OrderFormSender.vue?vue&type=script&lang=js&
@@ -20584,12 +21030,12 @@ var OrderFormSender_component = normalizeComponent(
 
 OrderFormSender_component.options.__file = "OrderFormSender.vue"
 /* harmony default export */ var OrderFormSender = (OrderFormSender_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=017c6be6&
-var OrderFormDeliveryvue_type_template_id_017c6be6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('FormGroup',{attrs:{"label":"Recipient"}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","types":"text,required"},model:{value:(_vm.receiver.name),callback:function ($$v) {_vm.$set(_vm.receiver, "name", $$v)},expression:"receiver.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email"},model:{value:(_vm.receiver.email),callback:function ($$v) {_vm.$set(_vm.receiver, "email", $$v)},expression:"receiver.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel","helpMsg":"in case of delivery issues"},model:{value:(_vm.receiver.phone),callback:function ($$v) {_vm.$set(_vm.receiver, "phone", $$v)},expression:"receiver.phone"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","types":"textarea,required","placeholder":"Street Address, City, Postcode"},model:{value:(_vm.receiver.address),callback:function ($$v) {_vm.$set(_vm.receiver, "address", $$v)},expression:"receiver.address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Special Delivery Instructions","types":"textarea","helpMsg":"optional","placeholder":"Business Name, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.receiver.special),callback:function ($$v) {_vm.$set(_vm.receiver, "special", $$v)},expression:"receiver.special"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.delivery.subscription? 'Starting Day' : 'Delivery Day',"types":"date","helpMsg":"within next 90 days"},model:{value:(_vm.delivery.start),callback:function ($$v) {_vm.$set(_vm.delivery, "start", $$v)},expression:"delivery.start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","helpMsg":"Order contains multiple deliveries","types":"boolean"},model:{value:(_vm.delivery.subscription),callback:function ($$v) {_vm.$set(_vm.delivery, "subscription", $$v)},expression:"delivery.subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.delivery.subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"types":"enum"},model:{value:(_vm.delivery.freq),callback:function ($$v) {_vm.$set(_vm.delivery, "freq", $$v)},expression:"delivery.freq"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","types":"integer"},model:{value:(_vm.delivery.number),callback:function ($$v) {_vm.$set(_vm.delivery, "number", $$v)},expression:"delivery.number"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","types":"text, days"},model:{value:(_vm.delivery.days),callback:function ($$v) {_vm.$set(_vm.delivery, "days", $$v)},expression:"delivery.days"}})],1)],1)],1)}
-var OrderFormDeliveryvue_type_template_id_017c6be6_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=7d9c6cba&
+var OrderFormDeliveryvue_type_template_id_7d9c6cba_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Recipient","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","types":"text,required"},model:{value:(_vm.receiver.name),callback:function ($$v) {_vm.$set(_vm.receiver, "name", $$v)},expression:"receiver.name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","types":"email"},model:{value:(_vm.receiver.email),callback:function ($$v) {_vm.$set(_vm.receiver, "email", $$v)},expression:"receiver.email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","types":"tel","helpMsg":"in case of delivery issues"},model:{value:(_vm.receiver.phone),callback:function ($$v) {_vm.$set(_vm.receiver, "phone", $$v)},expression:"receiver.phone"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","types":"textarea,required","placeholder":"Street Address, City, Postcode"},model:{value:(_vm.receiver.address),callback:function ($$v) {_vm.$set(_vm.receiver, "address", $$v)},expression:"receiver.address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Special Delivery Instructions","types":"textarea","helpMsg":"optional","placeholder":"Business Name, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.receiver.special),callback:function ($$v) {_vm.$set(_vm.receiver, "special", $$v)},expression:"receiver.special"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.delivery.subscription? 'Starting Day' : 'Day of Delivery',"types":"date","helpMsg":"within next 90 days"},model:{value:(_vm.delivery.start),callback:function ($$v) {_vm.$set(_vm.delivery, "start", $$v)},expression:"delivery.start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","helpMsg":"Order contains multiple deliveries","types":"boolean"},model:{value:(_vm.delivery.subscription),callback:function ($$v) {_vm.$set(_vm.delivery, "subscription", $$v)},expression:"delivery.subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.delivery.subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"types":"enum"},model:{value:(_vm.delivery.freq),callback:function ($$v) {_vm.$set(_vm.delivery, "freq", $$v)},expression:"delivery.freq"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","types":"integer"},model:{value:(_vm.delivery.number),callback:function ($$v) {_vm.$set(_vm.delivery, "number", $$v)},expression:"delivery.number"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","types":"text, days"},model:{value:(_vm.delivery.days),callback:function ($$v) {_vm.$set(_vm.delivery, "days", $$v)},expression:"delivery.days"}})],1)],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/delivery"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
+var OrderFormDeliveryvue_type_template_id_7d9c6cba_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=017c6be6&
+// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=7d9c6cba&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormTransition.vue?vue&type=template&id=02135055&
 var FormTransitionvue_type_template_id_02135055_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide"}},[(_vm.show)?_c('div',[_vm._t("default")],2):_vm._e()])}
@@ -20686,6 +21132,12 @@ FormTransition_component.options.__file = "FormTransition.vue"
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -20753,8 +21205,8 @@ FormTransition_component.options.__file = "FormTransition.vue"
 
 var OrderFormDelivery_component = normalizeComponent(
   forms_OrderFormDeliveryvue_type_script_lang_js_,
-  OrderFormDeliveryvue_type_template_id_017c6be6_render,
-  OrderFormDeliveryvue_type_template_id_017c6be6_staticRenderFns,
+  OrderFormDeliveryvue_type_template_id_7d9c6cba_render,
+  OrderFormDeliveryvue_type_template_id_7d9c6cba_staticRenderFns,
   false,
   null,
   null,

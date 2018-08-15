@@ -90,9 +90,8 @@
       registerEvents() {
         const events = ['hide', 'show', 'change', 'error', 'update'];
         events.forEach((name) => {
-          this.elem.on(`dp.${name}`, (...args) => {
-            this.$emit(`dp-${name}`, ...args);
-          });
+          /* istanbul ignore next */
+          this.elem.on(`dp.${name}`, (...args) => this.$emit(`dp-${name}`, ...args));
         });
       },
     },

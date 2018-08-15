@@ -56,12 +56,20 @@ describe('FieldDatePicker.vue', () => {
     expect(wrapper.vm.localValue).toEqual('a');
   })
 
-  it('Should handle when date picker changes', () => {
+  it('Should handle when date picker changes with a junk date', () => {
     const wrapper = shallowMount(FieldDatePicker, {
       propsData: { value: 'a' }
     })
-    wrapper.vm.handleDatePickerChange({ date: undefined });
+    wrapper.vm.handleDatePickerChange({ junk: undefined });
     expect(wrapper.vm.localValue).toEqual(null);
+  })
+
+  it('Should handle when date picker changes with a valid date', () => {
+    const wrapper = shallowMount(FieldDatePicker, {
+      propsData: { value: 'a' }
+    })
+    wrapper.vm.handleDatePickerChange({ date: { format() { return '01-Aug-2018' }} });
+    expect(wrapper.vm.localValue).toEqual('01-Aug-2018');
   })
 
   it('Should clean up when widget is destroyed', () => {

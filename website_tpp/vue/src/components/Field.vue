@@ -1,9 +1,9 @@
-// Field: Handles label, input/textarea and validation message. Bind Field with v-model
+// Field: Handles label, input/textarea and validation message. Bind Field with v-model or :value
 
 <template>
   <div :class="localClasses">
 
-    <label class="control-label" :for="vModelName()">
+    <label class="control-label" :for="localName">
       {{ localLabel }}
       <small v-if="helpMsg && !isFieldCheckbox" class="text-muted">({{helpMsg}})</small>
     </label>
@@ -11,7 +11,7 @@
     <div v-if="isFieldCheckbox" class="checkbox" >
       <label >
         <FieldCheckbox 
-        :name="vModelName()" :id="vModelName()"
+        :name="localName" :id="localName"
         :value="value"
         @input="handleInput"
       ></FieldCheckbox>
@@ -19,16 +19,15 @@
       </label>
     </div>
 
-
     <FieldTextArea v-if="isFieldTextArea"
-      :name="vModelName()" :id="vModelName()"
+      :name="localName" :id="localName"
       :placeholder="placeholder"
       :value="value"
       @input="handleInput"
     ></FieldTextArea>
 
     <FieldInput v-if="isFieldInput" 
-      :name="vModelName()" :id="vModelName()"
+      :name="localName" :id="localName"
       :placeholder="placeholder"
       :type="type"
       :value="value"
@@ -36,7 +35,7 @@
     ></FieldInput>
 
     <FieldDatePicker v-if="isFieldDatePicker" 
-      :name="vModelName()" :id="vModelName()"
+      :name="localName" :id="localName"
       :placeholder="placeholder"
       :type="type"
       :value="value"
@@ -44,7 +43,7 @@
     ></FieldDatePicker>
 
     <FieldRadio v-if="isFieldRadio" 
-      :name="vModelName()" :id="vModelName()"
+      :name="localName" :id="localName"
       :options="options"
       :type="type"
       :value="value"
@@ -52,7 +51,7 @@
     ></FieldRadio>
 
     <FieldInteger v-if="isFieldInteger" 
-      :name="vModelName()" :id="vModelName()"
+      :name="localName" :id="localName"
       :value="value"
       @input="handleInput"
     ></FieldInteger>
@@ -75,27 +74,35 @@ import FieldDatePicker from '@/components/FieldDatePicker.vue'
 
 export default {
   components: {
-      FieldTextArea,
-      FieldInput,
-      FieldCheckbox,
-      FieldRadio,
-      FieldInteger,
-      FieldDatePicker,
-  },
-  data() {
-    return {
-      validationMsg : '',
-    }
+      FieldTextArea, FieldInput, FieldCheckbox, FieldRadio, FieldInteger, FieldDatePicker,
   },
   props: {
     label: { type: String, default: '' },
+    name: { type: String },
     placeholder: { type: String, default: '' },
     helpMsg: { type: String, default: '' },
     types: { type: String, default: 'text' },
     value: { type: [ String, Boolean, Number ] },
     options: { type: Array },
   },
+  data() {
+    return {
+      validationMsg : '',
+      id: null,
+    }
+  },
+  mounted() {
+    this.id = this._uid;
+  },
   computed: {
+    localName() {   // use the explicit name, the v-model binding name, the label or the Vue uid
+      const vModelName = property(['$vnode','data','model','expression'])(this);
+      const labelName = this.label ? this.label.replace(/ /g,'_').toLowerCase() : '';
+      return this.name ? this.name : 
+            vModelName ? vModelName : 
+            labelName ? labelName : 
+            this.id;
+    },
     localClasses() {
       return [ 
         'form-group',
@@ -128,9 +135,6 @@ export default {
     },
 },
   methods: {
-    vModelName() {
-      return property(['$vnode','data','model','expression'])(this);
-    },
     isRequired() {
       return this.types.split(',').includes('required');
     },

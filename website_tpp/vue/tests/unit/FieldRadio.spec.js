@@ -10,11 +10,12 @@ describe('FieldRadio.vue', () => {
     expect(wrapper.find('.btn-primary').text()).toEqual('three');
   })
 
-  it('Should emit when localValue changes', () => {
+
+  it('Should emit when clicked on an option', () => {
     const wrapper = shallowMount(FieldRadio, {
-        propsData: { value: 'three', options: ['one', 'two', 'three'] }
-      })
-    wrapper.setData({ localValue: 'two'});
+      propsData: { value: 'three', options: ['one', 'two', 'three'] }
+    })
+    wrapper.vm.handleClick('two');
     expect(wrapper.emitted()).toEqual({ input: [ [ 'two' ] ] });
   })
 

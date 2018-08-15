@@ -49,6 +49,9 @@ describe('validate.js', () => {
         expect(validate('02 3457 8923','tel')).toEqual('');
     })
 
+    it('Can confirm a valid tel with special characters', () => {
+        expect(validate('+61 (02) 3457 8923,10#234/2;1','tel')).toEqual('');
+    })
     it('Can confirm a blank field is a valid tel', () => {
         expect(validate('','tel')).toEqual('');
     })
@@ -103,6 +106,14 @@ describe('validate.js', () => {
 
     it('Can confirm an invalid type for days field', () => {
         expect(validate(5,'days')).toEqual('Please enter a text value into this field.');
+    })
+
+    it('Can confirm a valid date field', () => {
+        expect(validate('21/12/18','date')).toEqual('');
+    })
+
+    it('Can confirm a invalid integer field', () => {
+        expect(validate('32','date')).toEqual('Please choose or enter a valid date.');
     })
 
 })
