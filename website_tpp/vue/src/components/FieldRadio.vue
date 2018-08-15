@@ -3,7 +3,7 @@
       <button v-for="option in options" 
         :key="option"
         :class="localClass(option)"
-        @click="localValue = option"
+        @click.prevent="handleClick(option)"
       >
           {{option}}
       </button>
@@ -29,13 +29,14 @@
                 { 'btn-default' : this.localValue != option },
             ];
         },
+      handleClick(newVal) {
+        this.localValue = newVal;
+        this.$emit('input', newVal);
+      },
     },
     watch: {
       value(newVal) {
         this.localValue = newVal;
-      },
-      localValue(newVal) {
-        this.$emit('input', newVal);
       },
     },
   }
