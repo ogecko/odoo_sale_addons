@@ -17,14 +17,18 @@ class WebsiteSaleTPP(WebsiteSale):
 
         # if form posted
         if 'name' in post:
-            values = {}
-            for field_name, field_value in post.items():
-                if field_name in request.env['sale.order']._fields and field_name.startswith('x_'):
-                    values[field_name] = field_value
-            if values:
-                order.write(values)
+            values = {
+                'x_snd_name': post['name'],
+                'x_snd_email': post['email'],
+                'x_snd_phone': post['phone'],
+                'x_from': post['x_from'],
+                'x_to': post['x_to'],
+                'x_message': post['x_message'],
+            }
+            order.write(values)
             return request.redirect("/shop/delivery")
 
+        # otherwise form has just been called up
         values = {
             'order': order,
         }
@@ -45,14 +49,22 @@ class WebsiteSaleTPP(WebsiteSale):
 
         # if form posted
         if 'name' in post:
-            values = {}
-            for field_name, field_value in post.items():
-                if field_name in request.env['sale.order']._fields and field_name.startswith('x_'):
-                    values[field_name] = field_value
-            if values:
-                order.write(values)
+            values = {
+                'x_rcv_name': post['name'],
+                'x_rcv_email': post['email'],
+                'x_rcv_phone': post['phone'],
+                'x_rcv_address': post['address'],
+                'x_rcv_special': post['special'],
+                'x_start': post['x_start'],
+                'x_subscription': post['x_subscription'],
+                'x_freq': post['x_freq'],
+                'x_number': post['x_number'],
+                'x_days': post['x_days'],
+            }
+            order.write(values)
             return request.redirect("/shop/payment")
 
+        # otherwise form has just been called up
         values = {
             'order': order,
         }

@@ -1,19 +1,19 @@
 <template>
     <form method="post">
         <FormGroup label="Recipient" top>
-            <Field label="Name" v-model="receiver.name" types="text,required" class="col-md-4"/>
-            <Field label="Email" v-model="receiver.email" types="email" class="col-md-4"/>
-            <Field label="Phone" v-model="receiver.phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="receiver.address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="clearfix col-md-6"/>
-            <Field label="Special Delivery Instructions" v-model="receiver.special" types="textarea" helpMsg="optional" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
+            <Field label="Name" :value="name" types="text,required" class="col-md-4"/>
+            <Field label="Email" :value="email" types="email" class="col-md-4"/>
+            <Field label="Phone" :value="phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
+            <Field label="Delivery Address" :value="address" name="address" types="textarea,required"  placeholder="Street Address, City, Postcode" class="clearfix col-md-6"/>
+            <Field label="Special Delivery Instructions" :value="special" name="special" types="textarea" helpMsg="optional" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <Field :label="delivery.subscription? 'Starting Day' : 'Day of Delivery'" v-model="delivery.start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
-            <Field label="Subscription Posy" v-model="delivery.subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
-            <FormTransition :show="delivery.subscription" class="clearfix">
-                <Field label="Delivery Frequency" v-model="delivery.freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
-                <Field label="Number of Deliveries" v-model="delivery.number" types="integer" class="col-md-6"/>
-                <Field label="Delivery Days" v-model="delivery.days" class="clearfix col-md-12" types="text, days"/>
+            <Field :label="localSubscription? 'Starting Day' : 'Day of Delivery'" v-model="localStart" name="x_start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
+            <Field label="Subscription Posy" v-model="localSubscription"  name="x_subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
+            <FormTransition :show="localSubscription" class="clearfix">
+                <Field label="Delivery Frequency" v-model="localFreq" name="x_freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
+                <Field label="Number of Deliveries" v-model="localNumber" name="x_number" types="integer" class="col-md-6"/>
+                <Field label="Delivery Days" v-model="localDays" name="x_days" class="clearfix col-md-12" types="text, days"/>
             </FormTransition>
         </FormGroup>
         <FormGroup>
@@ -33,6 +33,18 @@ import deliveryDays from '@/helpers/deliveryDays';
 
 
 export default {
+    props: {
+        name: { type: String },
+        email: { type: String },
+        phone: { type: String },
+        address: { type: String },
+        special: { type: String },
+        x_start: { type: String },
+        x_subscription: { type: Boolean },
+        x_freq: { type: String },
+        x_number: { type: String },
+        x_days: { type: String },
+    },
     components: {
         FormGroup,
         FormTransition,
@@ -40,41 +52,22 @@ export default {
     },
     data() {
         return {
-            sender: {
-                name: 'Joe Blogs',
-                phone: '02 94577909',
-                email: 'joe@ogecko.com',
-            },
-            receiver: {
-                name: 'Mary Blogs',
-                phone: '02 94999909',
-                email: 'mary@ogecko.com',
-                address: '2 Railway Close, Gordon, 2022, NSW',
-                special: 'Unit 5',
-            },
-            delivery: {
-                start: '09-Aug-2018',
-                subscription: false,
-                number: 3,
-                freq: 'Weekly',
-                days: '1/1/2018',
-            },
-            card: {
-                from: 'Joe',
-                to: 'Mary',
-                message: 'Just for you' 
-            },
+            localStart: this.x_start,
+            localSubscription: this.x_subscription,
+            localFreq: this.x_freq,
+            localNumber: Number(this.x_number),
+            localDays: this.x_days,
         }
     },
     methods: {
         updateDeliveryDays() {
-            this.delivery.days = deliveryDays(this.delivery.start, this.delivery.freq, this.delivery.number, this.delivery.days);
+            this.localDays = deliveryDays(this.localStart, this.localFreq, this.localNumber, this.localDays);
         }
     },
     watch: {
-        'delivery.start'() { this.updateDeliveryDays() },
-        'delivery.freq'() { this.updateDeliveryDays() },
-        'delivery.number'() { this.updateDeliveryDays() },
+        'localStart'() { this.updateDeliveryDays() },
+        'localFreq'() { this.updateDeliveryDays() },
+        'localNumber'() { this.updateDeliveryDays() },
     }
 }
 

@@ -9,7 +9,7 @@
             <Field label="A Posy For" name="x_to" :value="x_to" class="col-md-6"/>
             <Field label="From" name="x_from" :value="x_from" class="col-md-6"/>
             <Field label="Message" name="x_message" v-model="localMessage" types="textarea" helpMsg="maximum 200 characters" class="clearfix col-md-12"/>
-            <Field label="Help me choose a message" @input="getCardMessage" helpMsg="browse through sample messages" value="" :options="['Birthday','Anniversary','Thanks','Congrats','Sorry','Random']" types="enum" class="col-md-12"/>
+            <Field label="Help me choose a message" @input="getCardMessage" helpMsg="keep clicking until you find one" value="" :options="['Birthday','Anniversary','Thanks','Congrats','Sorry','Random']" types="enum" class="col-md-12"/>
         </FormGroup>
         <FormGroup>
             <div class="col-md-12">

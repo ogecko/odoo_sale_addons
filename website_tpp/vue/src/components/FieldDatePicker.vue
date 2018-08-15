@@ -8,6 +8,8 @@
             type="text"
             :placeholder="placeholder"
             v-model="localValue"
+            :name="name"
+            :id="id"
             @focus="showDatePicker"
             @blur="hideDatePicker"
         >
@@ -38,6 +40,8 @@
     props: {
       type: { type: String, default: 'text' },
       value: { type: String },  
+      name: { type: String },
+      id: { type: String },
       placeholder: { type: String, default: '' },
       enabledDates: { type: Array, default: undefined },
     },

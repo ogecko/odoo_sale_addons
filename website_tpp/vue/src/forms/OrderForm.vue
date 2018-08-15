@@ -4,7 +4,7 @@
       <button :class="['btn', {'btn-primary': route==pages[0]}]" @click="route = pages[0]">Sender</button>
       <button :class="['btn', {'btn-primary': route==pages[1]}]" @click="route = pages[1]">Delivery</button>
       <OrderFormSender name="abc" v-if="route == pages[0]"/>
-      <OrderFormDelivery v-if="route == pages[1]"/>
+      <OrderFormDelivery name="def" v-if="route == pages[1]"/>
     </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="input-group btn-group">
+      <input type="text" hidden v-model="localValue" :name="name" :id="id">
       <button v-for="option in options" 
         :key="option"
         :class="localClass(option)"
@@ -12,14 +13,16 @@
 
 <script>
   export default {
+    props: {
+      value: { type: String },
+      name: { type: String },
+      id: { type: String },
+      options: { type: Array }, // an Array of Strings
+    },
     data() {
       return {
         localValue: this.value,
       }
-    },
-    props: {
-      value: { type: String },
-      options: { type: Array }, // an Array of Strings
     },
     methods: {
         localClass(option) {

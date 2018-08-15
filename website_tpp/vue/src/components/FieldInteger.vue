@@ -1,7 +1,7 @@
 <template>
 <div class="input-group col-xs-3">
   <a class="input-group-addon btn" @click="decValue"><i class="fa fa-minus"></i></a>
-  <input type="text" class="form-control integer" v-model="localValue">
+  <input type="text" class="form-control integer" v-model="localValue" :name="name" :id="id">
   <a class="input-group-addon btn float-left" @click="incValue"><i class="fa fa-plus"></i></a>
 </div>
 </template>
@@ -17,6 +17,8 @@
   export default {
     props: {
       value: { type: Number },
+      name: { type: String },
+      id: { type: String },
     },
     data() {
       return {

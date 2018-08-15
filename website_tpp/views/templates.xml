@@ -54,7 +54,17 @@
                             <div class="col-md-9 oe_cart">
                                 <div class="row">
                                     <div id="vueapp" class="container">
-                                        <Widget id="vueform"/>
+                                    <Widget id="vueform"
+                                        t-att-name="order.x_rcv_name"
+                                        t-att-email="order.x_rcv_email"
+                                        t-att-phone="order.x_rcv_phone"
+                                        t-att-address="order.x_rcv_address"
+                                        t-att-special="order.x_rcv_special"
+                                        t-att-x_start="order.x_start"
+                                        t-att-x_subscription="order.x_subscription"
+                                        t-att-x_freq="order.x_freq"
+                                        t-att-x_number="order.x_number"
+                                        t-att-x_days="order.x_days"/>
                                     </div>
                                     <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Delivery } });</script>
                                 </div>
@@ -69,6 +79,45 @@
                 </div>
             </t>
         </template>
+
+	<!-- Back end form for order -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+   		<field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page string="Order Requirements">
+                    <group>
+                        <group string="Sender Details" name="sender">
+                            <field name="x_snd_name" />
+                            <field name="x_snd_email" />
+                            <field name="x_snd_phone" />
+                        </group>
+                        <group string="Personalised Card" name="card">
+                            <field name="x_to" />
+                            <field name="x_from" />
+                            <field name="x_message" />
+                        </group>
+                        <group string="Receiver Details" name="receiver">
+                            <field name="x_rcv_name" />
+                            <field name="x_rcv_email" />
+                            <field name="x_rcv_phone" />
+                            <field name="x_rcv_address" />
+                            <field name="x_rcv_special" />
+                        </group>
+                        <group string="Delivery" name="delivery">
+                            <field name="x_start" />
+                            <field name="x_freq" />
+                            <field name="x_number" />
+                            <field name="x_days" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
 
     </data>
 </odoo>
