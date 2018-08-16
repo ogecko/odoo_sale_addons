@@ -53,6 +53,22 @@ describe('FieldInteger.vue', () => {
     expect(wrapper.vm.localValue).toEqual(10);
   })
   
+  it('Should re-clamp when the min is changed', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 2, min: 5, max: 10 }
+    })
+    wrapper.setProps({ min: 7});
+    expect(wrapper.vm.localValue).toEqual(7);
+  })
+
+  it('Should re-clamp when the max is changed', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 20, min: 5, max: 10 }
+    })
+    wrapper.setProps({ max: 8});
+    expect(wrapper.vm.localValue).toEqual(8);
+  })
+
   it('Should update localValue when new value is sent down via props', () => {
     const wrapper = shallowMount(FieldInteger, {
       propsData: { value: 20 }

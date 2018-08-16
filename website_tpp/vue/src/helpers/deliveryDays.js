@@ -62,6 +62,7 @@ export default function deliveryDays(start, freq, number) {
     let days = [];
     if (availableSchedules[freq]) {
         days = availableSchedules[freq](number, startDate);
+        if (number == 1) days = [days];      // later returns a singleton instead of an array for number = 1
         days = ensureValidDays(days);
     }
 

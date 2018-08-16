@@ -70,6 +70,11 @@ describe('deliveryDays.js', () => {
         .toEqual('26-Nov-2018, 27-Dec-2018, 25-Jan-2019');
     });
 
+    it('Can handle just finding a single next date', () => {
+        expect(deliveryDays('25-Nov-18','Monthly',1))
+        .toEqual('26-Nov-2018');
+    });
+
     it('Can give a list of next 90 Delivery Days', () => {
         expect(next90DeliveryDays().length).toEqual(90);
     });
