@@ -1,5 +1,9 @@
 import deliveryDays from '@/helpers/deliveryDays.js'
 import { next90DeliveryDays } from '@/helpers/deliveryDays.js'
+import moment from 'moment';
+
+global.moment = moment;
+
 
 describe('deliveryDays.js', () => {
  

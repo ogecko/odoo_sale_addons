@@ -1,5 +1,5 @@
-import later from '@/helpers/later';
-import moment from 'moment';
+  /* global moment */
+  import later from '@/helpers/later';
 
 const daily = {
     schedules: [ 

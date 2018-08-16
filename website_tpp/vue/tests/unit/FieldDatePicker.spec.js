@@ -1,8 +1,10 @@
 import { shallowMount } from '@vue/test-utils'
 import FieldDatePicker from '@/components/FieldDatePicker.vue'
+import moment from 'moment';
+
 
 // stub globals
-global.moment = () => ({ local() {}});
+global.moment = moment;
 global.jQuery = () => ({ datetimepicker() {}, on() {}, data:()=>({ setDate() {}, show() {}, hide() {}, destroy() {} }) });
 
 

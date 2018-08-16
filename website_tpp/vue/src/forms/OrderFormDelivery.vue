@@ -30,7 +30,6 @@ import FormGroup from '@/layout/FormGroup.vue'
 import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
 import deliveryDays from '@/helpers/deliveryDays';
-import moment from 'moment';
 
 
 export default {
@@ -40,7 +39,7 @@ export default {
         phone: { type: String },
         address: { type: String },
         special: { type: String },
-        start: { type: String, default: moment().format('DD-MMM-YYYY') },
+        start: { type: String },
         subscription: { type: Boolean },
         freq: { type: String },
         number: { type: Number, default: 1 },
