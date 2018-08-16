@@ -80,7 +80,30 @@
             </t>
         </template>
 
-	<!-- Back end form for order -->
+    <!-- Fully replace the BillTo view on the /shop/payment page -->
+    <template id='website_sale.bill_to' name="Bill to">
+        <div class="panel panel-info">
+          <div class="panel-heading">Deliver To:</div>
+          <div class="panel-body">
+            <div><t t-esc="order.x_rcv_name"/></div>
+            <div><i class='fa fa-map-marker'/> <t t-esc="order.x_rcv_address"/></div>
+            <div t-if="order.x_rcv_special"><i class='fa fa-truck'/> <t t-esc="order.x_rcv_special"/></div>
+            <div><i class='fa fa-clock-o'/> <t t-esc="order.x_days"/></div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">Personalised Card:</div>
+          <div class="panel-body">
+            <div>A Posy For: <t t-esc="order.x_to"/></div>
+            <div><t t-esc="order.x_message"/></div>
+            <div>From: <t t-esc="order.x_from"/></div>
+          </div>
+        </div>
+    </template>
+
+
+
+	<!-- Add the Order Requirements TAB to the back end Order Details Form -->
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
