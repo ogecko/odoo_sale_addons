@@ -28,7 +28,7 @@
         localClass(option) {
             return [
                 'btn',
-                { 'btn-primary' : this.localValue == option },
+                { '' : this.localValue == option },
                 { 'btn-default' : this.localValue != option },
             ];
         },

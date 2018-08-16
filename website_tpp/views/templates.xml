@@ -94,9 +94,9 @@
         <div class="panel panel-info">
           <div class="panel-heading">Personalised Card:</div>
           <div class="panel-body">
-            <div>A Posy For: <t t-esc="order.x_to"/></div>
+            <div t-if="order.x_to">A Posy For: <t t-esc="order.x_to"/></div>
             <div><t t-esc="order.x_message"/></div>
-            <div>From: <t t-esc="order.x_from"/></div>
+            <div t-if="order.x_from">From: <t t-esc="order.x_from"/></div>
           </div>
         </div>
     </template>
