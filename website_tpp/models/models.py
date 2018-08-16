@@ -20,7 +20,7 @@ class sale_order(models.Model):
     x_rcv_address = fields.Text(string="Delivery Address")
     x_rcv_special = fields.Text(string="Special Instructions")
 
-    x_start = fields.Date(string="Starting Day")
+    x_start = fields.Date(string="Starting Day", default=fields.Date.today())
     x_subscription = fields.Boolean(string="Order contains multiple deliveries")
     x_freq = fields.Selection(string="Delivery Frequency", selection=[('Daily','Daily'),('Weekly','Weekly'),('Fortnightly','Fortnightly'),('Monthly','Monthly'),('Other','Other')])
     x_number = fields.Integer(string="Number of Deliveries")
