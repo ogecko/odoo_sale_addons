@@ -3,7 +3,7 @@
 <template>
   <div :class="localClasses">
 
-    <label class="control-label" :for="localName">
+    <label class="control-label" :for="id">
       {{ localLabel }}
       <small v-if="helpMsg && !isFieldCheckbox" class="text-muted">({{helpMsg}})</small>
     </label>
@@ -11,7 +11,7 @@
     <div v-if="isFieldCheckbox" class="checkbox" >
       <label >
         <FieldCheckbox 
-        :name="localName" :id="localName"
+        :name="localName" :id="id"
         :value="value"
         @input="handleInput"
       ></FieldCheckbox>
@@ -20,14 +20,16 @@
     </div>
 
     <FieldTextArea v-if="isFieldTextArea"
-      :name="localName" :id="localName"
+      :name="localName" :id="id"
+      :autocomplete="autocomplete"
       :placeholder="placeholder"
       :value="value"
       @input="handleInput"
     ></FieldTextArea>
 
     <FieldInput v-if="isFieldInput" 
-      :name="localName" :id="localName"
+      :name="localName" :id="id"
+      :autocomplete="autocomplete"
       :placeholder="placeholder"
       :type="type"
       :value="value"
@@ -35,7 +37,8 @@
     ></FieldInput>
 
     <FieldDatePicker v-if="isFieldDatePicker" 
-      :name="localName" :id="localName"
+      :name="localName" :id="id"
+      :autocomplete="autocomplete"
       :placeholder="placeholder"
       :type="type"
       :value="value"
@@ -43,7 +46,8 @@
     ></FieldDatePicker>
 
     <FieldRadio v-if="isFieldRadio" 
-      :name="localName" :id="localName"
+      :name="localName" :id="id"
+      :autocomplete="autocomplete"
       :options="options"
       :type="type"
       :value="value"
@@ -51,7 +55,8 @@
     ></FieldRadio>
 
     <FieldInteger v-if="isFieldInteger" 
-      :name="localName" :id="localName"
+      :name="localName" :id="id"
+      :autocomplete="autocomplete"
       :value="value"
       @input="handleInput"
     ></FieldInteger>
@@ -77,10 +82,11 @@ export default {
       FieldTextArea, FieldInput, FieldCheckbox, FieldRadio, FieldInteger, FieldDatePicker,
   },
   props: {
-    label: { type: String, default: '' },
+    label: { type: String },
     name: { type: String },
-    placeholder: { type: String, default: '' },
-    helpMsg: { type: String, default: '' },
+    autocomplete: { type: String },
+    placeholder: { type: String },
+    helpMsg: { type: String },
     types: { type: String, default: 'text' },
     value: { type: [ String, Boolean, Number ] },
     options: { type: Array },

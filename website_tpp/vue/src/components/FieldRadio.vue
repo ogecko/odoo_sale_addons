@@ -16,7 +16,7 @@
     props: {
       value: { type: String },
       name: { type: String },
-      id: { type: String },
+      id: { type: Number },
       options: { type: Array }, // an Array of Strings
     },
     data() {

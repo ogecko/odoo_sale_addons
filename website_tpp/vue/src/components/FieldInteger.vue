@@ -18,7 +18,7 @@
     props: {
       value: { type: Number },
       name: { type: String },
-      id: { type: String },
+      id: { type: Number },
     },
     data() {
       return {

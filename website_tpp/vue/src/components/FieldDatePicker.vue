@@ -41,8 +41,8 @@
       type: { type: String, default: 'text' },
       value: { type: String },  
       name: { type: String },
-      id: { type: String },
-      placeholder: { type: String, default: '' },
+      id: { type: Number },
+      placeholder: { type: String },
       enabledDates: { type: Array, default: undefined },
     },
     computed: {

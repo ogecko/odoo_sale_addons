@@ -24,9 +24,9 @@
                                         t-att-name="order.partner_id.name"
                                         t-att-email="order.partner_id.email"
                                         t-att-phone="order.partner_id.phone"
-                                        t-att-x_to="order.x_to"
-                                        t-att-x_from="order.x_from"
-                                        t-att-x_message="order.x_message"/>
+                                        t-att-to="order.x_to"
+                                        t-att-from="order.x_from"
+                                        t-att-message="order.x_message"/>
                                     </div>
                                     <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Sender } });</script>
                                 </div>
@@ -60,11 +60,11 @@
                                         t-att-phone="order.x_rcv_phone"
                                         t-att-address="order.x_rcv_address"
                                         t-att-special="order.x_rcv_special"
-                                        t-att-x_start="order.x_start"
-                                        t-att-x_subscription="order.x_subscription"
-                                        t-att-x_freq="order.x_freq"
-                                        t-att-x_number="order.x_number"
-                                        t-att-x_days="order.x_days"/>
+                                        t-att-start="time.strftime('%d-%b-%Y',time.strptime(order.x_start,'%Y-%m-%d'))"
+                                        t-att-subscription="order.x_subscription"
+                                        t-att-freq="order.x_freq"
+                                        t-att-number="order.x_number"
+                                        t-att-days="order.x_days"/>
                                     </div>
                                     <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Delivery } });</script>
                                 </div>

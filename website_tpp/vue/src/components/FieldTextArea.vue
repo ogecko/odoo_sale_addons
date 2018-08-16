@@ -19,8 +19,8 @@
     props: {
       value: { type: String },
       name: { type: String },
-      id: { type: String },
-      placeholder: { type: String, default: '' },
+      id: { type: Number },
+      placeholder: { type: String },
     },
     watch: {
       value(newVal) {

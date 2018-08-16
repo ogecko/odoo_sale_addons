@@ -17,7 +17,7 @@
     props: {
       type: { type: String, default: 'text' },
       value: { type: String },  
-      placeholder: { type: String, default: '' },
+      placeholder: { type: String },
     },
     computed: {
     },
