@@ -41,7 +41,7 @@ export default {
         special: { type: String },
         start: { type: String },
         subscription: { type: Boolean },
-        freq: { type: String },
+        freq: { type: String, default: 'Daily' },
         number: { type: Number, default: 1 },
         days: { type: String },
     },
