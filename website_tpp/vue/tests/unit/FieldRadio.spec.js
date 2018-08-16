@@ -7,7 +7,8 @@ describe('FieldRadio.vue', () => {
       propsData: { value: 'three', options: ['one', 'two', 'three'] }
     })
     expect(wrapper.find('div').classes()).toContain('btn-group');
-    expect(wrapper.find('.btn-primary').text()).toEqual('three');
+    expect(wrapper.find('.btn-default').text()).toEqual('one');
+    expect(wrapper.find('.btn.selected').text()).toEqual('three');
   })
 
 

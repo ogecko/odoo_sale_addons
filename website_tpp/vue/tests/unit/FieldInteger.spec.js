@@ -26,6 +26,33 @@ describe('FieldInteger.vue', () => {
     expect(wrapper.vm.localValue).toEqual(19);
   })
 
+
+  it('Should be able to increment the integer but not past its max', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 20, min: 18 }
+    })
+    wrapper.vm.decValue(); 
+    wrapper.vm.decValue(); 
+    wrapper.vm.decValue(); 
+    wrapper.vm.decValue(); 
+    expect(wrapper.vm.localValue).toEqual(18);
+  })
+
+  it('Should clamp the initial value to within min and max', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 20, min: 5, max: 10 }
+    })
+    expect(wrapper.vm.localValue).toEqual(10);
+  })
+
+  it('Should clamp any changed value to within min and max', () => {
+    const wrapper = shallowMount(FieldInteger, {
+      propsData: { value: 2, min: 5, max: 10 }
+    })
+    wrapper.setProps({ value: 30});
+    expect(wrapper.vm.localValue).toEqual(10);
+  })
+  
   it('Should update localValue when new value is sent down via props', () => {
     const wrapper = shallowMount(FieldInteger, {
       propsData: { value: 20 }

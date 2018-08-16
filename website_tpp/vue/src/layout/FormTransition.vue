@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div v-if="show">
+    <div v-show="show">
         <slot />
     </div>
   </transition>

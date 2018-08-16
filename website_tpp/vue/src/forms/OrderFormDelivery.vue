@@ -11,8 +11,8 @@
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
             <Field label="Subscription Posy" v-model="x_subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
             <FormTransition :show="x_subscription" class="clearfix">
+                <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" types="integer" class="col-md-6"/>
                 <Field label="Delivery Frequency" v-model="x_freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
-                <Field label="Number of Deliveries" v-model="x_number" types="integer" class="col-md-6"/>
                 <Field label="Delivery Days" v-model="x_days" types="text, days" class="clearfix col-md-12"/>
             </FormTransition>
         </FormGroup>
@@ -61,7 +61,7 @@ export default {
             x_subscription: this.subscription,
             x_freq: this.freq,
             x_number: Number(this.number),
-            x_days: this.days,
+            x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number, this.days),
         }
     },
     methods: {

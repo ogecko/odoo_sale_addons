@@ -59,6 +59,8 @@
       :autocomplete="autocomplete"
       :value="value"
       @input="handleInput"
+      :min="min"
+      :max="max"
     ></FieldInteger>
 
     <small class="help-block">
@@ -89,6 +91,8 @@ export default {
     helpMsg: { type: String },
     types: { type: String, default: 'text' },
     value: { type: [ String, Boolean, Number ] },
+    min: { type: Number },
+    max: { type: Number },
     options: { type: Array },
   },
   data() {

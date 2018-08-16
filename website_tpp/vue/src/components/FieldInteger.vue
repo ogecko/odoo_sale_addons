@@ -14,15 +14,22 @@
 </style>
 
 <script>
+  function clamp(min, x, max) {
+    const value = (typeof x == 'number') ? x : 0;
+    return Math.max(min, Math.min(max, value));
+  }
+
   export default {
     props: {
       value: { type: Number },
       name: { type: String },
       id: { type: Number },
+      min: { type: Number, default: -Infinity },
+      max: { type: Number, default: +Infinity },
     },
     data() {
       return {
-        localValue: this.value,
+        localValue: clamp(this.min, this.value, this.max),
       }
     },
     computed: {
@@ -39,8 +46,15 @@
       value(newVal) {
         this.localValue = newVal;
       },
+      min(newVal) {
+        this.localValue = clamp(newVal, this.localValue, this.max);
+      },
+      max(newVal) {
+        this.localValue = clamp(this.min, this.localValue, newVal);
+      },
       localValue(newVal) {
-        this.$emit('input',newVal);
+        this.localValue = clamp(this.min, newVal, this.max);
+        this.$emit('input', this.localValue);
       },
     },
   }
