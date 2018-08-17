@@ -1,3 +1,5 @@
+import property from "./property";
+
 const validationFunctions = {
     // <text> checks
     required(s) {
@@ -51,15 +53,32 @@ const validationFunctions = {
         if (typeof n !='number')
             return 'Please enter a whole number.';
     },
+    // <text> address types
+    address(str, vm) {
+        const check = property(['$children', '0', 'valueResult', 'types'])(vm);
+        if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
+            return 'Please select a specific delivery address.';
+    },
+    // <text> address types
+    extra(str, vm) {
+        const check = property(['$children', '0', 'valueResult', 'types'])(vm);
+        if (check && /(hospital|school|university|shopping_mall)/.test(check))
+            return 'Additional delivery cost for Hospitals, Schools, Universities and Shopping Malls.';
+    },
+    // <text> address types
+    nsw(str, vm) {
+        const state = property(['$children', '0', 'valueResult', 'state'])(vm);
+        if (state && state!='NSW')
+            return 'Please select an address in NSW.';
+    },
 }
 
-
-export default function validate(value, terms) {
+export default function validate(value, terms, vm) {
 
     function checkValueForValidationReqirements(acc, term) {
         const tterm = term.trim();
         const msg = !validationFunctions[tterm] ? `Cannot find validation check "${tterm}".`
-            : validationFunctions[tterm](value); //call the validationFunction
+            : validationFunctions[tterm](value, vm); //call the validationFunction
         if (msg)  acc.push(msg)
 
         return acc;

@@ -5,6 +5,7 @@
             <xpath expr="script[last()]" position="after">
                <link rel="stylesheet" href="/website_tpp/static/src/css/order_form.css"></link>
                <script type="text/javascript" src="/website_tpp/static/src/js/order_form.umd.js"></script>
+               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAfgRGcUkVVDnveuXyByX-fp5IAmyljXE&libraries=places"></script>
             </xpath>
         </template>
 

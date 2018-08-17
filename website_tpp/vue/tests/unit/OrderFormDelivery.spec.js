@@ -3,6 +3,7 @@ import OrderFormDelivery from '@/forms/OrderFormDelivery.vue'
 import moment from 'moment';
 
 global.moment = moment;
+global.google = { maps: { places: { Autocomplete: ()=> ({ addListener() {}}) }}};
 global.jQuery = () => ({ datetimepicker() {}, on() {}, data:()=>({ setDate() {}, show() {}, hide() {}, destroy() {} }) });
 
 describe('OrderFormDelivery.vue', () => {

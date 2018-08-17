@@ -63,6 +63,12 @@
       :max="max"
     ></FieldInteger>
 
+    <FieldAddress v-if="isFieldAddress" 
+      :name="localName"
+      :value="value"
+      @input="handleInput"
+    ></FieldAddress>
+
     <small class="help-block">
       {{ validationMsg }}
     </small>
@@ -78,10 +84,11 @@ import FieldCheckbox from '@/components/FieldCheckbox.vue'
 import FieldRadio from '@/components/FieldRadio.vue'
 import FieldInteger from '@/components/FieldInteger.vue'
 import FieldDatePicker from '@/components/FieldDatePicker.vue'
+import FieldAddress from '@/components/FieldAddress.vue'
 
 export default {
   components: {
-      FieldTextArea, FieldInput, FieldCheckbox, FieldRadio, FieldInteger, FieldDatePicker,
+      FieldTextArea, FieldInput, FieldCheckbox, FieldRadio, FieldInteger, FieldDatePicker, FieldAddress
   },
   props: {
     label: { type: String },
@@ -126,7 +133,7 @@ export default {
       return this.types.split(',')[0];
     },
     isFieldInput () {
-      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer" && this.type!="date")
+      return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer" && this.type!="date" && this.type!="address")
     },
     isFieldTextArea () {
       return (this.type=="textarea")
@@ -143,13 +150,16 @@ export default {
     isFieldDatePicker () {
       return (this.type=="date")
     },
+    isFieldAddress () {
+      return (this.type=="address")
+    },
 },
   methods: {
     isRequired() {
       return this.types.split(',').includes('required');
     },
     handleInput(newVal) {
-      this.validationMsg = validate(newVal, this.types);
+      this.validationMsg = validate(newVal, this.types, this);
       this.$emit('input', newVal);
     },
   },
