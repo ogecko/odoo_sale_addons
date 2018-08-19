@@ -4,7 +4,7 @@
             <Field label="Name" v-model="x_rcv_name" autocomplete="name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="x_rcv_email" autocomplete="email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="x_rcv_address" types="address,nsw,extra,required"  placeholder="Street Address, City, Postcode" class="clearfix col-md-6"/>
+            <Field label="Delivery Address" v-model="x_rcv_address" types="textarea,nsw,extra,required"  placeholder="Street Address, City, Postcode" class="clearfix col-md-6"/>
             <Field label="Special Delivery Instructions" v-model="x_rcv_special" types="textarea" helpMsg="optional" placeholder="Business Name, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
@@ -61,13 +61,13 @@ export default {
             x_subscription: this.subscription,
             x_freq: this.freq,
             x_number: Number(this.number),
-            x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number, this.days),
+            x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number),
         }
     },
     methods: {
         updateDeliveryDays() {
-            this.x_days = deliveryDays(this.x_start, this.x_freq, this.x_number, this.x_days);
-        }
+            this.x_days = deliveryDays(this.x_start, this.x_freq, this.x_number);
+        },
     },
     watch: {
         'x_start'() { this.updateDeliveryDays() },

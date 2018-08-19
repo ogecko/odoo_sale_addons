@@ -1,5 +1,5 @@
 import deliveryDays from '@/helpers/deliveryDays.js'
-import { next90DeliveryDays } from '@/helpers/deliveryDays.js'
+import { nextDeliveryDays } from '@/helpers/deliveryDays.js'
 import moment from 'moment';
 
 global.moment = moment;
@@ -76,7 +76,7 @@ describe('deliveryDays.js', () => {
     });
 
     it('Can give a list of next 90 Delivery Days', () => {
-        expect(next90DeliveryDays().length).toEqual(90);
+        expect(nextDeliveryDays(90).length).toEqual(90);
     });
 
 });

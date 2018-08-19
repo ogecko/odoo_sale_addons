@@ -1,5 +1,5 @@
-  /* global moment */
-  import later from '@/helpers/later';
+/* global moment */
+import later from '@/helpers/later';
 
 const daily = {
     schedules: [ 
@@ -30,10 +30,10 @@ const daily = {
         { D: [19,22], M: [4], Y: [2030], h: [13], m: [0] },
     ],
 };
-export function next90DeliveryDays() {
+export function nextDeliveryDays(number) {
     moment.locale();
     later.date.localTime();
-    return later.schedule(daily).next(90,moment());
+    return later.schedule(daily).next(number,moment());
 }
 
 export default function deliveryDays(start, freq, number) {
@@ -62,7 +62,7 @@ export default function deliveryDays(start, freq, number) {
     let days = [];
     if (availableSchedules[freq]) {
         days = availableSchedules[freq](number, startDate);
-        if (number == 1) days = [days];      // later returns a singleton instead of an array for number = 1
+        if (!Array.isArray(days)) days = [days];      // later returns a singleton instead of an array for number = 1
         days = ensureValidDays(days);
     }
 

@@ -27,7 +27,7 @@
 
 <script>
   /* global jQuery, moment */
-  import { next90DeliveryDays } from '@/helpers/deliveryDays.js'
+  import { nextDeliveryDays } from '@/helpers/deliveryDays.js'
 
   export default {
     data() {
@@ -39,7 +39,7 @@
     },
     props: {
       type: { type: String, default: 'text' },
-      value: { type: String },  
+      value: { type: String, default() { return moment(nextDeliveryDays(1)).format('DD-MMM-YYYY') }},  
       name: { type: String },
       id: { type: Number },
       placeholder: { type: String },
@@ -53,7 +53,7 @@
         this.elem.datetimepicker({ 
             format: 'DD-MMM-YYYY', 
             pickTime: false,
-            enabledDates: next90DeliveryDays(),
+            enabledDates: nextDeliveryDays(90),
         });
         this.dp = this.elem.data('DateTimePicker');
         this.setDatePickerDate(this.localValue);
