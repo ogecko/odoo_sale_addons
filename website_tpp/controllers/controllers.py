@@ -16,10 +16,9 @@ class WebsiteSaleTPP(WebsiteSale):
             return redirection
 
         # setup variables
-        isPublicUser = (order.partner_id.id == request.website.user_id.sudo().partner_id.id)
-        isBlankName = (len(order.x_snd_name) == 0)
-        isBlankEmail = (len(order.x_snd_email) == 0)
-
+        isSignedIn = not(order.partner_id.id == request.website.user_id.sudo().partner_id.id)
+        isBlankSndName = not(order.x_snd_name)
+ 
         # if form posted
         if 'x_snd_name' in post:
             values = {}
@@ -29,6 +28,12 @@ class WebsiteSaleTPP(WebsiteSale):
             if values:
                 order.write(values)
             return request.redirect("/shop/delivery")
+
+        # copy across from parter_id when the user is signed in already
+        if (isBlankSndName and isSignedIn):
+            order.x_snd_name = order.partner_id.name
+            order.x_snd_email = order.partner_id.email
+            order.x_snd_phone = order.partner_id.phone
 
         # otherwise form has just been called up
         values = {
@@ -50,10 +55,9 @@ class WebsiteSaleTPP(WebsiteSale):
             return redirection
 
         # setup variables
-        isPublicUser = (order.partner_id.id == request.website.user_id.sudo().partner_id.id)
-        isBlankName = (len(order.x_snd_name) == 0)
-        isBlankEmail = (len(order.x_snd_email) == 0)
         google_maps_api_key = request.env['ir.config_parameter'].sudo().get_param('google_maps_api_key')
+        isBlankRcvName = not(order.x_rcv_name)
+        isBlankTo = not(order.x_to)
 
         # if form posted
         if 'x_rcv_name' in post:
@@ -69,6 +73,10 @@ class WebsiteSaleTPP(WebsiteSale):
             if values:
                 order.write(values)
             return request.redirect("/shop/payment")
+
+        # copy x_to name across to blank x_rcv_name (but only if blank)
+        if (isBlankRcvName and not(isBlankTo)):
+            order.x_rcv_name = order.x_to
 
         # otherwise form has just been called up
         values = {

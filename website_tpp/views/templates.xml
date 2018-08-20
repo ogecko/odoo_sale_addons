@@ -21,9 +21,9 @@
                                 <div class="row">
                                     <div id="vueapp" class="container">
                                     <Widget id="vueform"
-                                        t-att-name="order.partner_id.name"
-                                        t-att-email="order.partner_id.email"
-                                        t-att-phone="order.partner_id.phone"
+                                        t-att-name="order.x_snd_name"
+                                        t-att-email="order.x_snd_email"
+                                        t-att-phone="order.x_snd_phone"
                                         t-att-to="order.x_to"
                                         t-att-from="order.x_from"
                                         t-att-message="order.x_message"/>

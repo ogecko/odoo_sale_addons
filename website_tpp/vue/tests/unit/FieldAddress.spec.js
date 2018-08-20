@@ -16,8 +16,8 @@ describe('FieldAddress.vue', () => {
     const wrapper = shallowMount(FieldAddress, {
       propsData: {  }
     })
-    wrapper.setData({ value: 'test' });
-    expect(wrapper.vm.value).toContain('test');
+    wrapper.setProps({ value: 'test' });
+    expect(wrapper.vm.localValue).toContain('test');
   })
 
   it('For a text FieldAddress, can check if value validated', () => {

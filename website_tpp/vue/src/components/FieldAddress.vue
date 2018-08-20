@@ -6,7 +6,7 @@
     :class="classname"
     :id="id"
     :placeholder="placeholder"
-    v-model="value"
+    v-model="localValue"
     @focus="fixChromeAutofillOff()"
   />
 </template>
@@ -16,6 +16,7 @@
   /* global google */
   export default {
     props: {
+      value:                { type: String },
       classname:            { type: String },
       placeholder:          { type: String, default: 'Start typing' },
       enableGeolocation:    { type: Boolean, default: false },
@@ -26,21 +27,25 @@
       return {
         id:  null,
         googlePlacesWidget: null,
-        value: '',
-        valueLast: undefined,
-        valueResult: {},
+        localValue: this.value,
+        localValueLast: undefined,
+        localValueResult: {},
       }
     },
     computed: {
         isValidatedAddress() {
-          return (this.value == this.valueLast);
+          // must have a localValue and must have not changed since last address-change
+          return (!!this.localValue && (this.localValue == this.localValueLast));
         }
     },
 
     watch: {
-        value: function (newVal) {
-          this.$emit('input', newVal);
-        },
+      value(newVal) {
+        this.localValue = newVal;
+      },
+      localValue(newVal) {
+        this.$emit('input',newVal);
+      },
     },
 
     mounted: function() {
@@ -74,17 +79,17 @@
         if (!place.geometry) {
           // User entered the name of a Place that was not suggested and
           // pressed the Enter key, or the Place Details request failed.
-          this.valueResult = undefined;
+          this.localValueResult = undefined;
           this.$emit('address-not-found', place, this.id);
           return;
         }
 
         if (place.address_components !== undefined) {
           // User has selected a correct address, update the field, the results and emit
-          this.value = this.$el.value;
-          this.valueLast = this.$el.value;
-          this.valueResult = this.formatResult(place);
-          this.$emit('address-changed', this.valueResult, place, this.id);
+          this.localValue = this.$el.value;
+          this.localValueLast = this.$el.value;
+          this.localValueResult = this.formatResult(place);
+          this.$emit('address-changed', this.localValueResult, place, this.id);
         }
       },
 

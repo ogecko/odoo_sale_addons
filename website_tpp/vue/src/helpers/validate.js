@@ -55,19 +55,19 @@ const validationFunctions = {
     },
     // <text> address types
     address(str, vm) {
-        const check = property(['$children', '0', 'valueResult', 'types'])(vm);
+        const check = property(['$children', '0', 'localValueResult', 'types'])(vm);
         if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
             return 'Please select a specific delivery address.';
     },
     // <text> address types
     extra(str, vm) {
-        const check = property(['$children', '0', 'valueResult', 'types'])(vm);
+        const check = property(['$children', '0', 'localValueResult', 'types'])(vm);
         if (check && /(hospital|school|university|shopping_mall)/.test(check))
             return 'Additional delivery cost for Hospitals, Schools, Universities and Shopping Malls.';
     },
     // <text> address types
     nsw(str, vm) {
-        const state = property(['$children', '0', 'valueResult', 'state'])(vm);
+        const state = property(['$children', '0', 'localValueResult', 'state'])(vm);
         if (state && state!='NSW')
             return 'Please select an address in NSW.';
     },
