@@ -49,6 +49,12 @@ class WebsiteSaleTPP(WebsiteSale):
         if redirection:
             return redirection
 
+        # setup variables
+        isPublicUser = (order.partner_id.id == request.website.user_id.sudo().partner_id.id)
+        isBlankName = (len(order.x_snd_name) == 0)
+        isBlankEmail = (len(order.x_snd_email) == 0)
+        google_maps_api_key = request.env['ir.config_parameter'].sudo().get_param('google_maps_api_key')
+
         # if form posted
         if 'x_rcv_name' in post:
 
@@ -67,6 +73,7 @@ class WebsiteSaleTPP(WebsiteSale):
         # otherwise form has just been called up
         values = {
             'order': order,
+            'google_maps_api_key': google_maps_api_key,
         }
 
          # Avoid useless rendering if called in ajax

@@ -45,6 +45,9 @@
         <template id="order_form_delivery">
             <t t-call="website.layout">
                 <input type="hidden" name="csrf_token" form="vueform" t-att-value="request.csrf_token()"/>
+                <t t-if="google_maps_api_key">
+                    <script t-attf-src="//maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}&amp;libraries=places"></script>
+                </t>                
                 <div id="wrap">
                     <div class="container oe_website_sale">
                         <t t-call="website_sale.wizard_checkout">
