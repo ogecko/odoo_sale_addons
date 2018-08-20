@@ -3,7 +3,7 @@
 <template>
   <div :class="localClasses">
 
-    <label class="control-label" :for="id">
+    <label v-if="localLabel" class="control-label" :for="id">
       {{ localLabel }}
       <small v-if="helpMsg && !isFieldCheckbox" class="text-muted">({{helpMsg}})</small>
     </label>
@@ -68,9 +68,10 @@
       :placeholder="placeholder"
       :value="value"
       @input="handleInput"
+      @address-changed="handleAddressChanged"
     ></FieldAddress>
 
-    <small class="help-block">
+    <small v-if="validationMsg" class="help-block">
       {{ validationMsg }}
     </small>
   </div>
@@ -163,6 +164,9 @@ export default {
       this.validationMsg = validate(newVal, this.types, this);
       this.$emit('input', newVal);
     },
+    handleAddressChanged(newVal) {
+      this.$emit('address-changed',newVal);
+    }
   },
 }
 </script>

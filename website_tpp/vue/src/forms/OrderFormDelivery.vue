@@ -4,8 +4,19 @@
             <Field label="Name" v-model="x_rcv_name" autocomplete="name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="x_rcv_email" autocomplete="email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="x_rcv_address" types="address,nsw,extra,required"  placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
-            <Field label="Additional Delivery Instructions" v-model="x_rcv_special" types="text" helpMsg="optional" placeholder="Location, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
+            <Field label="Delivery Address" v-model="x_rcv_address" types="address,nsw,extra,required"  
+                   @address-changed="updateAddress"
+                   placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
+            <Field label="Additional Delivery Instructions" v-model="x_rcv_special" types="text" 
+                   helpMsg="optional" placeholder="Location, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
+            <Field v-show="false" v-model="x_rcv_business"/>
+            <Field v-show="false" v-model="x_rcv_street"/>
+            <Field v-show="false" v-model="x_rcv_city"/>
+            <Field v-show="false" v-model="x_rcv_zip"/>
+            <Field v-show="false" v-model="x_rcv_state"/>
+            <Field v-show="false" v-model="x_rcv_country"/>
+            <Field v-show="false" v-model="x_rcv_latitude"/>
+            <Field v-show="false" v-model="x_rcv_longitude"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
@@ -57,6 +68,14 @@ export default {
             x_rcv_phone: this.phone,
             x_rcv_address: this.address,
             x_rcv_special: this.special,
+            x_rcv_business: undefined,
+            x_rcv_street: undefined,
+            x_rcv_city: undefined,
+            x_rcv_zip: undefined,
+            x_rcv_state: undefined,
+            x_rcv_country: undefined,
+            x_rcv_latitude: undefined,
+            x_rcv_longitude: undefined,
             x_start: this.start,
             x_subscription: this.subscription,
             x_freq: this.freq,
@@ -67,6 +86,19 @@ export default {
     methods: {
         updateDeliveryDays() {
             this.x_days = deliveryDays(this.x_start, this.x_freq, this.x_number);
+        },
+        updateAddress(event) {
+            this.x_rcv_business = event.business;
+            this.x_rcv_street = [
+                event.subpremise? event.subpremise+' /' : undefined, 
+                event.street_number, event.street_name
+                ].filter(s=>s).join(' ');
+            this.x_rcv_city = event.city;
+            this.x_rcv_zip = event.postcode;
+            this.x_rcv_state = event.state;
+            this.x_rcv_country = event.country;
+            this.x_rcv_latitude = String(event.latitude);
+            this.x_rcv_longitude = String(event.longitude);
         },
     },
     watch: {

@@ -51,7 +51,7 @@
     mounted: function() {
       this.id = this._uid;
       const options = { 
-        fields: [ 'types','geometry','address_components', 'formatted_address' ],
+        fields: [ 'types', 'name', 'geometry', 'address_components', 'formatted_address' ],
         componentRestrictions: { country: 'au' },
       };
 
@@ -110,7 +110,7 @@
         const ADDRESS_COMPONENTS = {
           subpremise : ['short_name', 'subpremise'],
           street_number: ['short_name', 'street_number'],
-          route: ['long_name', 'street_name'],
+          route: ['short_name', 'street_name'],
           locality: ['long_name', 'city'],
           postal_code: ['short_name', 'postcode'],
           administrative_area_level_1: ['short_name', 'state'],
@@ -134,6 +134,7 @@
         returnData['longitude'] = place.geometry.location.lng();
         returnData['types'] = place.types.join(', ');
         returnData['address'] = place.formatted_address;
+        returnData['business'] = place.name;
 
         return returnData
       },
