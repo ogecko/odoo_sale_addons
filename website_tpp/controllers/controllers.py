@@ -21,6 +21,28 @@ class WebsiteSaleTPP(WebsiteSale):
  
         # if form posted
         if 'x_snd_name' in post:
+
+            # create a partner if neccessary
+            if not(isSignedIn) and post['x_snd_email']:
+                Partner = request.env['res.partner']
+                existing = Partner.sudo().search([("email","=",post['x_snd_email'])], limit=1)
+                if len(existing) == 1:
+                    partner_id = existing.id
+                else:
+                    new_values = {}
+                    new_values['customer'] = True
+                    new_values['team_id'] = request.website.salesteam_id and request.website.salesteam_id.id
+                    lang = request.lang if request.lang in request.website.mapped('language_ids.code') else None
+                    if lang:
+                        new_values['lang'] = lang
+                    new_values['name'] = post['x_snd_name']
+                    new_values['phone'] = post['x_snd_phone']
+                    new_values['email'] = post['x_snd_email']
+                    partner_id = Partner.sudo().create(new_values).id
+                order.partner_id = partner_id
+                order.onchange_partner_id()
+                order.message_partner_ids = [(4, partner_id), (3, request.website.partner_id.id)]
+
             values = {}
             for field_name, field_value in post.items():
                 if field_name in request.env['sale.order']._fields and field_name.startswith('x_'):
