@@ -65,6 +65,7 @@
 
     <FieldAddress v-if="isFieldAddress" 
       :name="localName"
+      :placeholder="placeholder"
       :value="value"
       @input="handleInput"
     ></FieldAddress>
