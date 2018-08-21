@@ -119,6 +119,13 @@ class WebsiteSaleTPP(WebsiteSale):
                 order.partner_shipping_id = partner_id
                 order.message_partner_ids = [(4, partner_id), (3, request.website.partner_id.id)]
 
+            # set the delivery method
+            if post['x_rcv_city']:
+                city = request.env['res.country.state.city'].search([("name","=",post['x_rcv_city'])], limit=1)
+                if len(city) == 1:
+                    order.carrier_id = city.delivery_id
+                    order.delivery_set()
+
             # store the new values into the order
             values = {}
             for field_name, field_value in post.items():
