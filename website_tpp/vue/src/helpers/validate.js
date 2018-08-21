@@ -1,5 +1,7 @@
 import property from "./property";
 
+const getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'types']);
+const getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
 const validationFunctions = {
     // <text> checks
     required(s) {
@@ -55,19 +57,19 @@ const validationFunctions = {
     },
     // <text> address types
     address(str, vm) {
-        const check = property(['$children', '0', 'localValueResult', 'types'])(vm);
+        const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
             return 'Please select a specific delivery address.';
     },
     // <text> address types
     extra(str, vm) {
-        const check = property(['$children', '0', 'localValueResult', 'types'])(vm);
+        const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /(hospital|school|university|shopping_mall)/.test(check))
             return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
     },
     // <text> address types
     nsw(str, vm) {
-        const state = property(['$children', '0', 'localValueResult', 'state'])(vm);
+        const state = vm ? getFieldAddressState(vm) : str;
         if (state && state!='NSW')
             return 'Please select an address in NSW.';
     },

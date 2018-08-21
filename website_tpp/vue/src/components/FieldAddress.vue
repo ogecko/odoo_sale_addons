@@ -14,6 +14,8 @@
 
 <script>
   /* global google */
+  import validate from '@/helpers/validate.js';
+
   export default {
     props: {
       value:                { type: String },
@@ -135,6 +137,7 @@
         returnData['types'] = place.types.join(', ');
         returnData['address'] = place.formatted_address;
         returnData['business'] = place.name;
+        returnData['is_extra'] = !!validate(place.types.join(', '),'extra');
 
         return returnData
       },

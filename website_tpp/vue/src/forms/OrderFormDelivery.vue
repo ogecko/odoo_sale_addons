@@ -17,6 +17,7 @@
             <Field v-show="false" v-model="x_rcv_country"/>
             <Field v-show="false" v-model="x_rcv_latitude"/>
             <Field v-show="false" v-model="x_rcv_longitude"/>
+            <Field v-show="false" v-model="x_rcv_is_extra"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
@@ -76,6 +77,7 @@ export default {
             x_rcv_country: undefined,
             x_rcv_latitude: undefined,
             x_rcv_longitude: undefined,
+            x_rcv_is_extra: undefined,
             x_start: this.start,
             x_subscription: this.subscription,
             x_freq: this.freq,
@@ -99,6 +101,7 @@ export default {
             this.x_rcv_country = event.country;
             this.x_rcv_latitude = String(event.latitude);
             this.x_rcv_longitude = String(event.longitude);
+            this.x_rcv_is_extra = event.is_extra;
         },
     },
     watch: {

@@ -90,7 +90,7 @@ class WebsiteSaleTPP(WebsiteSale):
                 Partner = request.env['res.partner']
                 existing = Partner.sudo().search([
                     ("name","=",post['x_rcv_name']),
-                    ("parent_id","=",order.partner_id.commercial_partner_id.id),
+                    ("parent_id","=",order.partner_id.id),
                     ], limit=1)
                 if len(existing) == 1:
                     partner_id = existing.id
@@ -121,10 +121,15 @@ class WebsiteSaleTPP(WebsiteSale):
 
             # set the delivery method
             if post['x_rcv_city']:
+                default_carrier = request.env.ref('country_state_city.delivery_zone_exclude')
                 city = request.env['res.country.state.city'].search([("name","=",post['x_rcv_city'])], limit=1)
-                if len(city) == 1:
-                    order.carrier_id = city.delivery_id
-                    order.delivery_set()
+                order.carrier_id = city.delivery_id if len(city)==1 else default_carrier
+                order.delivery_set()
+
+            # set an extra delivery charge for hospitals, schools and universities
+            if post['x_rcv_is_extra'] == 'true':
+                carrier = request.env.ref('country_state_city.delivery_extra')
+                order._create_delivery_line(carrier, carrier.fixed_price)
 
             # store the new values into the order
             values = {}

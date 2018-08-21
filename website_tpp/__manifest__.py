@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'web', 'website', 'web_vue'],
+    'depends': ['base', 'sale', 'web', 'website', 'web_vue', 'country_state_city'],
 
     # always loaded
     'data': [
