@@ -63,7 +63,7 @@ const validationFunctions = {
     extra(str, vm) {
         const check = property(['$children', '0', 'localValueResult', 'types'])(vm);
         if (check && /(hospital|school|university|shopping_mall)/.test(check))
-            return 'Additional delivery cost for Hospitals, Schools, Universities and Shopping Malls.';
+            return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
     },
     // <text> address types
     nsw(str, vm) {
