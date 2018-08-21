@@ -1,6 +1,6 @@
 id,name,fixed_price,delivery_type
 country_state_city.delivery_zone_free,Free Delivery,0,Fixed Price
-country_state_city.delivery_zone_1,Mid Zone Delivery,5,Fixed Price
-country_state_city.delivery_zone_2,Outer Zone Delivery,10,Fixed Price
-country_state_city.delivery_zone_exclude,Out of Delivery Zone,30,Fixed Price
+country_state_city.delivery_zone_1,$5 Delivery,5,Fixed Price
+country_state_city.delivery_zone_2,$10 Delivery,10,Fixed Price
+country_state_city.delivery_zone_exclude,No Deliveries,30,Fixed Price
 country_state_city.delivery_extra,Additional Delivery Charge,7.50,Fixed Price
