@@ -39,7 +39,7 @@
         this.localValue = clamp(this.min, this.localValue-1, this.max);
       },
       incValue() {
-        this.localValue = clamp(this.min, this.localValue+1, this.max);;
+        this.localValue = clamp(this.min, this.localValue+1, this.max);
       },
     },
     watch: {
@@ -53,7 +53,7 @@
         this.localValue = clamp(this.min, this.localValue, newVal);
       },
       localValue(newVal) {
-        this.$emit('input', Number(this.localValue));
+        this.$emit('input', Number(newVal));
       },
     },
   }

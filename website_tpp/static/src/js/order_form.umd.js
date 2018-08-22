@@ -295,6 +295,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "2393":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_f8f9fe72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c73b");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_f8f9fe72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_f8f9fe72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_f8f9fe72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "28a5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -566,13 +577,6 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 /***/ }),
 
-/***/ "3a52":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "41a0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -620,17 +624,6 @@ module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-
-/***/ }),
-
-/***/ "4596":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_461f6f9c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("3a52");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_461f6f9c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_461f6f9c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FieldInteger_vue_vue_type_style_index_0_id_461f6f9c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -1395,6 +1388,13 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
   return Object.defineProperty(__webpack_require__("230e")('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
+
+/***/ }),
+
+/***/ "c73b":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -3766,12 +3766,12 @@ var FieldRadio_component = normalizeComponent(
 
 FieldRadio_component.options.__file = "FieldRadio.vue"
 /* harmony default export */ var FieldRadio = (FieldRadio_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldInteger.vue?vue&type=template&id=461f6f9c&scoped=true&
-var FieldIntegervue_type_template_id_461f6f9c_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group col-xs-3"},[_c('a',{staticClass:"input-group-addon btn",on:{"click":_vm.decValue}},[_c('i',{staticClass:"fa fa-minus"})]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control integer",attrs:{"type":"text","name":_vm.name,"id":_vm.id},domProps:{"value":(_vm.localValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}}),_c('a',{staticClass:"input-group-addon btn float-left",on:{"click":_vm.incValue}},[_c('i',{staticClass:"fa fa-plus"})])])}
-var FieldIntegervue_type_template_id_461f6f9c_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldInteger.vue?vue&type=template&id=f8f9fe72&scoped=true&
+var FieldIntegervue_type_template_id_f8f9fe72_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group col-xs-3"},[_c('a',{staticClass:"input-group-addon btn",on:{"click":_vm.decValue}},[_c('i',{staticClass:"fa fa-minus"})]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control integer",attrs:{"name":_vm.name,"id":_vm.id,"autocomplete":"new-password","type":"text"},domProps:{"value":(_vm.localValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}}),_c('a',{staticClass:"input-group-addon btn float-left",on:{"click":_vm.incValue}},[_c('i',{staticClass:"fa fa-plus"})])])}
+var FieldIntegervue_type_template_id_f8f9fe72_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldInteger.vue?vue&type=template&id=461f6f9c&scoped=true&
+// CONCATENATED MODULE: ./src/components/FieldInteger.vue?vue&type=template&id=f8f9fe72&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldInteger.vue?vue&type=script&lang=js&
 
@@ -3824,15 +3824,15 @@ function clamp(min, x, max) {
   computed: {},
   methods: {
     decValue: function decValue() {
-      this.localValue -= 1;
+      this.localValue = clamp(this.min, this.localValue - 1, this.max);
     },
     incValue: function incValue() {
-      this.localValue += 1;
+      this.localValue = clamp(this.min, this.localValue + 1, this.max);
     }
   },
   watch: {
     value: function value(newVal) {
-      this.localValue = newVal;
+      this.localValue = clamp(this.min, newVal, this.max);
     },
     min: function min(newVal) {
       this.localValue = clamp(newVal, this.localValue, this.max);
@@ -3841,15 +3841,14 @@ function clamp(min, x, max) {
       this.localValue = clamp(this.min, this.localValue, newVal);
     },
     localValue: function localValue(newVal) {
-      this.localValue = clamp(this.min, newVal, this.max);
-      this.$emit('input', this.localValue);
+      this.$emit('input', Number(newVal));
     }
   }
 });
 // CONCATENATED MODULE: ./src/components/FieldInteger.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_FieldIntegervue_type_script_lang_js_ = (FieldIntegervue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/FieldInteger.vue?vue&type=style&index=0&id=461f6f9c&scoped=true&lang=css&
-var FieldIntegervue_type_style_index_0_id_461f6f9c_scoped_true_lang_css_ = __webpack_require__("4596");
+// EXTERNAL MODULE: ./src/components/FieldInteger.vue?vue&type=style&index=0&id=f8f9fe72&scoped=true&lang=css&
+var FieldIntegervue_type_style_index_0_id_f8f9fe72_scoped_true_lang_css_ = __webpack_require__("2393");
 
 // CONCATENATED MODULE: ./src/components/FieldInteger.vue
 
@@ -3862,11 +3861,11 @@ var FieldIntegervue_type_style_index_0_id_461f6f9c_scoped_true_lang_css_ = __web
 
 var FieldInteger_component = normalizeComponent(
   components_FieldIntegervue_type_script_lang_js_,
-  FieldIntegervue_type_template_id_461f6f9c_scoped_true_render,
-  FieldIntegervue_type_template_id_461f6f9c_scoped_true_staticRenderFns,
+  FieldIntegervue_type_template_id_f8f9fe72_scoped_true_render,
+  FieldIntegervue_type_template_id_f8f9fe72_scoped_true_staticRenderFns,
   false,
   null,
-  "461f6f9c",
+  "f8f9fe72",
   null
   
 )

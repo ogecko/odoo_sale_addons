@@ -130,6 +130,10 @@ class WebsiteSaleTPP(WebsiteSale):
                     carrier = request.env.ref('country_state_city.delivery_extra')
                     order._create_delivery_line(carrier, carrier.fixed_price)
 
+            # set the quantity
+            if post['x_number']:
+                for line in order.order_line:
+                    order._cart_update(product_id=line.product_id.id, line_id=line.id, set_qty=post['x_number'])
 
             # store the new values into the order
             values = {}
