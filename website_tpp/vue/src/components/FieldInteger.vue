@@ -1,7 +1,7 @@
 <template>
 <div class="input-group col-xs-3">
   <a class="input-group-addon btn" @click="decValue"><i class="fa fa-minus"></i></a>
-  <input type="text" class="form-control integer" v-model="localValue" :name="name" :id="id">
+  <input v-model="localValue" :name="name" :id="id" autocomplete="new-password" type="text" class="form-control integer" >
   <a class="input-group-addon btn float-left" @click="incValue"><i class="fa fa-plus"></i></a>
 </div>
 </template>
@@ -36,15 +36,15 @@
     },
     methods: {
       decValue() {
-        this.localValue -= 1;
+        this.localValue = clamp(this.min, this.localValue-1, this.max);
       },
       incValue() {
-        this.localValue += 1;
+        this.localValue = clamp(this.min, this.localValue+1, this.max);;
       },
     },
     watch: {
       value(newVal) {
-        this.localValue = newVal;
+        this.localValue = clamp(this.min, newVal, this.max);
       },
       min(newVal) {
         this.localValue = clamp(newVal, this.localValue, this.max);
@@ -53,8 +53,7 @@
         this.localValue = clamp(this.min, this.localValue, newVal);
       },
       localValue(newVal) {
-        this.localValue = clamp(this.min, newVal, this.max);
-        this.$emit('input', this.localValue);
+        this.$emit('input', Number(this.localValue));
       },
     },
   }
