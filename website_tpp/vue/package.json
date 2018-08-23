@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "ui": "vue-cli-service ui",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name order_form src/orderForm.js && cp dist/order_form.umd.min.js ../static/src/js && cp dist/order_form.umd.js ../static/src/js && cp dist/order_form.css ../static/src/css",
     "lint": "vue-cli-service lint src/App.vue",
