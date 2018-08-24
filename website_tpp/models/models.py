@@ -19,6 +19,8 @@ class sale_order(models.Model):
     x_rcv_phone = fields.Char(string="Phone")
     x_rcv_address = fields.Text(string="Delivery Address")
     x_rcv_special = fields.Text(string="Special Instructions")
+    x_rcv_latitude = fields.Char(string="Latitude")
+    x_rcv_longitude = fields.Char(string="Longitude")
 
     x_start = fields.Date(string="Starting Day", default=fields.Date.today())
     x_subscription = fields.Boolean(string="Order contains multiple deliveries")

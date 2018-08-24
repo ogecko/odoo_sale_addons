@@ -160,3 +160,60 @@ class WebsiteSaleTPP(WebsiteSale):
             return 'ok'
         return request.render("website_tpp.order_form_delivery", values)
 
+
+
+    # Interface for TPP Operations to scrape orders
+    @http.route('/web/orderjson', auth='public', type='json')
+    def geojson(self, **kw):
+        domain = [('state','=','sale')]
+        if 'start' in kw:
+            domain.append(('write_date','>=', kw['start']))
+
+        orders = http.request.env["sale.order"].sudo().search(domain, limit=50)
+        res = { 
+            "orders": [] 
+        }
+        for order in orders:
+            res["orders"].append({
+                'id': order.name,
+                'date_order': order.date_order, 
+                'write_date': order.write_date, 
+                'state': order.state, 
+                'snd': {
+                    'name': order.x_snd_name, 
+                    'email': order.x_snd_email, 
+                    'phone': order.x_snd_phone, 
+                },
+                'card': {
+                    'to': order.x_to, 
+                    'from': order.x_from, 
+                    'message': order.x_message, 
+                },
+                'rcv': {
+                    'name': order.x_rcv_name, 
+                    'email': order.x_rcv_email, 
+                    'phone': order.x_rcv_phone, 
+                    'address': order.x_rcv_address, 
+                    'special': order.x_rcv_special, 
+                    'latitude': order.x_rcv_latitude, 
+                    'longitude': order.x_rcv_longitude, 
+                },
+                'delivery': {
+                    'start': order.x_start, 
+                    'subscription': order.x_subscription, 
+                    'number': order.x_number, 
+                    'freq': order.x_freq, 
+                    'days': order.x_days, 
+                },
+                'lines': [],
+                'amount_total': order.amount_total, 
+                'amount_tax': order.amount_tax, 
+            })
+            for line in order.order_line:
+                res["orders"][-1]['lines'].append({
+                    'name': line.product_id.name,
+                    'display_name': line.product_id.display_name,
+                    'qty': line.product_qty,
+                })
+        return res
+

@@ -131,6 +131,8 @@
                             <field name="x_rcv_phone" />
                             <field name="x_rcv_address" />
                             <field name="x_rcv_special" />
+                            <field name="x_rcv_latitude" />
+                            <field name="x_rcv_longitude" />
                         </group>
                         <group string="Delivery" name="delivery">
                             <field name="x_start" />
