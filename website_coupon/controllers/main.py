@@ -47,16 +47,17 @@ class WebsiteCoupon(http.Controller):
         It will verify the validity and availability of that coupon. If it can be applied, the coupon  will be applied
         and coupon balance will also be updated"""
 
-        curr_user = request.env.user
+        order = request.website.sale_get_order()
+
         coupon = request.env['gift.coupon'].sudo().search([('code', '=', promo_voucher)], limit=1)
         flag = True
         if coupon and coupon.total_avail > 0:
             applied_coupons = request.env['partner.coupon'].sudo().search([('coupon', '=', promo_voucher),
-                                                                           ('partner_id', '=', curr_user.partner_id.id)], limit=1)
+                                                                           ('partner_id', '=', order.partner_id.id)], limit=1)
 
         # checking voucher date and limit for each user for this coupon---------------------
             if coupon.partner_id:
-                if curr_user.partner_id.id != coupon.partner_id.id:
+                if order.partner_id.id != coupon.partner_id.id:
                     flag = False
             today = datetime.now().date()
             if flag and applied_coupons.number < coupon.limit and today <= parser.parse(coupon.voucher.expiry_date).date():
@@ -111,7 +112,7 @@ class WebsiteCoupon(http.Controller):
                                 coupon_product.product_tmpl_id.write({'list_price': -voucher_val})
 
                             else:
-                                return request.redirect("/shop/cart?coupon_not_available=3")
+                                return request.redirect("/shop/payment?coupon_not_available=3")
                         elif type == 'percentage':
                             # coupon type is percentage -------------------------------------
                             amount_final = 0
@@ -133,16 +134,16 @@ class WebsiteCoupon(http.Controller):
                         coupon.write({'total_avail': total})
                         # creating a record for this partner, i.e he is used this coupon once-----------
                         if not applied_coupons:
-                            curr_user.partner_id.write({'applied_coupon': [(0, 0, {'partner_id': curr_user.partner_id.id,
+                            order.partner_id.write({'applied_coupon': [(0, 0, {'partner_id': order.partner_id.id,
                                                                                          'coupon': coupon.code,
                                                                                          'number': 1})]})
                         else:
                             applied_coupons.write({'number': applied_coupons.number + 1})
                     else:
-                        return request.redirect("/shop/cart?coupon_not_available=1")
+                        return request.redirect("/shop/payment?coupon_not_available=1")
                 else:
-                    return request.redirect("/shop/cart?coupon_not_available=2")
+                    return request.redirect("/shop/payment?coupon_not_available=2")
         else:
-            return request.redirect("/shop/cart?coupon_not_available=1")
+            return request.redirect("/shop/payment?coupon_not_available=1")
 
-        return request.redirect("/shop/cart")
+        return request.redirect("/shop/payment")

@@ -46,36 +46,11 @@ The priority of this modules modifications has been reduced to 30 so that it is 
 
 PROBLEM 2: Vouchers are attributed to the currently signed in user rather than sender
 The website_tpp module streamlines the creation of billing and shipping partners significantly over the standard odoo website_sale_options
-Need to change the attribution of vouchers to the order.partner_id
-This should be done on the payment page, rather than cart page (as we dont know the buyer at this stage)
-The /shop/gift_coupon needs to be modified to return to the payment page
+We have changed this module to ensure attribution of vouchers to the order.partner_id and voucher entry is on payment page (after order.partner_id)
+The controller /shop/gift_coupon has also been modified to return to the payment page
 
-PROBLEM 3: Need to manually add the Voucher Code entry form to the payment page
-Has the coupon entry been added to the right column, manually add it to the payment view 
-            <h4>Voucher Code</h4>
-            <p>
-                        Have a voucher code? Fill this field and apply.
-                      </p>
-            <t t-if="coupon_not_available">
-                <t t-if="coupon_not_available=='1'">
-                    <p class="bg-warning">This gift code is not available</p>
-                </t>
-                <t t-if="coupon_not_available=='2'">
-                    <p class="bg-warning">This gift code is not available</p>
-                </t>
-                <t t-if="coupon_not_available=='3'">
-                    <p class="bg-warning">The discount amount is too large</p>
-                </t>
-            </t>
-            <form t-if="website_sale_order and website_sale_order.website_order_line" action="/shop/gift_coupon" method="post" class="mb32">
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <div class="input-group">
-                    <input name="promo_voucher" class="form-control" type="text" placeholder="code..." t-att-value="website_sale_order.pricelist_id.code or None" />
-                    <div class="input-group-btn">
-                        <a class="btn btn-default a-submit">Apply</a>
-                    </div>
-                </div>
-            </form>
+PROBLEM 3: The payment page does not show the Voucher Code entry field
+You need to enable the Voucher Code option from the Customize menu on the payment page
 
 Credits
 =======
