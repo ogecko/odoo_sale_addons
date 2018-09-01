@@ -132,7 +132,7 @@ class WebsiteSaleTPP(WebsiteSale):
 
             # set the quantity
             if post['x_number']:
-                request.env['sale.order.line'].search([('order_id', '=', order.id), ('name', '=', 'Gift Coupon')]).unlink()
+                request.env['sale.order.line'].sudo().search([('order_id', '=', order.id), ('name', '=', 'Gift Coupon')]).unlink()
                 for line in order.order_line:
                     order._cart_update(product_id=line.product_id.id, line_id=line.id, set_qty=post['x_number'])
 
