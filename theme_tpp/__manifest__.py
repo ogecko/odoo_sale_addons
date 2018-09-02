@@ -5,6 +5,8 @@
     'name': 'TPP Themes',
     'summary': 'Support for TPP Bootswatch themes in master',
     'description': 'This theme module is exclusively for master to keep the support of Bootswatch themes which were previously part of the website module in 8.0.',
+    'author': "oGecko Solutions",
+    'website': "http://www.ogecko.com",
     'category': 'Theme',
     'sequence': 900,
     'version': '1.0',
