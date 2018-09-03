@@ -26,11 +26,9 @@
     'version': '10.0.2.0.0',
     'summary': 'Manage Website Coupon Codes for Products/Categories/All Products & Its Redeem Operations',
     'category': 'Website',
-    'author': 'Cybrosys Techno Solutions',
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
+    'author': "oGecko Solutions",
+    'website': "http://www.ogecko.com",
     'depends': ['sale', 'website_sale'],
-    'website': 'https://www.cybrosys.com',
     'data': [
         'data/product_data.xml',
         'views/gift_voucher.xml',
