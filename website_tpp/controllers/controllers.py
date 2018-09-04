@@ -2,6 +2,11 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website_sale.controllers import main
+
+# Products per row and products per page
+main.PPR = 3
+main.PPG = 12
 
 # extend the WebsiteSale Class
 class WebsiteSaleTPP(WebsiteSale):
