@@ -8,7 +8,7 @@
 .oe_product section .text-info {
     color: #8b8b8b;
 }
-ul.wizard li {
+/* ul.wizard li {
     background: #debb27 !important;
 }
 ul.wizard .chevron:before {
@@ -16,9 +16,9 @@ ul.wizard .chevron:before {
 }
 ul.wizard .text-primary {
     color: #ad1d28 !important;
-}
+} */
 ul.wizard .text-success {
-    color: #ffffff !important;
+    color: #8b8b8b !important;
 }
 .oe_structure.oe_empty:empty:before, [data-oe-type=html]:empty:before {
     color: #79D5DB !important;
