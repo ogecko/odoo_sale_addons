@@ -5,3 +5,64 @@
 #web_editor-top-edit a.btn-link {
     color: #fff;
 }
+/* make responsive images take the full width of the container */
+.img.img-responsive {
+    width: 100%;    
+}
+/* all links to be in caps */
+a {
+    font-variant: small-caps;
+}
+/* Footer background color */
+#wrapwrap footer {
+    background-color: #fafafa;
+}
+/* Navbar Brand Font */
+a.navbar-brand {
+    font-size: 26px;
+    font-weight: 500;
+}
+/* Product items in the store */
+/* border between items in the grid */
+td.oe_product {
+    border-width: 20px;
+    border-color: rgba(0,0,0,0);
+}
+/* product image not absolutely positioned*/
+td.oe_product div.oe_product_cart div.oe_product_image {
+    position: static;
+}
+/* product image takes up full width of cell and height as neccessary */
+td.oe_product div.oe_product_cart div.oe_product_image img.img.img-responsive {
+    position: static;
+    max-height: none;
+    width: 100%;
+}
+/* product title, descr, price below the image (not on top) */
+td.oe_product div.oe_product_cart section {
+    position: static;
+}
+/* ensure section doesnt have a grey background at different media sizes */
+#products_grid .oe_product.oe_grid div.oe_product_cart section {
+    background: rgba(0,0,0,0);
+}
+@media (max-width: 768px) {
+    #products_grid .oe_product.oe_grid div.oe_product_cart section {
+        background: rgba(0,0,0,0);
+    }
+}
+@media (max-width: 400px) {
+    #products_grid .oe_product.oe_grid div.oe_product_cart section {
+        background: rgba(0,0,0,0);
+    }
+}
+/* product grid when collapsed shows full picture */
+div#products_grid td.oe_product.oe_grid {
+    height: 100%;
+}
+div#products_grid .col-md-12 td.oe-height-2 {
+    height: 100%;
+}
+div#products_grid tbody {
+    vertical-align: top;
+}

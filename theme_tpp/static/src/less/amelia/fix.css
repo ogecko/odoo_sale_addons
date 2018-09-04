@@ -26,6 +26,10 @@ ul.wizard .text-success {
 .input-group-addon .fa {
     color: #444;
 }
+/* make responsive images take the full width of the container */
+.img.img-responsive {
+    width: 100%;    
+}
 /* Footer background color */
 #wrapwrap footer {
     background-color: #e5e5e5;
