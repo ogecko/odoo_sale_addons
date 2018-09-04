@@ -1,15 +1,16 @@
-// Amelia 3.2.0
+// Clarins
 // Bootswatch
 // -----------------------------------------------------
 
-@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+@import url("//fonts.googleapis.com/css?family=Forum|Cabin:400,500");
 
 // Navbar =====================================================================
 
 .navbar {
 
   &-brand {
-    font-family: 'Lobster', cursive;
+    font-family: @font-family-serif;
+    font-size: 22px;
   }
 
   &-default {
@@ -77,8 +78,7 @@ table,
 .table {
 
   a:not(.btn) {
-    color: #fff;
-    text-decoration: underline;
+    color: @brand-primary;
   }
 
   .text-muted {

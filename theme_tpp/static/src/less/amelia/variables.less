@@ -14,10 +14,10 @@
 @gray-lighter:           #ddd; // #eee
 
 @brand-primary:         #AD1D28;
-@brand-success:         #48CA3B;
+@brand-success:         #20b023;
 @brand-info:            #4D3A7D;
 @brand-warning:         #DEBB27;
-@brand-danger:          #DF6E1E;
+@brand-danger:          #AD1D28;
 
 
 //== Scaffolding
@@ -25,12 +25,12 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #108A93;
+@body-bg:               #fff;
 //** Global text color on `<body>`.
-@text-color:            #fff;
+@text-color:            #8b8b8b;
 
 //** Global textual link color.
-@link-color:            lighten(@brand-warning, 15%);
+@link-color:            @brand-primary;
 //** Link hover color set via `darken()` function.
 @link-hover-color:      @link-color;
 
@@ -40,12 +40,12 @@
 //## Font, line-height, and color for body text, headings, and more.
 
 @font-family-sans-serif:  "Cabin", Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-serif:       "Forum", "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
-@font-size-base:          14px;
+@font-size-base:          16px;
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
 @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
 
@@ -62,10 +62,10 @@
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
-@headings-font-family:    'Lobster', cursive;
-@headings-font-weight:    500;
+@headings-font-family:    @font-family-serif;
+@headings-font-weight:    600;
 @headings-line-height:    1.1;
-@headings-color:          inherit;
+@headings-color:          #000;
 
 
 //== Iconography
@@ -106,7 +106,7 @@
 //** Global color for active items (e.g., navs or dropdowns).
 @component-active-color:    #fff;
 //** Global background color for active items (e.g., navs or dropdowns).
-@component-active-bg:       lighten(@body-bg, 10%);
+@component-active-bg:       darken(@body-bg, 20%);
 
 //** Width of the `border` for generating carets that indicator dropdowns.
 @caret-width-base:          4px;
@@ -686,14 +686,14 @@
 @panel-border-radius:         @border-radius-base;
 
 //** Border color for elements within panels
-@panel-inner-border:          darken(@body-bg, 5%);
+@panel-inner-border:          darken(@body-bg, 10%);
 @panel-footer-bg:             @panel-default-heading-bg;
 
-@panel-default-text:          #fff;
-@panel-default-border:        darken(@body-bg, 5%);
-@panel-default-heading-bg:    lighten(@body-bg, 15%);
+@panel-default-text:          @text-color;
+@panel-default-border:        darken(@body-bg, 10%);
+@panel-default-heading-bg:    darken(@body-bg, 5%);
 
-@panel-primary-text:          #fff;
+@panel-primary-text:          @headings-color;
 @panel-primary-border:        @brand-primary;
 @panel-primary-heading-bg:    @brand-primary;
 
@@ -825,7 +825,7 @@
 //** Horizontal offset for forms and lists.
 @component-offset-horizontal: 180px;
 //** Text muted color
-@text-muted:                  rgba(255, 255, 255, 0.6);
+@text-muted:                  lighten(@text-color,30%);
 //** Abbreviations and acronyms border color
 @abbr-border-color:           @gray-light;
 //** Headings small color
