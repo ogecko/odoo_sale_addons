@@ -148,7 +148,11 @@ class WebsiteSaleTPP(WebsiteSale):
                     values[field_name] = field_value
             if values:
                 order.write(values)
-            return request.redirect("/shop/confirm_order")
+
+            # confirm the order (so we dont need to go via /shop/confirm_order)
+            request.session['sale_last_order_id'] = order.id
+    
+            return request.redirect("/shop/payment")
 
         # OTHERWISE, its a form intial callup, so lets get values and show
         # copy x_to name across to blank x_rcv_name (but only if blank)
