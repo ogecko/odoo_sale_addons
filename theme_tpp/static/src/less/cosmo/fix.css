@@ -66,3 +66,7 @@ div#products_grid .col-md-12 td.oe-height-2 {
 div#products_grid tbody {
     vertical-align: top;
 }
+/* product image on product page shows full width and height */
+div#o-carousel-product div.carousel-inner div.item {
+    height: 100%;
+}
