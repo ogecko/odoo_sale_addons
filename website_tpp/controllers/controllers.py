@@ -28,7 +28,11 @@ class WebsiteSaleTPP(WebsiteSale):
         if 'x_snd_name' in post:
 
             # create a sending/billing partner if neccessary
-            if not(isSignedIn) and post['x_snd_email']:
+            if not(isSignedIn):
+                if not(post['x_snd_email']):
+                    post['x_snd_email'] = 'unknown@email.com'
+                if not(post['x_snd_name']):
+                    post['x_snd_name'] = 'Unknown'
                 Partner = request.env['res.partner']
                 existing = Partner.sudo().search([("email","=",post['x_snd_email'])], limit=1)
                 if len(existing) == 1:
