@@ -132,7 +132,7 @@ class WebsiteSaleTPP(WebsiteSale):
                 order.delivery_set()
                 # set an extra delivery charge for hospitals, schools and universities
                 if post['x_rcv_is_extra'] == 'true':
-                    carrier = request.env.ref('country_state_city.delivery_extra')
+                    carrier = request.env.ref('country_state_city.delivery_extra').sudo()
                     order._create_delivery_line(carrier, carrier.fixed_price)
 
             # set the quantity
@@ -148,7 +148,7 @@ class WebsiteSaleTPP(WebsiteSale):
                     values[field_name] = field_value
             if values:
                 order.write(values)
-            return request.redirect("/shop/payment")
+            return request.redirect("/shop/confirm_order")
 
         # OTHERWISE, its a form intial callup, so lets get values and show
         # copy x_to name across to blank x_rcv_name (but only if blank)
