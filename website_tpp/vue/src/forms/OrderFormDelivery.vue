@@ -17,7 +17,7 @@
             <Field v-show="false" v-model="x_rcv_country"/>
             <Field v-show="false" v-model="x_rcv_latitude"/>
             <Field v-show="false" v-model="x_rcv_longitude"/>
-            <Field v-show="false" v-model="x_rcv_is_extra"/>
+            <Field v-show="false" v-model="x_rcv_is_extra" types="boolean"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>

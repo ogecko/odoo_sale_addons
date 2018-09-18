@@ -34,7 +34,7 @@ const validationFunctions = {
     },
     delivery(str) {
         if (!isValidDeliveryDay(str))
-            return `Sorry we do not deliver on ${str}. Please choose another date`;
+            return `Sorry we do not deliver on ${str}. Please choose another date.`;
     },
     // <input> types
     text(s) {
