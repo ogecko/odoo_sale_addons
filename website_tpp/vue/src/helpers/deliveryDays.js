@@ -30,6 +30,7 @@ const daily = {
         { D: [19,22], M: [4], Y: [2030], h: [13], m: [0] },
     ],
 };
+
 export function nextDeliveryDays(number) {
     moment.locale();
     later.date.localTime();
@@ -77,3 +78,24 @@ function ensureValidDay(d) {
     // if its not a valid delivery day then choose the next closest day
     return (later.schedule(daily).isValid(d) ? d : later.schedule(daily).next(1,d));
 }
+
+export function parseDate(str) {
+    return moment(str,'DD-MMM-YYYY')
+}
+
+export function isToday(str) {
+    return parseDate(str).isSame(moment(),'day');
+}
+
+export function isBeforeToday(str) {
+    return (parseDate(str).second(1).isBefore(moment().hour(0).minute(0).second(0)));
+}
+
+export function isAfter1PM(str) {
+    return (isToday(str) && moment().isAfter(moment().hour(13).minute(0).second(0)));
+}
+
+export function isValidDeliveryDay(str) {
+    return later.schedule(daily).isValid(parseDate(str).hour(13).minute(0).toDate());
+}
+

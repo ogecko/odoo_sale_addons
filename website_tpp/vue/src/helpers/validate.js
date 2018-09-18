@@ -1,7 +1,9 @@
 import property from "./property";
+import { isValidDeliveryDay, isAfter1PM, isBeforeToday } from '../helpers/deliveryDays'
 
 const getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'types']);
 const getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
+
 const validationFunctions = {
     // <text> checks
     required(s) {
@@ -21,6 +23,18 @@ const validationFunctions = {
     date(str) {
         if (!/^[0-9]{1,2}[-./][a-zA-Z0-9]{1,3}[-./][0-9]{2,4}$/.test(str))
             return 'Please choose or enter a valid date.';
+    },
+    future(str) {
+        if (isBeforeToday(str))
+            return 'Please select a date in the future.';
+    },
+    before1pm(str) {
+        if (isAfter1PM(str))
+            return 'Order before 1pm for same day delivery. Please choose tomorrow instead.';
+    },
+    delivery(str) {
+        if (!isValidDeliveryDay(str))
+            return `Sorry we do not deliver on ${str}. Please choose another date`;
     },
     // <input> types
     text(s) {

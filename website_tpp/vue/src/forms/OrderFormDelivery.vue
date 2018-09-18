@@ -20,7 +20,7 @@
             <Field v-show="false" v-model="x_rcv_is_extra"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date" helpMsg="within next 90 days" class="col-md-6"/>
+            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>
             <Field label="Subscription Posy" v-model="x_subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
             <FormTransition :show="x_subscription" class="clearfix">
                 <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" types="integer" class="col-md-6"/>
