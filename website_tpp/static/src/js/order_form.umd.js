@@ -3178,12 +3178,12 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("1eb2");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormSender.vue?vue&type=template&id=c3f0cae2&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Your Contact Details","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","autocomplete":"name","types":"text,required"},model:{value:(_vm.x_snd_name),callback:function ($$v) {_vm.x_snd_name=$$v},expression:"x_snd_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","types":"email,required"},model:{value:(_vm.x_snd_email),callback:function ($$v) {_vm.x_snd_email=$$v},expression:"x_snd_email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"work phone","types":"tel","helpMsg":"in case of order issues"},model:{value:(_vm.x_snd_phone),callback:function ($$v) {_vm.x_snd_phone=$$v},expression:"x_snd_phone"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For","name":"x_to"},model:{value:(_vm.x_to),callback:function ($$v) {_vm.x_to=$$v},expression:"x_to"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From","name":"x_from"},model:{value:(_vm.x_from),callback:function ($$v) {_vm.x_from=$$v},expression:"x_from"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Message","name":"x_message","types":"textarea","helpMsg":"maximum 200 characters"},model:{value:(_vm.x_message),callback:function ($$v) {_vm.x_message=$$v},expression:"x_message"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Help me choose a message","helpMsg":"keep clicking until you find one","value":"","options":['Birthday','Anniversary','Thanks','Congrats','Sorry','Random'],"types":"enum"},on:{"input":_vm.getCardMessage}})],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/checkout"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormSender.vue?vue&type=template&id=14fc3ac9&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Your Contact Details","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","autocomplete":"name","rules":"text,required"},model:{value:(_vm.x_snd_name),callback:function ($$v) {_vm.x_snd_name=$$v},expression:"x_snd_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","rules":"email,required"},model:{value:(_vm.x_snd_email),callback:function ($$v) {_vm.x_snd_email=$$v},expression:"x_snd_email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"work phone","rules":"tel","helpMsg":"in case of order issues"},model:{value:(_vm.x_snd_phone),callback:function ($$v) {_vm.x_snd_phone=$$v},expression:"x_snd_phone"}})],1),_c('FormGroup',{attrs:{"label":"Personalised Card"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"A Posy For","name":"x_to"},model:{value:(_vm.x_to),callback:function ($$v) {_vm.x_to=$$v},expression:"x_to"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"From","name":"x_from"},model:{value:(_vm.x_from),callback:function ($$v) {_vm.x_from=$$v},expression:"x_from"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Message","name":"x_message","rules":"textarea","helpMsg":"maximum 200 characters"},model:{value:(_vm.x_message),callback:function ($$v) {_vm.x_message=$$v},expression:"x_message"}}),_c('Field',{staticClass:"col-md-12",attrs:{"label":"Help me choose a message","helpMsg":"keep clicking until you find one","value":"","options":['Birthday','Anniversary','Thanks','Congrats','Sorry','Random'],"rules":"enum"},on:{"input":_vm.getCardMessage}})],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/checkout"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/forms/OrderFormSender.vue?vue&type=template&id=c3f0cae2&
+// CONCATENATED MODULE: ./src/forms/OrderFormSender.vue?vue&type=template&id=14fc3ac9&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
@@ -3349,12 +3349,12 @@ var component = normalizeComponent(
 
 component.options.__file = "FormGroup.vue"
 /* harmony default export */ var FormGroup = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=447fa63e&
-var Fieldvue_type_template_id_447fa63e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[(_vm.localLabel)?_c('label',{staticClass:"control-label",attrs:{"for":_vm.id}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]):_vm._e(),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.localName,"id":_vm.id,"value":_vm.value},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"value":_vm.value,"min":_vm.min,"max":_vm.max},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldAddress)?_c('FieldAddress',{attrs:{"name":_vm.localName,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput,"address-changed":_vm.handleAddressChanged}}):_vm._e(),(_vm.validationMsg)?_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")]):_vm._e()],1)}
-var Fieldvue_type_template_id_447fa63e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=5764dea5&
+var Fieldvue_type_template_id_5764dea5_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[(_vm.localLabel)?_c('label',{staticClass:"control-label",attrs:{"for":_vm.id}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]):_vm._e(),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.localName,"id":_vm.id,"value":_vm.value},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"value":_vm.value,"min":_vm.min,"max":_vm.max},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldAddress)?_c('FieldAddress',{attrs:{"name":_vm.localName,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput,"address-changed":_vm.handleAddressChanged}}):_vm._e(),(_vm.validationMsg)?_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")]):_vm._e()],1)}
+var Fieldvue_type_template_id_5764dea5_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=447fa63e&
+// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=5764dea5&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
 var es7_array_includes = __webpack_require__("6762");
@@ -3401,12 +3401,259 @@ function deepGet(obj, path) {
 
   return length ? obj : void 0;
 }
+// EXTERNAL MODULE: ./src/helpers/later.js
+var later = __webpack_require__("77f3");
+var later_default = /*#__PURE__*/__webpack_require__.n(later);
+
+// CONCATENATED MODULE: ./src/helpers/deliveryDays.js
+/* global moment */
+
+var daily = {
+  schedules: [{
+    d: [2, 3, 4, 5, 6],
+    h: [13],
+    m: [0]
+  }, // Weekdays: Mon, Tue, Wed, Thu, Fri at 1pm
+  {
+    D: [14],
+    M: [2],
+    h: [13],
+    m: [0]
+  }, // Valentines Day: 14th of February at 1pm
+  {
+    dc: [2],
+    d: [1],
+    M: [3],
+    h: [13],
+    m: [0]
+  }],
+  exceptions: [{
+    D: [25],
+    M: [12],
+    h: [13],
+    m: [0]
+  }, // Christmas Day: 25th of December at 1pm
+  {
+    D: [26],
+    M: [12],
+    h: [13],
+    m: [0]
+  }, // Boxing Day: 26th of December at 1pm
+  {
+    D: [1],
+    M: [1],
+    h: [13],
+    m: [0]
+  }, // New Years Day: 1st of January at 1pm
+  {
+    D: [26],
+    M: [1],
+    h: [13],
+    m: [0]
+  }, // Australia: 26th of January at 1pm
+  {
+    D: [25],
+    M: [4],
+    h: [13],
+    m: [0]
+  }, // Anzac Day: 25th of April at 1pm
+  {
+    dc: [2],
+    d: [2],
+    M: [6],
+    h: [13],
+    m: [0]
+  }, // Queens Birthday: 2nd Monday of June at 1pm
+  {
+    dc: [1],
+    d: [2],
+    M: [10],
+    h: [13],
+    m: [0]
+  }, // NSW Labour Day: 1st Monday of October at 1pm
+  // Easter Friday and Monday for the next 10 years
+  {
+    D: [19, 22],
+    M: [4],
+    Y: [2019],
+    h: [13],
+    m: [0]
+  }, {
+    D: [10, 13],
+    M: [4],
+    Y: [2020],
+    h: [13],
+    m: [0]
+  }, {
+    D: [2, 5],
+    M: [4],
+    Y: [2021],
+    h: [13],
+    m: [0]
+  }, {
+    D: [15, 18],
+    M: [4],
+    Y: [2022],
+    h: [13],
+    m: [0]
+  }, {
+    D: [7, 10],
+    M: [4],
+    Y: [2023],
+    h: [13],
+    m: [0]
+  }, {
+    D: [29],
+    M: [3],
+    Y: [2024],
+    h: [13],
+    m: [0]
+  }, {
+    D: [1],
+    M: [4],
+    Y: [2024],
+    h: [13],
+    m: [0]
+  }, {
+    D: [18, 21],
+    M: [4],
+    Y: [2025],
+    h: [13],
+    m: [0]
+  }, {
+    D: [3, 6],
+    M: [4],
+    Y: [2026],
+    h: [13],
+    m: [0]
+  }, {
+    D: [26, 29],
+    M: [3],
+    Y: [2027],
+    h: [13],
+    m: [0]
+  }, {
+    D: [14, 17],
+    M: [4],
+    Y: [2028],
+    h: [13],
+    m: [0]
+  }, {
+    D: [30],
+    M: [3],
+    Y: [2029],
+    h: [13],
+    m: [0]
+  }, {
+    D: [2],
+    M: [4],
+    Y: [2029],
+    h: [13],
+    m: [0]
+  }, {
+    D: [19, 22],
+    M: [4],
+    Y: [2030],
+    h: [13],
+    m: [0]
+  }]
+};
+function nextDeliveryDays(number) {
+  moment.locale();
+  later_default.a.date.localTime();
+  return later_default.a.schedule(daily).next(number, moment());
+}
+function deliveryDays(start, freq, number) {
+  moment.locale();
+  later_default.a.date.localTime();
+  var startDate = moment(start, ['DD-MM-YYYY', 'DD-MMM-YYYY']);
+  if (!startDate.isValid()) return '';
+  var weekly = {
+    schedules: [{
+      d: [startDate.day() + 1],
+      wm: [1, 2, 3, 4, 5, 6],
+      h: [13],
+      m: [0]
+    }]
+  };
+  var monthly = {
+    schedules: [{
+      D: [Math.min(startDate.date(), 28)],
+      M: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      h: [13],
+      m: [0]
+    }]
+  };
+  var availableSchedules = {
+    Daily: function Daily(number, startDate) {
+      return later_default.a.schedule(daily).next(number, startDate);
+    },
+    Weekly: function Weekly(number, startDate) {
+      return later_default.a.schedule(weekly).next(number, startDate);
+    },
+    Fortnightly: function Fortnightly(number, startDate) {
+      return later_default.a.schedule(weekly).next(number * 2, startDate).filter(function (d, i) {
+        return i % 2 == 0;
+      });
+    },
+    Monthly: function Monthly(number, startDate) {
+      return later_default.a.schedule(monthly).next(number, startDate);
+    }
+  };
+  var days = [];
+
+  if (availableSchedules[freq]) {
+    days = availableSchedules[freq](number, startDate);
+    if (!Array.isArray(days)) days = [days]; // later returns a singleton instead of an array for number = 1
+
+    days = ensureValidDays(days);
+  }
+
+  return days.map(function (d) {
+    return moment(d).format('DD-MMM-YYYY');
+  }).join(', ');
+}
+
+function ensureValidDays(days) {
+  return days.map(function (d) {
+    return ensureValidDay(d);
+  });
+}
+
+function ensureValidDay(d) {
+  // if its not a valid delivery day then choose the next closest day
+  return later_default.a.schedule(daily).isValid(d) ? d : later_default.a.schedule(daily).next(1, d);
+}
+
+function getNextDeliveryDay() {
+  return moment(ensureValidDay(new Date())).format('DD-MMM-YYYY');
+}
+function parseDate(str) {
+  return moment(str, 'DD-MMM-YYYY');
+}
+function isToday(str) {
+  return parseDate(str).isSame(moment(), 'day');
+}
+function isBeforeToday(str) {
+  return parseDate(str).second(1).isBefore(moment().hour(0).minute(0).second(0));
+}
+function isAfter1PM(str) {
+  return isToday(str) && moment().isAfter(moment().hour(13).minute(0).second(0));
+}
+function isValidDeliveryDay(str) {
+  return later_default.a.schedule(daily).isValid(parseDate(str).hour(13).minute(0).toDate());
+}
 // CONCATENATED MODULE: ./src/helpers/validate.js
+
 
 
 var getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'types']);
 var getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
-var validationFunctions = {
+var getFieldisValidatedAddress = property(['$children', '0', 'isValidatedAddress']); // Each of these functions checks the input string for a validation rule
+// If there is a validation error then the function returns the error message string that is shown to the user
+// If there is no validation error then the function returns undefined.
+
+var validationRuleFunctions = {
   // <text> checks
   required: function required(s) {
     if (!s || !(s.length > 0)) return 'This field is required.';
@@ -3426,6 +3673,15 @@ var validationFunctions = {
   },
   date: function date(str) {
     if (!/^[0-9]{1,2}[-./][a-zA-Z0-9]{1,3}[-./][0-9]{2,4}$/.test(str)) return 'Please choose or enter a valid date.';
+  },
+  future: function future(str) {
+    if (isBeforeToday(str)) return 'Please select a date in the future.';
+  },
+  before1pm: function before1pm(str) {
+    if (isAfter1PM(str)) return 'Order before 1pm for same day delivery. Please choose tomorrow instead.';
+  },
+  delivery: function delivery(str) {
+    if (!isValidDeliveryDay(str)) return "Sorry we do not deliver on the ".concat(str, ". Please choose another date.");
   },
   // <input> types
   text: function text(s) {
@@ -3455,6 +3711,11 @@ var validationFunctions = {
   },
   // <text> address types
   address: function address(str, vm) {
+    var check = vm ? getFieldisValidatedAddress(vm) : str;
+    if (!check) return 'Cannot locate address. Please retype and select from the dropdown list.';
+  },
+  // <text> address types
+  specific: function specific(str, vm) {
     var check = vm ? getFieldAddressTypes(vm) : str;
     if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check)) return 'Please select a specific delivery address.';
   },
@@ -3469,18 +3730,18 @@ var validationFunctions = {
     if (state && state != 'NSW') return 'Please select an address in NSW.';
   }
 };
-function validate(value, terms, vm) {
-  function checkValueForValidationReqirements(acc, term) {
-    var tterm = term.trim();
-    var msg = !validationFunctions[tterm] ? "Cannot find validation check \"".concat(tterm, "\".") : validationFunctions[tterm](value, vm); //call the validationFunction
+function validate(value, rules, vm) {
+  function checkValueForValidationReqirements(acc, rule) {
+    var trule = rule.trim();
+    var msg = !validationRuleFunctions[trule] ? "Cannot find validation check \"".concat(trule, "\".") : validationRuleFunctions[trule](value, vm); //call the validationRuleFunction
 
     if (msg) acc.push(msg);
     return acc;
   }
 
-  if (typeof terms != 'string') return ''; // for all the comma separated terms, reduce to a list of error messages.
+  if (typeof rules != 'string') return ''; // for all the comma separated rules, reduce to a list of error messages.
 
-  return terms.split(',').reduce(checkValueForValidationReqirements, []).join(' ');
+  return rules.split(',').reduce(checkValueForValidationReqirements, []).join(' ');
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldTextArea.vue?vue&type=template&id=56fe012a&
 var FieldTextAreavue_type_template_id_56fe012a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control",attrs:{"rows":"3","maxLength":"200","placeholder":_vm.placeholder,"name":_vm.name,"id":_vm.id},domProps:{"value":(_vm.localValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})}
@@ -3879,229 +4140,6 @@ var FieldDatePickervue_type_template_id_48ff989d_staticRenderFns = [function () 
 
 // CONCATENATED MODULE: ./src/components/FieldDatePicker.vue?vue&type=template&id=48ff989d&
 
-// EXTERNAL MODULE: ./src/helpers/later.js
-var later = __webpack_require__("77f3");
-var later_default = /*#__PURE__*/__webpack_require__.n(later);
-
-// CONCATENATED MODULE: ./src/helpers/deliveryDays.js
-/* global moment */
-
-var daily = {
-  schedules: [{
-    d: [2, 3, 4, 5, 6],
-    h: [13],
-    m: [0]
-  }, // Weekdays: Mon, Tue, Wed, Thu, Fri at 1pm
-  {
-    D: [14],
-    M: [2],
-    h: [13],
-    m: [0]
-  }, // Valentines Day: 14th of February at 1pm
-  {
-    dc: [2],
-    d: [1],
-    M: [3],
-    h: [13],
-    m: [0]
-  }],
-  exceptions: [{
-    D: [25],
-    M: [12],
-    h: [13],
-    m: [0]
-  }, // Christmas Day: 25th of December at 1pm
-  {
-    D: [26],
-    M: [12],
-    h: [13],
-    m: [0]
-  }, // Boxing Day: 26th of December at 1pm
-  {
-    D: [1],
-    M: [1],
-    h: [13],
-    m: [0]
-  }, // New Years Day: 1st of January at 1pm
-  {
-    D: [26],
-    M: [1],
-    h: [13],
-    m: [0]
-  }, // Australia: 26th of January at 1pm
-  {
-    D: [25],
-    M: [4],
-    h: [13],
-    m: [0]
-  }, // Anzac Day: 25th of April at 1pm
-  {
-    dc: [2],
-    d: [2],
-    M: [6],
-    h: [13],
-    m: [0]
-  }, // Queens Birthday: 2nd Monday of June at 1pm
-  {
-    dc: [1],
-    d: [2],
-    M: [10],
-    h: [13],
-    m: [0]
-  }, // NSW Labour Day: 1st Monday of October at 1pm
-  // Easter Friday and Monday for the next 10 years
-  {
-    D: [19, 22],
-    M: [4],
-    Y: [2019],
-    h: [13],
-    m: [0]
-  }, {
-    D: [10, 13],
-    M: [4],
-    Y: [2020],
-    h: [13],
-    m: [0]
-  }, {
-    D: [2, 5],
-    M: [4],
-    Y: [2021],
-    h: [13],
-    m: [0]
-  }, {
-    D: [15, 18],
-    M: [4],
-    Y: [2022],
-    h: [13],
-    m: [0]
-  }, {
-    D: [7, 10],
-    M: [4],
-    Y: [2023],
-    h: [13],
-    m: [0]
-  }, {
-    D: [29],
-    M: [3],
-    Y: [2024],
-    h: [13],
-    m: [0]
-  }, {
-    D: [1],
-    M: [4],
-    Y: [2024],
-    h: [13],
-    m: [0]
-  }, {
-    D: [18, 21],
-    M: [4],
-    Y: [2025],
-    h: [13],
-    m: [0]
-  }, {
-    D: [3, 6],
-    M: [4],
-    Y: [2026],
-    h: [13],
-    m: [0]
-  }, {
-    D: [26, 29],
-    M: [3],
-    Y: [2027],
-    h: [13],
-    m: [0]
-  }, {
-    D: [14, 17],
-    M: [4],
-    Y: [2028],
-    h: [13],
-    m: [0]
-  }, {
-    D: [30],
-    M: [3],
-    Y: [2029],
-    h: [13],
-    m: [0]
-  }, {
-    D: [2],
-    M: [4],
-    Y: [2029],
-    h: [13],
-    m: [0]
-  }, {
-    D: [19, 22],
-    M: [4],
-    Y: [2030],
-    h: [13],
-    m: [0]
-  }]
-};
-function nextDeliveryDays(number) {
-  moment.locale();
-  later_default.a.date.localTime();
-  return later_default.a.schedule(daily).next(number, moment());
-}
-function deliveryDays(start, freq, number) {
-  moment.locale();
-  later_default.a.date.localTime();
-  var startDate = moment(start, ['DD-MM-YYYY', 'DD-MMM-YYYY']);
-  if (!startDate.isValid()) return '';
-  var weekly = {
-    schedules: [{
-      d: [startDate.day() + 1],
-      wm: [1, 2, 3, 4, 5, 6],
-      h: [13],
-      m: [0]
-    }]
-  };
-  var monthly = {
-    schedules: [{
-      D: [Math.min(startDate.date(), 28)],
-      M: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      h: [13],
-      m: [0]
-    }]
-  };
-  var availableSchedules = {
-    Daily: function Daily(number, startDate) {
-      return later_default.a.schedule(daily).next(number, startDate);
-    },
-    Weekly: function Weekly(number, startDate) {
-      return later_default.a.schedule(weekly).next(number, startDate);
-    },
-    Fortnightly: function Fortnightly(number, startDate) {
-      return later_default.a.schedule(weekly).next(number * 2, startDate).filter(function (d, i) {
-        return i % 2 == 0;
-      });
-    },
-    Monthly: function Monthly(number, startDate) {
-      return later_default.a.schedule(monthly).next(number, startDate);
-    }
-  };
-  var days = [];
-
-  if (availableSchedules[freq]) {
-    days = availableSchedules[freq](number, startDate);
-    if (!Array.isArray(days)) days = [days]; // later returns a singleton instead of an array for number = 1
-
-    days = ensureValidDays(days);
-  }
-
-  return days.map(function (d) {
-    return moment(d).format('DD-MMM-YYYY');
-  }).join(', ');
-}
-
-function ensureValidDays(days) {
-  return days.map(function (d) {
-    return ensureValidDay(d);
-  });
-}
-
-function ensureValidDay(d) {
-  // if its not a valid delivery day then choose the next closest day
-  return later_default.a.schedule(daily).isValid(d) ? d : later_default.a.schedule(daily).next(1, d);
-}
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldDatePicker.vue?vue&type=script&lang=js&
 
 //
@@ -4255,15 +4293,16 @@ var FieldDatePicker_component = normalizeComponent(
 
 FieldDatePicker_component.options.__file = "FieldDatePicker.vue"
 /* harmony default export */ var FieldDatePicker = (FieldDatePicker_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldAddress.vue?vue&type=template&id=40ecb0a3&
-var FieldAddressvue_type_template_id_40ecb0a3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control",class:_vm.classname,attrs:{"autocomplete":"new-password","type":"text","id":_vm.id,"placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"focus":function($event){_vm.fixChromeAutofillOff()},"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})}
-var FieldAddressvue_type_template_id_40ecb0a3_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldAddress.vue?vue&type=template&id=7e2625ac&
+var FieldAddressvue_type_template_id_7e2625ac_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],staticClass:"form-control",class:_vm.classname,attrs:{"autocomplete":"new-password","type":"text","id":_vm.id,"placeholder":_vm.placeholder},domProps:{"value":(_vm.localValue)},on:{"focus":_vm.fixChromeAutofillOff,"blur":_vm.onBlur,"input":function($event){if($event.target.composing){ return; }_vm.localValue=$event.target.value}}})}
+var FieldAddressvue_type_template_id_7e2625ac_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldAddress.vue?vue&type=template&id=40ecb0a3&
+// CONCATENATED MODULE: ./src/components/FieldAddress.vue?vue&type=template&id=7e2625ac&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldAddress.vue?vue&type=script&lang=js&
 
+//
 //
 //
 //
@@ -4347,9 +4386,10 @@ var FieldAddressvue_type_template_id_40ecb0a3_staticRenderFns = []
     fixChromeAutofillOff: function fixChromeAutofillOff() {
       this.$el.setAttribute('autocomplete', 'new-password');
     },
+    onBlur: function onBlur() {},
 
     /**
-     * When a place changed (user selected one, pressed enter key, or place details failes)
+     * When a place changed (user selected one, pressed enter key, or place details fails)
      */
     onPlaceChanged: function onPlaceChanged() {
       var place = this.googlePlacesWidget.getPlace();
@@ -4429,8 +4469,8 @@ var FieldAddressvue_type_template_id_40ecb0a3_staticRenderFns = []
 
 var FieldAddress_component = normalizeComponent(
   components_FieldAddressvue_type_script_lang_js_,
-  FieldAddressvue_type_template_id_40ecb0a3_render,
-  FieldAddressvue_type_template_id_40ecb0a3_staticRenderFns,
+  FieldAddressvue_type_template_id_7e2625ac_render,
+  FieldAddressvue_type_template_id_7e2625ac_staticRenderFns,
   false,
   null,
   null,
@@ -4561,7 +4601,7 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
     helpMsg: {
       type: String
     },
-    types: {
+    rules: {
       type: String,
       default: 'text'
     },
@@ -4601,7 +4641,7 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
       return this.label + (this.isRequired() ? ' *' : '');
     },
     type: function type() {
-      return this.types.split(',')[0];
+      return this.rules.split(',')[0];
     },
     isFieldInput: function isFieldInput() {
       return this.type != "textarea" && this.type != "boolean" && this.type != "enum" && this.type != "integer" && this.type != "date" && this.type != "address";
@@ -4627,10 +4667,10 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
   },
   methods: {
     isRequired: function isRequired() {
-      return this.types.split(',').includes('required');
+      return this.rules.split(',').includes('required');
     },
     handleInput: function handleInput(newVal) {
-      this.validationMsg = validate(newVal, this.types, this);
+      this.validationMsg = validate(newVal, this.rules, this);
       this.$emit('input', newVal);
     },
     handleAddressChanged: function handleAddressChanged(newVal) {
@@ -4650,8 +4690,8 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
 
 var Field_component = normalizeComponent(
   components_Fieldvue_type_script_lang_js_,
-  Fieldvue_type_template_id_447fa63e_render,
-  Fieldvue_type_template_id_447fa63e_staticRenderFns,
+  Fieldvue_type_template_id_5764dea5_render,
+  Fieldvue_type_template_id_5764dea5_staticRenderFns,
   false,
   null,
   null,
@@ -4792,12 +4832,12 @@ var OrderFormSender_component = normalizeComponent(
 
 OrderFormSender_component.options.__file = "OrderFormSender.vue"
 /* harmony default export */ var OrderFormSender = (OrderFormSender_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=a4a2cedc&
-var OrderFormDeliveryvue_type_template_id_a4a2cedc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Recipient","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","autocomplete":"name","types":"text,required"},model:{value:(_vm.x_rcv_name),callback:function ($$v) {_vm.x_rcv_name=$$v},expression:"x_rcv_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","types":"email"},model:{value:(_vm.x_rcv_email),callback:function ($$v) {_vm.x_rcv_email=$$v},expression:"x_rcv_email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"phone","types":"tel","helpMsg":"in case of delivery issues"},model:{value:(_vm.x_rcv_phone),callback:function ($$v) {_vm.x_rcv_phone=$$v},expression:"x_rcv_phone"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","types":"address,nsw,extra,required","placeholder":"Business Name or Street Address, City"},on:{"address-changed":_vm.updateAddress},model:{value:(_vm.x_rcv_address),callback:function ($$v) {_vm.x_rcv_address=$$v},expression:"x_rcv_address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Additional Delivery Instructions","types":"text","helpMsg":"optional","placeholder":"Location, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.x_rcv_special),callback:function ($$v) {_vm.x_rcv_special=$$v},expression:"x_rcv_special"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_business),callback:function ($$v) {_vm.x_rcv_business=$$v},expression:"x_rcv_business"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_street),callback:function ($$v) {_vm.x_rcv_street=$$v},expression:"x_rcv_street"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_city),callback:function ($$v) {_vm.x_rcv_city=$$v},expression:"x_rcv_city"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_zip),callback:function ($$v) {_vm.x_rcv_zip=$$v},expression:"x_rcv_zip"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_state),callback:function ($$v) {_vm.x_rcv_state=$$v},expression:"x_rcv_state"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_country),callback:function ($$v) {_vm.x_rcv_country=$$v},expression:"x_rcv_country"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_latitude),callback:function ($$v) {_vm.x_rcv_latitude=$$v},expression:"x_rcv_latitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_longitude),callback:function ($$v) {_vm.x_rcv_longitude=$$v},expression:"x_rcv_longitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_is_extra),callback:function ($$v) {_vm.x_rcv_is_extra=$$v},expression:"x_rcv_is_extra"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.x_subscription? 'Starting Day' : 'Day of Delivery',"name":"x_start","types":"date","helpMsg":"within next 90 days"},model:{value:(_vm.x_start),callback:function ($$v) {_vm.x_start=$$v},expression:"x_start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","helpMsg":"Order contains multiple deliveries","types":"boolean"},model:{value:(_vm.x_subscription),callback:function ($$v) {_vm.x_subscription=$$v},expression:"x_subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.x_subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","min":_vm.x_subscription ? 3 : 1,"max":_vm.x_subscription ? 50 : 1,"types":"integer"},model:{value:(_vm.x_number),callback:function ($$v) {_vm.x_number=$$v},expression:"x_number"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"types":"enum"},model:{value:(_vm.x_freq),callback:function ($$v) {_vm.x_freq=$$v},expression:"x_freq"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","types":"text, days"},model:{value:(_vm.x_days),callback:function ($$v) {_vm.x_days=$$v},expression:"x_days"}})],1)],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/delivery"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
-var OrderFormDeliveryvue_type_template_id_a4a2cedc_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=a4290c3a&
+var OrderFormDeliveryvue_type_template_id_a4290c3a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"}},[_c('FormGroup',{attrs:{"label":"Recipient","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","autocomplete":"name","rules":"text,required"},model:{value:(_vm.x_rcv_name),callback:function ($$v) {_vm.x_rcv_name=$$v},expression:"x_rcv_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","rules":"email"},model:{value:(_vm.x_rcv_email),callback:function ($$v) {_vm.x_rcv_email=$$v},expression:"x_rcv_email"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"phone","rules":"tel","helpMsg":"in case of delivery issues"},model:{value:(_vm.x_rcv_phone),callback:function ($$v) {_vm.x_rcv_phone=$$v},expression:"x_rcv_phone"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","rules":"address,specific,nsw,extra,required","placeholder":"Business Name or Street Address, City"},on:{"address-changed":_vm.updateAddress},model:{value:(_vm.x_rcv_address),callback:function ($$v) {_vm.x_rcv_address=$$v},expression:"x_rcv_address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Additional Delivery Instructions","rules":"text","helpMsg":"optional","placeholder":"Location, Suite, Unit, Floor, Location, etc"},model:{value:(_vm.x_rcv_special),callback:function ($$v) {_vm.x_rcv_special=$$v},expression:"x_rcv_special"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_business),callback:function ($$v) {_vm.x_rcv_business=$$v},expression:"x_rcv_business"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_street),callback:function ($$v) {_vm.x_rcv_street=$$v},expression:"x_rcv_street"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_city),callback:function ($$v) {_vm.x_rcv_city=$$v},expression:"x_rcv_city"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_zip),callback:function ($$v) {_vm.x_rcv_zip=$$v},expression:"x_rcv_zip"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_state),callback:function ($$v) {_vm.x_rcv_state=$$v},expression:"x_rcv_state"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_country),callback:function ($$v) {_vm.x_rcv_country=$$v},expression:"x_rcv_country"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_latitude),callback:function ($$v) {_vm.x_rcv_latitude=$$v},expression:"x_rcv_latitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_longitude),callback:function ($$v) {_vm.x_rcv_longitude=$$v},expression:"x_rcv_longitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],attrs:{"rules":"boolean"},model:{value:(_vm.x_rcv_is_extra),callback:function ($$v) {_vm.x_rcv_is_extra=$$v},expression:"x_rcv_is_extra"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.x_subscription? 'Starting Day' : 'Day of Delivery',"name":"x_start","rules":"date,future,before1pm,delivery","helpMsg":"within next 90 days"},model:{value:(_vm.x_start),callback:function ($$v) {_vm.x_start=$$v},expression:"x_start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","helpMsg":"Order contains multiple deliveries","rules":"boolean"},model:{value:(_vm.x_subscription),callback:function ($$v) {_vm.x_subscription=$$v},expression:"x_subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.x_subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","min":_vm.x_subscription ? 3 : 1,"max":_vm.x_subscription ? 50 : 1,"rules":"integer"},model:{value:(_vm.x_number),callback:function ($$v) {_vm.x_number=$$v},expression:"x_number"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"rules":"enum"},model:{value:(_vm.x_freq),callback:function ($$v) {_vm.x_freq=$$v},expression:"x_freq"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","rules":"text, days"},model:{value:(_vm.x_days),callback:function ($$v) {_vm.x_days=$$v},expression:"x_days"}})],1)],1),_c('FormGroup',[_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/delivery"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
+var OrderFormDeliveryvue_type_template_id_a4290c3a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=a4a2cedc&
+// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=a4290c3a&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormTransition.vue?vue&type=template&id=b445a816&
 var FormTransitionvue_type_template_id_b445a816_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.show),expression:"show"}]},[_vm._t("default")],2)])}
@@ -4918,6 +4958,7 @@ FormTransition_component.options.__file = "FormTransition.vue"
 
 
 
+
 /* harmony default export */ var OrderFormDeliveryvue_type_script_lang_js_ = ({
   props: {
     name: {
@@ -4974,12 +5015,24 @@ FormTransition_component.options.__file = "FormTransition.vue"
       x_rcv_latitude: undefined,
       x_rcv_longitude: undefined,
       x_rcv_is_extra: undefined,
-      x_start: this.start,
+      // flags whether an extra delivery charge is needed for hospitals, schools, malls
+      x_start: this.start ? this.start : getNextDeliveryDay(),
       x_subscription: this.subscription,
-      x_freq: this.freq,
-      x_number: Number(this.number),
+      x_freq: this.freq ? this.freq : 'Daily',
+      x_number: this.number ? Number(this.number) : 1,
       x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number)
     };
+  },
+  watch: {
+    'x_start': function x_start() {
+      this.updateDeliveryDays();
+    },
+    'x_freq': function x_freq() {
+      this.updateDeliveryDays();
+    },
+    'x_number': function x_number() {
+      this.updateDeliveryDays();
+    }
   },
   methods: {
     updateDeliveryDays: function updateDeliveryDays() {
@@ -4998,17 +5051,6 @@ FormTransition_component.options.__file = "FormTransition.vue"
       this.x_rcv_longitude = String(event.longitude);
       this.x_rcv_is_extra = event.is_extra;
     }
-  },
-  watch: {
-    'x_start': function x_start() {
-      this.updateDeliveryDays();
-    },
-    'x_freq': function x_freq() {
-      this.updateDeliveryDays();
-    },
-    'x_number': function x_number() {
-      this.updateDeliveryDays();
-    }
   }
 });
 // CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=script&lang=js&
@@ -5023,8 +5065,8 @@ FormTransition_component.options.__file = "FormTransition.vue"
 
 var OrderFormDelivery_component = normalizeComponent(
   forms_OrderFormDeliveryvue_type_script_lang_js_,
-  OrderFormDeliveryvue_type_template_id_a4a2cedc_render,
-  OrderFormDeliveryvue_type_template_id_a4a2cedc_staticRenderFns,
+  OrderFormDeliveryvue_type_template_id_a4290c3a_render,
+  OrderFormDeliveryvue_type_template_id_a4290c3a_staticRenderFns,
   false,
   null,
   null,
