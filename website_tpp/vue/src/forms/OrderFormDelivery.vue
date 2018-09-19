@@ -4,7 +4,7 @@
             <Field label="Name" v-model="x_rcv_name" autocomplete="name" types="text,required" class="col-md-4"/>
             <Field label="Email" v-model="x_rcv_email" autocomplete="email" types="email" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="x_rcv_address" types="address,nsw,extra,required"  
+            <Field label="Delivery Address" v-model="x_rcv_address" types="address,specific,nsw,extra,required"  
                    @address-changed="updateAddress"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
             <Field label="Additional Delivery Instructions" v-model="x_rcv_special" types="text" 
@@ -81,8 +81,8 @@ export default {
             x_rcv_is_extra: undefined,                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
             x_start: this.start ? this.start : getNextDeliveryDay(),
             x_subscription: this.subscription,
-            x_freq: this.freq,
-            x_number: Number(this.number),
+            x_freq: this.freq ? this.freq : 'Daily',
+            x_number: this.number ? Number(this.number) : 1,
             x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number),
         }
     },

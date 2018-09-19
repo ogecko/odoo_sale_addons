@@ -7,7 +7,8 @@
     :id="id"
     :placeholder="placeholder"
     v-model="localValue"
-    @focus="fixChromeAutofillOff()"
+    @focus="fixChromeAutofillOff"
+    @blur="onBlur"
   />
 </template>
 
@@ -72,8 +73,11 @@
       fixChromeAutofillOff() {
         this.$el.setAttribute('autocomplete', 'new-password');
       },
+      onBlur() {
+
+      },
       /**
-       * When a place changed (user selected one, pressed enter key, or place details failes)
+       * When a place changed (user selected one, pressed enter key, or place details fails)
        */
       onPlaceChanged() {
         let place = this.googlePlacesWidget.getPlace();

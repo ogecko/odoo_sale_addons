@@ -3,6 +3,7 @@ import { isValidDeliveryDay, isAfter1PM, isBeforeToday } from '../helpers/delive
 
 const getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'types']);
 const getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
+const getFieldisValidatedAddress = property(['$children', '0', 'isValidatedAddress']);
 
 const validationFunctions = {
     // <text> checks
@@ -71,6 +72,12 @@ const validationFunctions = {
     },
     // <text> address types
     address(str, vm) {
+        const check = vm ? getFieldisValidatedAddress(vm) : str;
+        if (!check)
+            return 'Cannot locate address. Please retype and select from list.';
+    },
+    // <text> address types
+    specific(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
             return 'Please select a specific delivery address.';
