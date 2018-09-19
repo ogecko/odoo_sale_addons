@@ -5,7 +5,10 @@ const getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'ty
 const getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
 const getFieldisValidatedAddress = property(['$children', '0', 'isValidatedAddress']);
 
-const validationFunctions = {
+// Each of these functions checks the input string for a validation rule
+// If there is a validation error then the function returns the error message string that is shown to the user
+// If there is no validation error then the function returns undefined.
+const validationRuleFunctions = {
     // <text> checks
     required(s) {
         if (!s || !(s.length > 0))
@@ -35,7 +38,7 @@ const validationFunctions = {
     },
     delivery(str) {
         if (!isValidDeliveryDay(str))
-            return `Sorry we do not deliver on ${str}. Please choose another date.`;
+            return `Sorry we do not deliver on the ${str}. Please choose another date.`;
     },
     // <input> types
     text(s) {
@@ -74,7 +77,7 @@ const validationFunctions = {
     address(str, vm) {
         const check = vm ? getFieldisValidatedAddress(vm) : str;
         if (!check)
-            return 'Cannot locate address. Please retype and select from list.';
+            return 'Cannot locate address. Please retype and select from the dropdown list.';
     },
     // <text> address types
     specific(str, vm) {
@@ -96,21 +99,21 @@ const validationFunctions = {
     },
 }
 
-export default function validate(value, terms, vm) {
+export default function validate(value, rules, vm) {
 
-    function checkValueForValidationReqirements(acc, term) {
-        const tterm = term.trim();
-        const msg = !validationFunctions[tterm] ? `Cannot find validation check "${tterm}".`
-            : validationFunctions[tterm](value, vm); //call the validationFunction
+    function checkValueForValidationReqirements(acc, rule) {
+        const trule = rule.trim();
+        const msg = !validationRuleFunctions[trule] ? `Cannot find validation check "${trule}".`
+            : validationRuleFunctions[trule](value, vm); //call the validationRuleFunction
         if (msg)  acc.push(msg)
 
         return acc;
     }
 
-    if (typeof terms != 'string') return '';
+    if (typeof rules != 'string') return '';
 
-    // for all the comma separated terms, reduce to a list of error messages.
-    return terms.split(',')
+    // for all the comma separated rules, reduce to a list of error messages.
+    return rules.split(',')
         .reduce(checkValueForValidationReqirements, [])
         .join(' ');
 }

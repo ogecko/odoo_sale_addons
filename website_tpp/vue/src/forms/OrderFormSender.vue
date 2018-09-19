@@ -1,15 +1,15 @@
 <template>
     <form method="post">
         <FormGroup label="Your Contact Details" top>
-            <Field label="Name" v-model="x_snd_name"   autocomplete="name"  types="text,required" class="col-md-4"/>
-            <Field label="Email" v-model="x_snd_email" autocomplete="email" types="email,required" class="col-md-4"/>
-            <Field label="Phone" v-model="x_snd_phone" autocomplete="work phone" types="tel" helpMsg="in case of order issues" class="col-md-4"/>
+            <Field label="Name" v-model="x_snd_name"   autocomplete="name"  rules="text,required" class="col-md-4"/>
+            <Field label="Email" v-model="x_snd_email" autocomplete="email" rules="email,required" class="col-md-4"/>
+            <Field label="Phone" v-model="x_snd_phone" autocomplete="work phone" rules="tel" helpMsg="in case of order issues" class="col-md-4"/>
         </FormGroup>
         <FormGroup label="Personalised Card">
             <Field label="A Posy For" name="x_to" v-model="x_to" class="col-md-6"/>
             <Field label="From" name="x_from" v-model="x_from" class="col-md-6"/>
-            <Field label="Message" name="x_message" v-model="x_message" types="textarea" helpMsg="maximum 200 characters" class="clearfix col-md-12"/>
-            <Field label="Help me choose a message" @input="getCardMessage" helpMsg="keep clicking until you find one" value="" :options="['Birthday','Anniversary','Thanks','Congrats','Sorry','Random']" types="enum" class="col-md-12"/>
+            <Field label="Message" name="x_message" v-model="x_message" rules="textarea" helpMsg="maximum 200 characters" class="clearfix col-md-12"/>
+            <Field label="Help me choose a message" @input="getCardMessage" helpMsg="keep clicking until you find one" value="" :options="['Birthday','Anniversary','Thanks','Congrats','Sorry','Random']" rules="enum" class="col-md-12"/>
         </FormGroup>
         <FormGroup>
             <div class="col-md-12">

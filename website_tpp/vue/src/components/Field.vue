@@ -98,7 +98,7 @@ export default {
     autocomplete: { type: String },
     placeholder: { type: String },
     helpMsg: { type: String },
-    types: { type: String, default: 'text' },
+    rules: { type: String, default: 'text' },
     value: { type: [ String, Boolean, Number ] },
     min: { type: Number },
     max: { type: Number },
@@ -132,7 +132,7 @@ export default {
       return this.label + (this.isRequired() ? ' *' : '');
     },
     type() {
-      return this.types.split(',')[0];
+      return this.rules.split(',')[0];
     },
     isFieldInput () {
       return (this.type!="textarea" && this.type!="boolean" && this.type!="enum" && this.type!="integer" && this.type!="date" && this.type!="address")
@@ -158,10 +158,10 @@ export default {
 },
   methods: {
     isRequired() {
-      return this.types.split(',').includes('required');
+      return this.rules.split(',').includes('required');
     },
     handleInput(newVal) {
-      this.validationMsg = validate(newVal, this.types, this);
+      this.validationMsg = validate(newVal, this.rules, this);
       this.$emit('input', newVal);
     },
     handleAddressChanged(newVal) {

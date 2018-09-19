@@ -1,13 +1,13 @@
 <template>
     <form method="post">
         <FormGroup label="Recipient" top>
-            <Field label="Name" v-model="x_rcv_name" autocomplete="name" types="text,required" class="col-md-4"/>
-            <Field label="Email" v-model="x_rcv_email" autocomplete="email" types="email" class="col-md-4"/>
-            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" types="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="x_rcv_address" types="address,specific,nsw,extra,required"  
+            <Field label="Name" v-model="x_rcv_name" autocomplete="name" rules="text,required" class="col-md-4"/>
+            <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" class="col-md-4"/>
+            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
+            <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,extra,required"  
                    @address-changed="updateAddress"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
-            <Field label="Additional Delivery Instructions" v-model="x_rcv_special" types="text" 
+            <Field label="Additional Delivery Instructions" v-model="x_rcv_special" rules="text" 
                    helpMsg="optional" placeholder="Location, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
             <Field v-show="false" v-model="x_rcv_business"/>
             <Field v-show="false" v-model="x_rcv_street"/>
@@ -17,15 +17,15 @@
             <Field v-show="false" v-model="x_rcv_country"/>
             <Field v-show="false" v-model="x_rcv_latitude"/>
             <Field v-show="false" v-model="x_rcv_longitude"/>
-            <Field v-show="false" v-model="x_rcv_is_extra" types="boolean"/>
+            <Field v-show="false" v-model="x_rcv_is_extra" rules="boolean"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" types="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>
-            <Field label="Subscription Posy" v-model="x_subscription" helpMsg="Order contains multiple deliveries" types="boolean" class="col-md-6"/>
+            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" rules="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>
+            <Field label="Subscription Posy" v-model="x_subscription" helpMsg="Order contains multiple deliveries" rules="boolean" class="col-md-6"/>
             <FormTransition :show="x_subscription" class="clearfix">
-                <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" types="integer" class="col-md-6"/>
-                <Field label="Delivery Frequency" v-model="x_freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" types="enum" class="col-md-6"/>
-                <Field label="Delivery Days" v-model="x_days" types="text, days" class="clearfix col-md-12"/>
+                <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" rules="integer" class="col-md-6"/>
+                <Field label="Delivery Frequency" v-model="x_freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" rules="enum" class="col-md-6"/>
+                <Field label="Delivery Days" v-model="x_days" rules="text, days" class="clearfix col-md-12"/>
             </FormTransition>
         </FormGroup>
         <FormGroup>
