@@ -42,6 +42,7 @@ import FormGroup from '@/layout/FormGroup.vue'
 import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
 import deliveryDays from '@/helpers/deliveryDays';
+import { getNextDeliveryDay } from '@/helpers/deliveryDays';
 
 
 export default {
@@ -77,13 +78,18 @@ export default {
             x_rcv_country: undefined,
             x_rcv_latitude: undefined,
             x_rcv_longitude: undefined,
-            x_rcv_is_extra: undefined,
-            x_start: this.start,
+            x_rcv_is_extra: undefined,                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
+            x_start: this.start ? this.start : getNextDeliveryDay(),
             x_subscription: this.subscription,
             x_freq: this.freq,
             x_number: Number(this.number),
             x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number),
         }
+    },
+    watch: {
+        'x_start'() { this.updateDeliveryDays() },
+        'x_freq'() { this.updateDeliveryDays() },
+        'x_number'() { this.updateDeliveryDays() },
     },
     methods: {
         updateDeliveryDays() {
@@ -104,11 +110,6 @@ export default {
             this.x_rcv_is_extra = event.is_extra;
         },
     },
-    watch: {
-        'x_start'() { this.updateDeliveryDays() },
-        'x_freq'() { this.updateDeliveryDays() },
-        'x_number'() { this.updateDeliveryDays() },
-    }
 }
 
 

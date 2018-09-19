@@ -79,6 +79,10 @@ function ensureValidDay(d) {
     return (later.schedule(daily).isValid(d) ? d : later.schedule(daily).next(1,d));
 }
 
+export function getNextDeliveryDay() {
+    return moment(ensureValidDay(new Date())).format('DD-MMM-YYYY');
+}
+
 export function parseDate(str) {
     return moment(str,'DD-MMM-YYYY')
 }
