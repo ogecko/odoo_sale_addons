@@ -17,6 +17,7 @@ from odoo import models, fields, api
 class CountryStateCity(models.Model):
     _description = "Country State City"
     _name = 'res.country.state.city'
+    _translate = False
 
     name = fields.Char(string='City Name', required=True, help='City, Suburb, or Town name.')
     region = fields.Char(string='Region', help='The region or area that the city is within.', required=True)
