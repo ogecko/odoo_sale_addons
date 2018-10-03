@@ -1,3 +1,61 @@
-#web_editor-top-edit a.btn-link {
+/* #web_editor-top-edit a.btn-link {
     color: #2c3e50;
+} */
+
+/* Footer background color */
+#wrapwrap footer {
+    background-color: #d5d1c7;    
+
+}
+/* Text description in product items */
+.oe_product section .text-info {
+    color: #8b8b8b;
+}
+/* Checkout Step Wizard Text Success links */
+.wizard a.text-success {
+    color: #52814e;             /* brand-success */
+}
+
+/* make responsive images take the full width of the container */
+.img.img-responsive {
+    width: 100%;    
+}
+/* Navbar Brand Font */
+a.navbar-brand {
+    font-size: 26px;
+    font-weight: 500;
+}
+/* Product items in the store */
+/* border between items in the grid */
+td.oe_product {
+    border-width: 20px;
+    border-color: rgb(0,0,0,0);
+}
+/* product image not absolutely positioned*/
+td.oe_product div.oe_product_cart div.oe_product_image {
+    position: static;
+}
+/* product image takes up full width of cell and height as neccessary */
+td.oe_product div.oe_product_cart div.oe_product_image img.img.img-responsive {
+    position: static;
+    max-height: none;
+    width: 100%;
+}
+/* product title, descr, price below the image (not on top) */
+td.oe_product div.oe_product_cart section {
+    position: static;
+}
+/* product grid when collapsed shows full picture */
+div#products_grid td.oe_product.oe_grid {
+    height: 100%;
+}
+div#products_grid .col-md-12 td.oe-height-2 {
+    height: 100%;
+}
+div#products_grid tbody {
+    vertical-align: top;
+}
+/* product image on product page shows full width and height */
+div#o-carousel-product div.carousel-inner div.item {
+    height: 100%;
 }

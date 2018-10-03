@@ -26,6 +26,9 @@ ul.wizard .text-success {
 .input-group-addon .fa {
     color: #444;
 }
+
+
+
 /* make responsive images take the full width of the container */
 .img.img-responsive {
     width: 100%;    
@@ -39,7 +42,7 @@ a.navbar-brand {
     font-size: 26px;
     font-weight: 500;
 }
-/* Product itemss in the store */
+/* Product items in the store */
 /* border between items in the grid */
 td.oe_product {
     border-width: 20px;
