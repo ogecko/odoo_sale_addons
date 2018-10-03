@@ -21,10 +21,12 @@
     width: 100%;    
 }
 /* Navbar Brand Font */
+/* See line 30 of bootswatch to font-family style the navbar-brand font */
 a.navbar-brand {
     font-size: 26px;
     font-weight: 500;
 }
+
 /* Product items in the store */
 /* border between items in the grid */
 td.oe_product {
