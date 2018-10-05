@@ -174,7 +174,26 @@ class WebsiteSaleTPP(WebsiteSale):
             return 'ok'
         return request.render("website_tpp.order_form_delivery", values)
 
+    # add redirections for the old Rocketspark links 
+    @http.route(['/shop/checkout_finish'], type='http', auth="public", website=True)
+    def redir_checkout_finish(self, **post):
+        return request.redirect("/shop/confirmation")
 
+    @http.route(['/page/gallery-and-reviews'], type='http', auth="public", website=True)
+    def redir_gallery_and_reviews(self, **post):
+        return request.redirect("/page/larger")
+
+    @http.route(['/page/events-and-corporate'], type='http', auth="public", website=True)
+    def redir_events_and_corporate(self, **post):
+        return request.redirect("/page/larger")
+
+    @http.route(['/page/terms'], type='http', auth="public", website=True)
+    def redir_terms(self, **post):
+        return request.redirect("/page/terms-and-conditions")
+
+    @http.route(['/page/about'], type='http', auth="public", website=True)
+    def redir_about(self, **post):
+        return request.redirect("/page/aboutus")
 
     # Interface for TPP Operations to scrape orders
     @http.route('/web/orderjson', auth='public', type='json')
