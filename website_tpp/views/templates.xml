@@ -83,6 +83,23 @@
             </t>
         </template>
 
+        <template id="order_form_daily">
+            <t t-call="website.layout">
+                <input type="hidden" name="csrf_token" form="vueform" t-att-value="request.csrf_token()"/>
+                <div class="container mt48 mb48">
+                    <div class="row">
+                        <div id="vueapp">
+                            <Widget id="vueform"
+                                t-att-description="description"
+                            />
+                        </div>
+                        <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.Daily } });</script>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
     <!-- Fully replace the BillTo view on the /shop/payment page -->
     <template id='website_sale.bill_to' name="Bill to">
         <div class="panel panel-info">

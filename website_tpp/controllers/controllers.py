@@ -174,6 +174,9 @@ class WebsiteSaleTPP(WebsiteSale):
             return 'ok'
         return request.render("website_tpp.order_form_delivery", values)
 
+
+
+
     # add redirections for the old Rocketspark links 
     @http.route(['/shop/checkout_finish'], type='http', auth="public", website=True)
     def redir_checkout_finish(self, **post):
@@ -194,6 +197,51 @@ class WebsiteSaleTPP(WebsiteSale):
     @http.route(['/page/about'], type='http', auth="public", website=True)
     def redir_about(self, **post):
         return request.redirect("/page/aboutus")
+
+
+    # Page to update product images
+    @http.route(['/page/daily'], type='http', auth="user", website=True)
+    def daily_update(self, **post):
+        # grab the daily posy and variants
+        pdaily = http.request.env["product.template"].browse([1])
+        psmall = http.request.env["product.product"].browse([3])
+        pmedium = http.request.env["product.product"].browse([4])
+        plarge = http.request.env["product.product"].browse([5])
+
+        is_posted = False
+        # if form posted
+        if 'x_description' in post:
+            pdaily.write({ 'description_sale': post['x_description'] })
+            is_posted = True
+        if 'x_small' in post and len(post['x_small'])>20:
+            psmall.write({ 'image': post['x_small'] })
+            is_posted = True
+        if 'x_medium' in post and len(post['x_medium'])>20:
+            pmedium.write({ 'image': post['x_medium'] })
+            is_posted = True
+        if 'x_large' in post and len(post['x_large'])>20:
+            plarge.write({ 'image': post['x_large'] })
+            is_posted = True
+        if 'x_primary' in post and len(post['x_primary'])>20:
+            pdaily.write({ 'image': post['x_primary'] })
+            if 'x_duplicate' in post:
+                psmall.write({ 'image': post['x_primary'] })
+                pmedium.write({ 'image': post['x_primary'] })
+                plarge.write({ 'image': post['x_primary'] })
+            is_posted = True
+        if (is_posted):
+            return request.redirect("/")
+
+        # otherwise form has just been called up
+        values = {
+            'description': pdaily.description_sale,
+        }
+
+         # Avoid useless rendering if called in ajax
+        if post.get('xhr'):
+            return 'ok'        
+        return request.render("website_tpp.order_form_daily", values)
+
 
     # Interface for TPP Operations to scrape orders
     @http.route('/web/orderjson', auth='public', type='json')
