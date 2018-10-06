@@ -15,9 +15,9 @@ describe('deliveryDays.js', () => {
         expect(deliveryDays('10-Aug-18','Junk',3)).toEqual('');
     })
 
-    it('Daily frequency skips weekends', () => {
+    it('Daily frequency skips Sundays', () => {
         expect(deliveryDays('10-Aug-18','Daily',3))
-        .toEqual('10-Aug-2018, 13-Aug-2018, 14-Aug-2018');
+        .toEqual('10-Aug-2018, 11-Aug-2018, 13-Aug-2018');
     });
 
     it('Daily frequency skips Christmas', () => {
@@ -31,18 +31,18 @@ describe('deliveryDays.js', () => {
     });
 
     it('Daily frequency skips Australia Day', () => {
-        expect(deliveryDays('22-Jan-21','Daily',3))
-        .toEqual('22-Jan-2021, 25-Jan-2021, 27-Jan-2021');
+        expect(deliveryDays('25-Jan-19','Daily',3))
+        .toEqual('25-Jan-2019, 28-Jan-2019, 29-Jan-2019');
     });
 
     it('Daily frequency skips Anzac Day', () => {
         expect(deliveryDays('24-Apr-19','Daily',3))
-        .toEqual('24-Apr-2019, 26-Apr-2019, 29-Apr-2019');
+        .toEqual('24-Apr-2019, 26-Apr-2019, 27-Apr-2019');
     });
 
     it('Daily frequency skips Queens Birthday', () => {
         expect(deliveryDays('7-Jun-19','Daily',3))
-        .toEqual('07-Jun-2019, 11-Jun-2019, 12-Jun-2019');
+        .toEqual('07-Jun-2019, 08-Jun-2019, 11-Jun-2019');
     });
 
     it('Daily frequency skips NSW Labour Day', () => {
@@ -52,7 +52,7 @@ describe('deliveryDays.js', () => {
 
     it('Daily frequency skips Easter', () => {
         expect(deliveryDays('18-Apr-19','Daily',3))
-        .toEqual('18-Apr-2019, 23-Apr-2019, 24-Apr-2019');
+        .toEqual('18-Apr-2019, 20-Apr-2019, 23-Apr-2019');
     });
 
     it('Weekly frequency skips Christmas', () => {
