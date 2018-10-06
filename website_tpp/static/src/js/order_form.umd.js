@@ -5262,10 +5262,10 @@ var later_default = /*#__PURE__*/__webpack_require__.n(later);
 
 var daily = {
   schedules: [{
-    d: [2, 3, 4, 5, 6],
+    d: [2, 3, 4, 5, 6, 7],
     h: [13],
     m: [0]
-  }, // Weekdays: Mon, Tue, Wed, Thu, Fri at 1pm
+  }, // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
   {
     D: [14],
     M: [2],

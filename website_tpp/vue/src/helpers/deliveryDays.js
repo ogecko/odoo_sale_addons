@@ -3,7 +3,7 @@ import later from '@/helpers/later';
 
 const daily = {
     schedules: [ 
-        { d: [2,3,4,5,6], h: [13], m: [0] },           // Weekdays: Mon, Tue, Wed, Thu, Fri at 1pm
+        { d: [2,3,4,5,6,7], h: [13], m: [0] },         // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
         { D: [14], M: [2], h: [13], m: [0] },          // Valentines Day: 14th of February at 1pm
         { dc: [2], d: [1], M: [3], h: [13], m: [0] },  // Mothers Day: 2nd Sunday of March at 1pm
     ],
