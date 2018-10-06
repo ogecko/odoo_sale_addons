@@ -31,9 +31,9 @@
 @text-color:            @brand-primary;
 
 //** Global textual link color.
-@link-color:            @brand-success;
+@link-color:            darken(@brand-primary, 15%);
 //** Link hover color set via `darken()` function. See line 352 for navbar link hover color
-@link-hover-color:      darken(@link-color, 15%);
+@link-hover-color:      @brand-success;
 
 
 //== Typography
@@ -430,19 +430,19 @@
 //##
 
 @pagination-color:                     #fff;
-@pagination-bg:                        @brand-success;
+@pagination-bg:                        @brand-primary;
 @pagination-border:                    transparent;
 
 @pagination-hover-color:               #fff;
-@pagination-hover-bg:                  darken(@brand-success, 15%);
+@pagination-hover-bg:                  darken(@brand-primary, 15%);
 @pagination-hover-border:              transparent;
 
 @pagination-active-color:              #fff;
-@pagination-active-bg:                 darken(@brand-success, 15%);
+@pagination-active-bg:                 darken(@brand-primary, 15%);
 @pagination-active-border:             transparent;
 
 @pagination-disabled-color:            @gray-lighter;
-@pagination-disabled-bg:               lighten(@brand-success, 15%);;
+@pagination-disabled-bg:               lighten(@brand-primary, 15%);;
 @pagination-disabled-border:           transparent;
 
 
