@@ -143,6 +143,20 @@
         returnData['business'] = place.name;
         returnData['is_extra'] = !!validate(place.types.join(', '),'extra');
 
+        // Google places doesnt hand subpremises very well in Australia - https://stackoverflow.com/questions/17936689/google-places-autocomplete-suggestions-with-unit-no-subpremise-is-not-coming-in
+        // For example "8/1 Mactier Street, Narrabeen" doesnt pick up subpremise = 8, but just matches "1 Mactier Street"
+        // this code grabs what the user entered in before the street name and uses it as the street_number 
+        if (returnData.street_name) {
+          var regex = RegExp('^(.*?)'+returnData.street_name.split(' ',1)[0]), 
+          result = regex.exec(this.value); // get all the user entered values before a match with the first word from the Google stree_name result
+
+          if ( Array.isArray(result) ) {
+            returnData.street_number = result[1]; // add the street name to the user-entered unit & street number
+            returnData.subpremise = undefined;    // ignore googles subpremise
+          }
+        }
+
+
         return returnData
       },
 
