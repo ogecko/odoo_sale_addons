@@ -79,7 +79,7 @@ export default {
             x_rcv_latitude: undefined,
             x_rcv_longitude: undefined,
             x_rcv_is_extra: undefined,                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
-            x_start: this.start ? this.start : getNextDeliveryDay(),
+            x_start: getNextDeliveryDay(this.start),
             x_subscription: this.subscription,
             x_freq: this.freq ? this.freq : 'Daily',
             x_number: this.number ? Number(this.number) : 1,

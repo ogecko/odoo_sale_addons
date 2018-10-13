@@ -79,12 +79,15 @@ function ensureValidDay(d) {
     return (later.schedule(daily).isValid(d) ? d : later.schedule(daily).next(1,d));
 }
 
-export function getNextDeliveryDay() {
-    return moment(ensureValidDay(new Date())).format('DD-MMM-YYYY');
+export function getNextDeliveryDay(str) {
+    return moment(ensureValidDay(parseDate(str).toDate())).format('DD-MMM-YYYY');
 }
 
+
 export function parseDate(str) {
-    return moment(str,'DD-MMM-YYYY')
+    let d = moment(str,['DD-MMM-YYYY','DD-MMM-YY'],true);
+    if (!d.isValid()) d = moment();             // default to now if we cannot parse the date
+    return d;
 }
 
 export function isToday(str) {

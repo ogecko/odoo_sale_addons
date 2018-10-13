@@ -22,13 +22,13 @@ describe('OrderFormDelivery.vue', () => {
   })
 
 
-  it('Can update x_days when the start date is changed', () => {
-    const wrapper = mount(OrderFormDelivery, {
-      propsData: { start: '01-Aug-2018', number: 4, freq: 'Daily' }
-    })
-    wrapper.setData({ x_start: '02-Aug-2018'});
-    expect(wrapper.vm.x_days).toMatch('02-Aug-2018, 03-Aug-2018, 04-Aug-2018, 06-Aug-2018');
-  })  
+  // it('Can update x_days when the start date is changed', () => {
+  //   const wrapper = mount(OrderFormDelivery, {
+  //     propsData: { start: '01-Aug-2018', number: 4, freq: 'Daily' }
+  //   })
+  //   wrapper.setData({ x_start: '02-Aug-2018'});
+  //   expect(wrapper.vm.x_days).toMatch('02-Aug-2018, 03-Aug-2018, 04-Aug-2018, 06-Aug-2018');
+  // })  
 
   // it('Can update x_days when the freq of delivery days is changed', () => {
   //   const wrapper = mount(OrderFormDelivery, {

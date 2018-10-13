@@ -1,5 +1,5 @@
 import deliveryDays from '@/helpers/deliveryDays.js'
-import { nextDeliveryDays } from '@/helpers/deliveryDays.js'
+import { nextDeliveryDays, getNextDeliveryDay } from '@/helpers/deliveryDays.js'
 import moment from 'moment';
 
 global.moment = moment;
@@ -77,6 +77,18 @@ describe('deliveryDays.js', () => {
 
     it('Can give a list of next 90 Delivery Days', () => {
         expect(nextDeliveryDays(90).length).toEqual(90);
+    });
+
+    it('Can get next delivery day after a Sunday', () => {
+        expect(getNextDeliveryDay('07-Oct-18')).toEqual('08-Oct-2018');
+    });
+
+    it('Can get next delivery day given undefined', () => {
+        expect(getNextDeliveryDay()).toEqual(moment().format('DD-MMM-YYYY'));
+    });
+
+    it('Can get next delivery day given junk', () => {
+        expect(getNextDeliveryDay('abc')).toEqual(moment().format('DD-MMM-YYYY'));
     });
 
 });
