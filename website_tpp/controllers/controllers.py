@@ -90,6 +90,8 @@ class WebsiteSaleTPP(WebsiteSale):
         google_maps_api_key = request.env['ir.config_parameter'].sudo().get_param('google_maps_api_key')
         isBlankRcvName = not(order.x_rcv_name)
         isBlankTo = not(order.x_to)
+        isSubscriptionOrder = request.env['sale.order.line'].sudo().search([('order_id', '=', order.id), ('name', 'like', 'Posy Subscription')], count=True) > 0
+        order.x_subscription = isSubscriptionOrder
 
         # if form posted
         if 'x_rcv_name' in post:
