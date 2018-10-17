@@ -249,11 +249,20 @@ class WebsiteSaleTPP(WebsiteSale):
         return request.render("website_tpp.order_form_daily", values)
 
 
+
+
+
     # Interface for TPP Operations to ship orders
     @http.route('/web/ordership', auth='public', type='json')
     def ordership(self, **kw):
-        _logger.info('Ship Order %s / %s', kw['order'], kw['delivery'])  # debug
+        if 'delivery' in kw:
+            _logger.info('Ship Order %s / %s', kw['order'], kw['delivery'])  # debug
+        else:
+            _logger.info('Ship Order %s', kw['order'])                      # debug
         return {}
+
+
+
 
     # Interface for TPP Operations to scrape orders
     @http.route('/web/orderjson', auth='public', type='json')
