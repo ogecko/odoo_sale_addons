@@ -121,6 +121,7 @@ export default {
         confirm(ev) {
             const errors = checkFormRules([], this);
             if (errors.length>0) {
+                // eslint-disable-next-line
                 console.log('Form Validation Errors',errors);
                 this.confirmValidationMsg = `Please correct the following fields: ${errors.map(a=>a.label).join(', ')}.` 
                 ev.preventDefault();
