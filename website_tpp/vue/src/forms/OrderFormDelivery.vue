@@ -29,14 +29,12 @@
             </FormTransition>
         </FormGroup>
         <FormGroup>
+            <div v-if="confirmValidationMsg" class="has-error col-md-12">
+                <p class="help-block text-right mt8 mb16">{{ confirmValidationMsg }}</p>
+            </div>
             <div class="col-md-12">
                 <a href="/shop/cart" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
                 <button href="/shop/delivery" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></button>
-            </div>
-            <div class="col-md-12">
-                <small v-if="confirmValidationMsg" class="pull-right text-danger mt8 mb16">
-                {{ confirmValidationMsg }}
-                </small>
             </div>
         </FormGroup>
     </form>
