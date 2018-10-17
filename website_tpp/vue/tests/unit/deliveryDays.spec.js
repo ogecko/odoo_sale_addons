@@ -1,5 +1,5 @@
 import deliveryDays from '@/helpers/deliveryDays.js'
-import { nextDeliveryDays, getNextDeliveryDay } from '@/helpers/deliveryDays.js'
+import { nextDeliveryDays, getNextDeliveryDay, getNextPossibleDeliveryDay } from '@/helpers/deliveryDays.js'
 import moment from 'moment';
 
 global.moment = moment;
@@ -83,12 +83,19 @@ describe('deliveryDays.js', () => {
         expect(getNextDeliveryDay('07-Oct-18')).toEqual('08-Oct-2018');
     });
 
+    // test only works when today is a valid delivery day
     it('Can get next delivery day given undefined', () => {
         expect(getNextDeliveryDay()).toEqual(moment().format('DD-MMM-YYYY'));
     });
 
+    // test only works when today is a valid delivery day
     it('Can get next delivery day given junk', () => {
         expect(getNextDeliveryDay('abc')).toEqual(moment().format('DD-MMM-YYYY'));
+    });
+
+    // test only works when today is a valid delivery day
+    it('Can get next possible delivery day given a day in the past', () => {
+        expect(getNextPossibleDeliveryDay('04-Oct-2018')).toEqual(moment().format('DD-MMM-YYYY'));
     });
 
 });

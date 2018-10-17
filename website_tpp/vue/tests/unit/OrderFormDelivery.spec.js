@@ -15,10 +15,10 @@ describe('OrderFormDelivery.vue', () => {
 
   it('Can update x_days the expected delivery days', () => {
     const wrapper = mount(OrderFormDelivery, {
-      propsData: { start: '03-Aug-2018', number: 4, freq: 'Daily' }
+      propsData: { start: '03-Aug-2025', number: 4, freq: 'Daily' }
     })
     wrapper.vm.updateDeliveryDays();
-    expect(wrapper.vm.x_days).toMatch('03-Aug-2018, 04-Aug-2018, 06-Aug-2018, 07-Aug-2018');
+    expect(wrapper.vm.x_days).toMatch('04-Aug-2025, 05-Aug-2025, 06-Aug-2025, 07-Aug-2025');
   })
 
 

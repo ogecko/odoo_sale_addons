@@ -75,12 +75,23 @@ function ensureValidDays(days) {
 }
 
 function ensureValidDay(d) {
+    moment.locale();
+    later.date.localTime();
     // if its not a valid delivery day then choose the next closest day
-    return (later.schedule(daily).isValid(d) ? d : later.schedule(daily).next(1,d));
+    const isValid = later.schedule(daily).isValid(d);
+    return isValid ? d : later.schedule(daily).next(1,d);
 }
 
+// only allow valid delivery days (past or future)
 export function getNextDeliveryDay(str) {
     return moment(ensureValidDay(parseDate(str).toDate())).format('DD-MMM-YYYY');
+}
+
+// only allow valid delivery days (today or in the future)
+export function getNextPossibleDeliveryDay(str) {
+    const d = parseDate(isBeforeToday(str) ? undefined : str).toDate();
+    const v = ensureValidDay(d);
+    return moment(v).format('DD-MMM-YYYY');
 }
 
 

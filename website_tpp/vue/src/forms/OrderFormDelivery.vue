@@ -42,7 +42,7 @@ import FormGroup from '@/layout/FormGroup.vue'
 import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
 import deliveryDays from '@/helpers/deliveryDays';
-import { getNextDeliveryDay } from '@/helpers/deliveryDays';
+import { getNextPossibleDeliveryDay } from '@/helpers/deliveryDays';
 
 
 export default {
@@ -79,11 +79,11 @@ export default {
             x_rcv_latitude: undefined,
             x_rcv_longitude: undefined,
             x_rcv_is_extra: undefined,                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
-            x_start: getNextDeliveryDay(this.start),
+            x_start: getNextPossibleDeliveryDay(this.start),
             x_subscription: this.subscription,
             x_freq: this.freq ? this.freq : 'Daily',
             x_number: this.number ? Number(this.number) : 1,
-            x_days: this.days ? this.days : deliveryDays(this.start, this.freq, this.number),
+            x_days: (this.days && this.freq=='Other') ? this.days : deliveryDays(getNextPossibleDeliveryDay(this.start), this.freq, this.number),
         }
     },
     watch: {
