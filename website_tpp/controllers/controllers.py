@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+
 from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.addons.website_sale.controllers import main
+
+import logging
+_logger = logging.getLogger(__name__)
 
 # Products per row and products per page
 main.PPR = 3
