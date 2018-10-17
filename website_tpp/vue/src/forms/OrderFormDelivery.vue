@@ -58,7 +58,7 @@ export default {
         address: { type: String, default: '' },
         special: { type: String, default: '' },
         start: { type: String, default: '' },
-        subscription: { type: Boolean, default: false },
+        subscription: { type: String, default: 'False' },   // Comes in as 'True' or 'False' from Odoo
         freq: { type: String, default: 'Daily' },
         number: { type: Number, default: 1 },
         days: { type: String, default: '' },
@@ -83,9 +83,9 @@ export default {
             x_rcv_country: '',
             x_rcv_latitude: '',
             x_rcv_longitude: '',
-            x_rcv_is_extra: '',                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
+            x_rcv_is_extra: '',                             // flags whether an extra delivery charge is needed for hospitals, schools, malls
             x_start: getNextPossibleDeliveryDay(this.start),
-            x_subscription: this.subscription,
+            x_subscription: (this.subscription=='True'),    // convert to JS boolean true or false
             x_freq: this.freq ? this.freq : 'Daily',
             x_number: this.number ? Number(this.number) : 1,
             x_days: (this.days && this.freq=='Other') ? this.days : deliveryDays(getNextPossibleDeliveryDay(this.start), this.freq, this.number),
@@ -117,6 +117,7 @@ export default {
             this.x_rcv_is_extra = is_extra_schools_malls_medical ? 'true' : 'false';   // force to 'true' or 'false'
         },
         confirm(ev) {
+            this.confirmValidationMsg = '';
             const errors = checkFormRules([], this);
             if (errors.length>0) {
                 // eslint-disable-next-line

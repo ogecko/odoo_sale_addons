@@ -58,6 +58,7 @@ export default {
             this.x_message = cardMessageSample(theme);    
         },
         confirm(ev) {
+            this.confirmValidationMsg = '';
             const errors = checkFormRules([], this);
             if (errors.length>0) {
                 // eslint-disable-next-line
