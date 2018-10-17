@@ -69,10 +69,11 @@
       }
     },
     watch: {
+      // watch for when the prop changes
       value(newVal) {
         this.localValue = newVal;
-        // this.setDatePickerDate(newVal);
       },
+      // watch for when the local value of this Field changes
       localValue(newVal) {
         this.$emit('input',newVal);
       },

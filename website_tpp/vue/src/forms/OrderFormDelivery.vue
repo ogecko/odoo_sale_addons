@@ -1,10 +1,10 @@
 <template>
-    <form method="post">
+    <form method="post" @submit="confirm">
         <FormGroup label="Recipient" top>
             <Field label="Name" v-model="x_rcv_name" autocomplete="name" rules="text,required" class="col-md-4"/>
             <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
-            <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,extra,required"  
+            <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,required"  
                    @address-changed="updateAddress"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
             <Field label="Additional Delivery Instructions" v-model="x_rcv_special" rules="text" 
@@ -33,6 +33,11 @@
                 <a href="/shop/cart" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
                 <button href="/shop/delivery" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></button>
             </div>
+            <div class="col-md-12">
+                <small v-if="confirmValidationMsg" class="pull-right text-danger mt8 mb16">
+                {{ confirmValidationMsg }}
+                </small>
+            </div>
         </FormGroup>
     </form>
 </template>
@@ -43,20 +48,22 @@ import FormTransition from '@/layout/FormTransition.vue'
 import Field from '@/components/Field.vue'
 import deliveryDays from '@/helpers/deliveryDays';
 import { getNextPossibleDeliveryDay } from '@/helpers/deliveryDays';
+import checkFormRules from '@/helpers/checkFormRules.js'
+import validate from '@/helpers/validate.js';
 
 
 export default {
     props: {
-        name: { type: String },
-        email: { type: String },
-        phone: { type: String },
-        address: { type: String },
-        special: { type: String },
-        start: { type: String },
-        subscription: { type: Boolean },
+        name: { type: String, default: '' },
+        email: { type: String, default: '' },
+        phone: { type: String, default: '' },
+        address: { type: String, default: '' },
+        special: { type: String, default: '' },
+        start: { type: String, default: '' },
+        subscription: { type: Boolean, default: false },
         freq: { type: String, default: 'Daily' },
         number: { type: Number, default: 1 },
-        days: { type: String },
+        days: { type: String, default: '' },
     },
     components: {
         FormGroup,
@@ -70,20 +77,21 @@ export default {
             x_rcv_phone: this.phone,
             x_rcv_address: this.address,
             x_rcv_special: this.special,
-            x_rcv_business: undefined,
-            x_rcv_street: undefined,
-            x_rcv_city: undefined,
-            x_rcv_zip: undefined,
-            x_rcv_state: undefined,
-            x_rcv_country: undefined,
-            x_rcv_latitude: undefined,
-            x_rcv_longitude: undefined,
-            x_rcv_is_extra: undefined,                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
+            x_rcv_business: '',
+            x_rcv_street: '',
+            x_rcv_city: '',
+            x_rcv_zip: '',
+            x_rcv_state: '',
+            x_rcv_country: '',
+            x_rcv_latitude: '',
+            x_rcv_longitude: '',
+            x_rcv_is_extra: '',                      // flags whether an extra delivery charge is needed for hospitals, schools, malls
             x_start: getNextPossibleDeliveryDay(this.start),
             x_subscription: this.subscription,
             x_freq: this.freq ? this.freq : 'Daily',
             x_number: this.number ? Number(this.number) : 1,
             x_days: (this.days && this.freq=='Other') ? this.days : deliveryDays(getNextPossibleDeliveryDay(this.start), this.freq, this.number),
+            confirmValidationMsg: '',
         }
     },
     watch: {
@@ -96,6 +104,7 @@ export default {
             this.x_days = deliveryDays(this.x_start, this.x_freq, this.x_number);
         },
         updateAddress(event) {
+            const is_extra_schools_malls_medical = validate(event.types,'extra');
             this.x_rcv_business = event.business;
             this.x_rcv_street = [
                 event.subpremise? event.subpremise+' /' : undefined, 
@@ -107,7 +116,15 @@ export default {
             this.x_rcv_country = event.country;
             this.x_rcv_latitude = String(event.latitude);
             this.x_rcv_longitude = String(event.longitude);
-            this.x_rcv_is_extra = event.is_extra;
+            this.x_rcv_is_extra = is_extra_schools_malls_medical ? 'true' : 'false';   // force to 'true' or 'false'
+        },
+        confirm(ev) {
+            const errors = checkFormRules([], this);
+            if (errors.length>0) {
+                console.log('Form Validation Errors',errors);
+                this.confirmValidationMsg = `Please correct the following fields: ${errors.map(a=>a.label).join(', ')}.` 
+                ev.preventDefault();
+            }
         },
     },
 }

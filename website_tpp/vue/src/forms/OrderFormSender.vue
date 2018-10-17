@@ -1,5 +1,5 @@
 <template>
-    <form method="post">
+    <form method="post" @submit="confirm">
         <FormGroup label="Your Contact Details" top>
             <Field label="Name" v-model="x_snd_name"   autocomplete="name"  rules="text,required" class="col-md-4"/>
             <Field label="Email" v-model="x_snd_email" autocomplete="email" rules="email,required" class="col-md-4"/>
@@ -16,6 +16,11 @@
                 <a href="/shop/cart" class="btn btn-default mb32"><span class="fa fa-long-arrow-left"/> Return to Cart</a>
                 <button href="/shop/checkout" class="btn btn-default btn-primary pull-right mb32 " >Confirm <span class="fa fa-long-arrow-right"/></button>
             </div>
+            <div class="col-md-12">
+                <small v-if="confirmValidationMsg" class="pull-right text-danger mt8 mb16">
+                {{ confirmValidationMsg }}
+                </small>
+            </div>
         </FormGroup>
     </form>
 </template>
@@ -24,15 +29,16 @@
 import FormGroup from '@/layout/FormGroup.vue'
 import Field from '@/components/Field.vue'
 import cardMessageSample from '@/helpers/cardMessageSample.js'
+import checkFormRules from '@/helpers/checkFormRules.js'
 
 export default {
     props: {
-        name: { type: String },
-        email: { type: String },
-        phone: { type: String },
-        to: { type: String },
-        from: { type: String },
-        message: { type: String },
+        name: { type: String, default: '' },
+        email: { type: String, default: '' },
+        phone: { type: String, default: '' },
+        to: { type: String, default: '' },
+        from: { type: String, default: '' },
+        message: { type: String, default: '' },
     },
     components: {
         FormGroup,
@@ -46,11 +52,20 @@ export default {
             x_to: this.to,
             x_from: this.from,
             x_message: this.message,
+            confirmValidationMsg: '',
         }
     },
     methods: {
         getCardMessage(theme) {
             this.x_message = cardMessageSample(theme);    
+        },
+        confirm(ev) {
+            const errors = checkFormRules([], this);
+            if (errors.length>0) {
+                console.log('Form Validation Errors',errors);
+                this.confirmValidationMsg = `Please correct the following fields: ${errors.map(a=>a.label).join(', ')}.` 
+                ev.preventDefault();
+            }
         },
     },
     watch: {

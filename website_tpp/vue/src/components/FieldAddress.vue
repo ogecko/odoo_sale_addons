@@ -15,7 +15,6 @@
 
 <script>
   /* global google */
-  import validate from '@/helpers/validate.js';
 
   export default {
     props: {
@@ -141,7 +140,6 @@
         returnData['types'] = place.types.join(', ');
         returnData['address'] = place.formatted_address;
         returnData['business'] = place.name;
-        returnData['is_extra'] = !!validate(place.types.join(', '),'extra');
 
         // Google places doesnt hand subpremises very well in Australia - https://stackoverflow.com/questions/17936689/google-places-autocomplete-suggestions-with-unit-no-subpremise-is-not-coming-in
         // For example "8/1 Mactier Street, Narrabeen" doesnt pick up subpremise = 8, but just matches "1 Mactier Street"

@@ -107,6 +107,7 @@ export default {
   data() {
     return {
       validationMsg : '',
+      x_value: this.value,    // remember the new value for checkRules later
       id: null,
     }
   },
@@ -162,8 +163,14 @@ export default {
     },
     handleInput(newVal) {
       this.validationMsg = validate(newVal, this.rules, this);
+      this.x_value = newVal;
       this.$emit('input', newVal);
     },
+    checkRules() {
+      this.validationMsg = validate(this.x_value, this.rules, this);
+      return this.validationMsg;
+    },
+
     handleAddressChanged(newVal) {
       this.$emit('address-changed',newVal);
     }
