@@ -253,7 +253,7 @@ class WebsiteSaleTPP(WebsiteSale):
 
 
     # Interface for TPP Operations to ship orders
-    @http.route('/web/ordership', auth='public', type='http')
+    @http.route('/web/ordership', auth='public', type='json')
     def ordership(self, **kw):
         if 'delivery' in kw:
             _logger.info('Ship Order %s / %s', kw['order'], kw['delivery'])  # debug
