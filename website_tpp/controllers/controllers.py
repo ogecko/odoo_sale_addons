@@ -253,12 +253,26 @@ class WebsiteSaleTPP(WebsiteSale):
 
 
     # Interface for TPP Operations to ship orders
-    @http.route('/web/ordership', auth='public', type='json')
+    @http.route('/web/ordership', auth='public', type='http')
     def ordership(self, **kw):
         if 'delivery' in kw:
             _logger.info('Ship Order %s / %s', kw['order'], kw['delivery'])  # debug
         else:
             _logger.info('Ship Order %s', kw['order'])                      # debug
+        order = request.env['sale.order'].sudo().browse([int(kw['order'])-100000])
+        if len(order) == 1:
+            template_id = request.env['ir.model.data'].get_object_reference('sale', 'email_template_edi_delivery')[1]
+            ctx = {
+                'default_model': 'sale.order',
+                'default_res_id': order.id,
+                'default_use_template': True,
+                'default_template_id': template_id,
+                'default_composition_mode': 'comment',
+                'default_email_from': 'contactus@theposyplace.com.au',
+                'mark_so_as_sent': True,
+                'custom_layout': "sale.mail_template_data_notification_email_sale_order"
+            }
+            order.with_context(ctx).message_post_with_template(template_id)
         return {}
 
 
