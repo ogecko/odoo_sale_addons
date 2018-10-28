@@ -120,7 +120,7 @@ class WebsiteSaleTPP(WebsiteSale):
                         new_values['lang'] = lang
                     new_values['name'] = post['x_rcv_name']
                     new_values['phone'] = post['x_rcv_phone']
-                    new_values['email'] = post['x_rcv_email']
+                    new_values['email'] = ''
                     new_values['street'] = post['x_rcv_street']
                     new_values['city'] = post['x_rcv_city']
                     new_values['zip'] = post['x_rcv_zip']
