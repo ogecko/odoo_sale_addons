@@ -5581,6 +5581,12 @@ function getNextPossibleDeliveryDay(str) {
   var d = parseDate(isBeforeToday(str) ? undefined : str).toDate();
   var v = ensureValidDay(d);
   return moment(v).format('DD-MMM-YYYY');
+} // only allow valid delivery days (today or in the future)
+
+function getNextPossibleDeliveryDayOfWeek() {
+  var d = parseDate().toDate();
+  var v = ensureValidDay(d);
+  return moment(v).format('dddd');
 }
 function parseDate(str) {
   var d = moment(str, ['DD-MMM-YYYY', 'DD-MMM-YY'], true);
@@ -5679,7 +5685,7 @@ var validationRuleFunctions = {
   // <text> address types
   extra: function extra(str, vm) {
     var check = vm ? getFieldAddressTypes(vm) : str;
-    if (check && /(hospital|school|university|shopping_mall)/.test(check)) return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
+    if (check && /(hospital|school|university|shopping_mall|department_store)/.test(check)) return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
   },
   // <text> address types
   nsw: function nsw(str, vm) {
@@ -7292,7 +7298,56 @@ var OrderFormDaily_component = normalizeComponent(
 
 OrderFormDaily_component.options.__file = "OrderFormDaily.vue"
 /* harmony default export */ var OrderFormDaily = (OrderFormDaily_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDayOfWeek.vue?vue&type=template&id=cfd4d686&
+var OrderFormDayOfWeekvue_type_template_id_cfd4d686_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',[_vm._v(" - "+_vm._s(_vm.delivery_day_of_week))])}
+var OrderFormDayOfWeekvue_type_template_id_cfd4d686_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/forms/OrderFormDayOfWeek.vue?vue&type=template&id=cfd4d686&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDayOfWeek.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+
+/* harmony default export */ var OrderFormDayOfWeekvue_type_script_lang_js_ = ({
+  props: {},
+  components: {},
+  computed: {
+    delivery_day_of_week: function delivery_day_of_week() {
+      return getNextPossibleDeliveryDayOfWeek();
+    }
+  },
+  methods: {
+    publish: function publish() {}
+  }
+});
+// CONCATENATED MODULE: ./src/forms/OrderFormDayOfWeek.vue?vue&type=script&lang=js&
+ /* harmony default export */ var forms_OrderFormDayOfWeekvue_type_script_lang_js_ = (OrderFormDayOfWeekvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/forms/OrderFormDayOfWeek.vue
+
+
+
+
+
+/* normalize component */
+
+var OrderFormDayOfWeek_component = normalizeComponent(
+  forms_OrderFormDayOfWeekvue_type_script_lang_js_,
+  OrderFormDayOfWeekvue_type_template_id_cfd4d686_render,
+  OrderFormDayOfWeekvue_type_template_id_cfd4d686_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+OrderFormDayOfWeek_component.options.__file = "OrderFormDayOfWeek.vue"
+/* harmony default export */ var OrderFormDayOfWeek = (OrderFormDayOfWeek_component.exports);
 // CONCATENATED MODULE: ./src/orderForm.js
+
 
 
 
@@ -7301,6 +7356,7 @@ OrderFormDaily_component.options.__file = "OrderFormDaily.vue"
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Sender", function() { return OrderFormSender; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Delivery", function() { return OrderFormDelivery; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Daily", function() { return OrderFormDaily; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "DayOfWeek", function() { return OrderFormDayOfWeek; });
 
 
 

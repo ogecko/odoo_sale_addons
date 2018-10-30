@@ -94,6 +94,12 @@ export function getNextPossibleDeliveryDay(str) {
     return moment(v).format('DD-MMM-YYYY');
 }
 
+// only allow valid delivery days (today or in the future)
+export function getNextPossibleDeliveryDayOfWeek() {
+    const d = parseDate().toDate();
+    const v = ensureValidDay(d);
+    return moment(v).format('dddd');
+}
 
 export function parseDate(str) {
     let d = moment(str,['DD-MMM-YYYY','DD-MMM-YY'],true);
