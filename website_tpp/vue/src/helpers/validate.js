@@ -88,7 +88,7 @@ const validationRuleFunctions = {
     // <text> address types
     extra(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
-        if (check && /(hospital|school|university|shopping_mall)/.test(check))
+        if (check && /(hospital|school|university|shopping_mall|department_store)/.test(check))
             return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
     },
     // <text> address types
