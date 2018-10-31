@@ -9,7 +9,7 @@
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
             <Field label="Additional Delivery Info" v-model="x_rcv_special" rules="text" 
                    helpMsg="please help the driver locate the recipient or delivery place"
-                   placeholder="Suite, Unit, Floor, Level, Shop, Room, etc, Where to leave the delivery" class="col-md-6"/>
+                   placeholder="Suite, Unit, Floor, Level, Shop, Room, Where to leave" class="col-md-6"/>
             <Field v-show="false" v-model="x_rcv_business"/>
             <Field v-show="false" v-model="x_rcv_street"/>
             <Field v-show="false" v-model="x_rcv_city"/>
