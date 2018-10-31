@@ -1,14 +1,15 @@
 <template>
     <form method="post" @submit="confirm">
         <FormGroup label="Recipient" top>
-            <Field label="Name" v-model="x_rcv_name" autocomplete="name" rules="text,required" class="col-md-4"/>
-            <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" class="col-md-4"/>
-            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="in case of delivery issues" class="col-md-4"/>
+            <Field label="Name" v-model="x_rcv_name" helpMsg="please ensure first and last names are given" autocomplete="name" rules="text,required" class="col-md-4"/>
+            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="include recipients phone no. whenever possible" class="col-md-4"/>
+            <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" helpMsg="optional" class="col-md-4"/>
             <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,required"  
-                   @address-changed="updateAddress"
+                   @address-changed="updateAddress" helpMsg="please start typing and select from the autocomplete list"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
-            <Field label="Additional Delivery Instructions" v-model="x_rcv_special" rules="text" 
-                   helpMsg="optional" placeholder="Location, Suite, Unit, Floor, Location, etc" class="col-md-6"/>
+            <Field label="Additional Delivery Info" v-model="x_rcv_special" rules="text" 
+                   helpMsg="please help the driver locate the recipient or delivery place"
+                   placeholder="Suite, Unit, Floor, Level, Shop, Room, etc, Where to leave the delivery" class="col-md-6"/>
             <Field v-show="false" v-model="x_rcv_business"/>
             <Field v-show="false" v-model="x_rcv_street"/>
             <Field v-show="false" v-model="x_rcv_city"/>
