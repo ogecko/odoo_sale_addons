@@ -116,6 +116,9 @@ export default {
             this.x_rcv_latitude = String(event.latitude);
             this.x_rcv_longitude = String(event.longitude);
             this.x_rcv_is_extra = is_extra_schools_malls_medical ? 'true' : 'false';   // force to 'true' or 'false'
+            if (validate(event.types,'establishment')) {
+                this.x_rcv_special = event.address;
+            }
         },
         confirm(ev) {
             this.confirmValidationMsg = '';

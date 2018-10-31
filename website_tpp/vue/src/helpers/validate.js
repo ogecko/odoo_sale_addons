@@ -85,11 +85,17 @@ const validationRuleFunctions = {
         if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
             return 'Please select a specific delivery address.';
     },
-    // <text> address types
+    // <text> address types that incur an additional delivery fee
     extra(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /(hospital|school|university|shopping_mall|department_store)/.test(check))
             return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
+    },
+    // <text> address types that are an establishment
+    establishment(str, vm) {
+        const check = vm ? getFieldAddressTypes(vm) : str;
+        if (check && /(establishment)/.test(check))
+            return 'Establishments require a street address in Additional Delivery Info.';
     },
     // <text> address types
     nsw(str, vm) {
