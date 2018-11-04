@@ -82,13 +82,13 @@ const validationRuleFunctions = {
     // <text> address types
     specific(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
-        if (check && /^(route|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
+        if (check && /^(route|neighborhood, political|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
             return 'Please select a specific delivery address.';
     },
     // <text> address types that incur an additional delivery fee
     extra(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
-        if (check && /(hospital|school|university|shopping_mall|department_store)/.test(check))
+        if (check && /(hospital|school|university|shopping_mall|department_store|bus_station|train_station|transit_station)/.test(check))
             return 'Additional delivery charge will be added for Hospitals, Schools, Universities and Shopping Malls.';
     },
     // <text> address types that are an establishment
