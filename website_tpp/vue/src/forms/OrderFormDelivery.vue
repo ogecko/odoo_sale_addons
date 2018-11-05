@@ -70,7 +70,7 @@ export default {
         Field,
     },
     data() {
-        return {
+        const d = {
             x_rcv_name: this.name,
             x_rcv_email: this.email,
             x_rcv_phone: this.phone,
@@ -89,9 +89,11 @@ export default {
             x_subscription: (this.subscription=='True'),    // convert to JS boolean true or false
             x_freq: this.freq ? this.freq : 'Daily',
             x_number: this.number ? Number(this.number) : 1,
-            x_days: (this.days && this.freq=='Other') ? this.days : deliveryDays(getNextPossibleDeliveryDay(this.start), this.freq, this.number),
             confirmValidationMsg: '',
-        }
+        };
+        d.x_number = (d.x_subscription && d.x_number<3) ? 3 : d.x_number;           // clamp to min of 3 when order is a subscription
+        d.x_days = (this.days && this.freq=='Other') ? this.days : deliveryDays(d.x_start, d.x_freq, d.x_number);
+        return d;
     },
     watch: {
         'x_start'() { this.updateDeliveryDays() },
