@@ -39,15 +39,18 @@
         <field name="model">res.country.state.city</field>
         <field name="arch" type="xml">
             <form string="City">
-                <group>
-                    <field name="name"/>
-                    <field name="postcode"/>
-                    <field name="region"/>
-                    <field name="metro"/>
-                    <field name="state_id" options="{'no_open': True}"/>
-                    <field name="delivery_id"/>
-                    <field name="geometry"/>
-                </group>
+              <group>
+                  <group string="Delivery Classification">
+                      <field name="name"/>
+                      <field name="delivery_id"/>
+                  </group>
+                  <group string="Suburb Details">
+                      <field name="region"/>
+                      <field name="metro"/>
+                      <field name="postcode"/>
+                      <field name="state_id" options="{'no_open': True}"/>
+                  </group>
+              </group>
             </form>
         </field>
     </record>
