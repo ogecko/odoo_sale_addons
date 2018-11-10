@@ -285,7 +285,7 @@ class WebsiteSaleTPP(WebsiteSale):
         if 'start' in kw:
             domain.append(('write_date','>=', kw['start']))
 
-        orders = http.request.env["sale.order"].sudo().search(domain, limit=250)
+        orders = http.request.env["sale.order"].sudo().search(domain, order="confirmation_date desc", limit=50)
         res = { 
             "orders": [] 
         }
