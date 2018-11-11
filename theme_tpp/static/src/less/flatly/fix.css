@@ -61,3 +61,20 @@ div#products_grid tbody {
 div#o-carousel-product div.carousel-inner div.item {
     height: 100%;
 }
+
+/* Set number of columns of suburb names to show */
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-suburbs {
+      columns: 2;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .col-suburbs {
+      columns: 4;
+    }
+}
+@media (min-width: 1200px) {
+    .col-suburbs {
+      columns: 6;
+    }
+}
