@@ -210,9 +210,9 @@ class WebsiteSaleTPP(WebsiteSale):
     def daily_update(self, **post):
         # grab the daily posy and variants
         pdaily = http.request.env["product.template"].browse([1])
-        psmall = http.request.env["product.product"].browse([3])
-        pmedium = http.request.env["product.product"].browse([4])
-        plarge = http.request.env["product.product"].browse([5])
+        psmall = http.request.env["product.product"].browse([1537,1538])
+        pmedium = http.request.env["product.product"].browse([1539,1540])
+        plarge = http.request.env["product.product"].browse([1541,1542])
 
         is_posted = False
         # if form posted
