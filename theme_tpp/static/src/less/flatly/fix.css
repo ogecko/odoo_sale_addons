@@ -62,6 +62,12 @@ div#o-carousel-product div.carousel-inner div.item {
     height: 100%;
 }
 
+/* remove product variant delta price badges */
+ul.js_add_cart_variants span.badge {
+    visibility: hidden;
+}
+
+
 /* Set number of columns of suburb names to show */
 @media (min-width: 768px) and (max-width: 991px) {
     .col-suburbs {
