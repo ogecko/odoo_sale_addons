@@ -181,7 +181,13 @@ class WebsiteSaleTPP(WebsiteSale):
         return request.render("website_tpp.order_form_delivery", values)
 
 
-
+    # add the bulk order route
+    @http.route(['/shop/bulk'], type='http', auth="public", website=True)
+    def checkout(self, **post):
+        csv = u'Order_Ref,Recipient_Name,Recipient_Phone,Delivery_Address,Additional_Delivery_Info,Delivery_Date,Card_To,Card_From,Card_Message,Notes\n'
+        return request.make_response(csv, 
+            [('Content-Type', 'application/octet-stream'),
+             ('Content-Disposition', 'attachment; filename="BulkOrderTemplate.csv"')])
 
     # add redirections for the old Rocketspark links 
     @http.route(['/shop/checkout_finish'], type='http', auth="public", website=True)
