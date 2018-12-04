@@ -15,7 +15,7 @@ main.PPG = 12
 # extend the WebsiteSale Class
 class WebsiteSaleTPP(WebsiteSale):
 
-# override the /shop/checkout route (with its ugly billing/shipping address forms)
+    # override the /shop/checkout route (with its ugly billing/shipping address forms)
     @http.route(['/shop/checkout'], type='http', auth="public", website=True)
     def checkout(self, **post):
         order = request.website.sale_get_order()
@@ -146,7 +146,7 @@ class WebsiteSaleTPP(WebsiteSale):
                     order._create_delivery_line(carrier, carrier.fixed_price)
 
             # set the quantity
-            if post['x_number']:
+            if post['x_number'] and isSubscriptionOrder:
                 request.env['sale.order.line'].sudo().search([('order_id', '=', order.id), ('name', '=', 'Gift Coupon')]).unlink()
                 for line in order.order_line:
                     order._cart_update(product_id=line.product_id.id, line_id=line.id, set_qty=post['x_number'])
@@ -183,7 +183,7 @@ class WebsiteSaleTPP(WebsiteSale):
 
     # add the bulk order route
     @http.route(['/shop/bulk'], type='http', auth="public", website=True)
-    def checkout(self, **post):
+    def bulkOrderTemplate(self, **post):
         csv = u'Order_Ref,Recipient_Name,Recipient_Phone,Delivery_Address,Additional_Delivery_Info,Delivery_Date,Card_To,Card_From,Card_Message,Notes\n'
         return request.make_response(csv, 
             [('Content-Type', 'application/octet-stream'),
