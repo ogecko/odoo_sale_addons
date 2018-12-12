@@ -22,7 +22,7 @@
         </FormGroup>
         <FormGroup label="Delivery Information">
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" rules="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>
-            <Field label="Subscription Posy" v-model="x_subscription" helpMsg="Order contains multiple deliveries" rules="boolean" class="col-md-6"/>
+            <Field label="Subscription Posy" disabled v-model="x_subscription" helpMsg="Order contains multiple deliveries" rules="boolean" class="col-md-6"/>
             <FormTransition :show="x_subscription" class="clearfix">
                 <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" rules="integer" class="col-md-6"/>
                 <Field label="Delivery Frequency" v-model="x_freq" :options="['Daily','Weekly','Fortnightly','Monthly','Other']" rules="enum" class="col-md-6"/>

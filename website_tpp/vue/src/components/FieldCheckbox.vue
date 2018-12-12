@@ -2,6 +2,7 @@
   <input 
     type="checkbox"
     v-model="localValue"
+    :disabled="disabled"
   >
 </template>
 
@@ -14,6 +15,7 @@
     },
     props: {
       value: { type: Boolean },
+      disabled: { type: Boolean },
     },
     computed: {
     },

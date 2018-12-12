@@ -14,6 +14,7 @@
         :name="localName" :id="id"
         :value="value"
         @input="handleInput"
+        :disabled="disabled"
       ></FieldCheckbox>
         {{ helpMsg }}
       </label>
@@ -103,6 +104,7 @@ export default {
     min: { type: Number },
     max: { type: Number },
     options: { type: Array },
+    disabled: { type: Boolean },
   },
   data() {
     return {

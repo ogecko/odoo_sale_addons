@@ -5293,12 +5293,12 @@ var component = normalizeComponent(
 
 component.options.__file = "FormGroup.vue"
 /* harmony default export */ var FormGroup = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=06a56011&
-var Fieldvue_type_template_id_06a56011_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[(_vm.localLabel)?_c('label',{staticClass:"control-label",attrs:{"for":_vm.id}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]):_vm._e(),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.localName,"id":_vm.id,"value":_vm.value},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"value":_vm.value,"min":_vm.min,"max":_vm.max},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldAddress)?_c('FieldAddress',{attrs:{"name":_vm.localName,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput,"address-changed":_vm.handleAddressChanged}}):_vm._e(),(_vm.validationMsg)?_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")]):_vm._e()],1)}
-var Fieldvue_type_template_id_06a56011_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Field.vue?vue&type=template&id=2fb29d06&
+var Fieldvue_type_template_id_2fb29d06_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.localClasses},[(_vm.localLabel)?_c('label',{staticClass:"control-label",attrs:{"for":_vm.id}},[_vm._v("\n    "+_vm._s(_vm.localLabel)+"\n    "),(_vm.helpMsg && !_vm.isFieldCheckbox)?_c('small',{staticClass:"text-muted"},[_vm._v("("+_vm._s(_vm.helpMsg)+")")]):_vm._e()]):_vm._e(),(_vm.isFieldCheckbox)?_c('div',{staticClass:"checkbox"},[_c('label',[_c('FieldCheckbox',{attrs:{"name":_vm.localName,"id":_vm.id,"value":_vm.value,"disabled":_vm.disabled},on:{"input":_vm.handleInput}}),_vm._v("\n      "+_vm._s(_vm.helpMsg)+"\n    ")],1)]):_vm._e(),(_vm.isFieldTextArea)?_c('FieldTextArea',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInput)?_c('FieldInput',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldDatePicker)?_c('FieldDatePicker',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"placeholder":_vm.placeholder,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldRadio)?_c('FieldRadio',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"options":_vm.options,"type":_vm.type,"value":_vm.value},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldInteger)?_c('FieldInteger',{attrs:{"name":_vm.localName,"id":_vm.id,"autocomplete":_vm.autocomplete,"value":_vm.value,"min":_vm.min,"max":_vm.max},on:{"input":_vm.handleInput}}):_vm._e(),(_vm.isFieldAddress)?_c('FieldAddress',{attrs:{"name":_vm.localName,"placeholder":_vm.placeholder,"value":_vm.value},on:{"input":_vm.handleInput,"address-changed":_vm.handleAddressChanged}}):_vm._e(),(_vm.validationMsg)?_c('small',{staticClass:"help-block"},[_vm._v("\n    "+_vm._s(_vm.validationMsg)+"\n  ")]):_vm._e()],1)}
+var Fieldvue_type_template_id_2fb29d06_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=06a56011&
+// CONCATENATED MODULE: ./src/components/Field.vue?vue&type=template&id=2fb29d06&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
 var es7_array_includes = __webpack_require__("6762");
@@ -5383,6 +5383,12 @@ var daily = {
     h: [13],
     m: [0]
   }, // Boxing Day: 26th of December at 1pm
+  {
+    D: [27, 28, 29, 30, 31],
+    M: [12],
+    h: [13],
+    m: [0]
+  }, // Post Xmas Break: 27-31 Dec
   {
     D: [1],
     M: [1],
@@ -5851,14 +5857,15 @@ var FieldInput_component = normalizeComponent(
 
 FieldInput_component.options.__file = "FieldInput.vue"
 /* harmony default export */ var FieldInput = (FieldInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldCheckbox.vue?vue&type=template&id=f616a71c&
-var FieldCheckboxvue_type_template_id_f616a71c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.localValue)?_vm._i(_vm.localValue,null)>-1:(_vm.localValue)},on:{"change":function($event){var $$a=_vm.localValue,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.localValue=$$a.concat([$$v]))}else{$$i>-1&&(_vm.localValue=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.localValue=$$c}}}})}
-var FieldCheckboxvue_type_template_id_f616a71c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldCheckbox.vue?vue&type=template&id=97d3c312&
+var FieldCheckboxvue_type_template_id_97d3c312_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],attrs:{"type":"checkbox","disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.localValue)?_vm._i(_vm.localValue,null)>-1:(_vm.localValue)},on:{"change":function($event){var $$a=_vm.localValue,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.localValue=$$a.concat([$$v]))}else{$$i>-1&&(_vm.localValue=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.localValue=$$c}}}})}
+var FieldCheckboxvue_type_template_id_97d3c312_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FieldCheckbox.vue?vue&type=template&id=f616a71c&
+// CONCATENATED MODULE: ./src/components/FieldCheckbox.vue?vue&type=template&id=97d3c312&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FieldCheckbox.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -5874,6 +5881,9 @@ var FieldCheckboxvue_type_template_id_f616a71c_staticRenderFns = []
   },
   props: {
     value: {
+      type: Boolean
+    },
+    disabled: {
       type: Boolean
     }
   },
@@ -5899,8 +5909,8 @@ var FieldCheckboxvue_type_template_id_f616a71c_staticRenderFns = []
 
 var FieldCheckbox_component = normalizeComponent(
   components_FieldCheckboxvue_type_script_lang_js_,
-  FieldCheckboxvue_type_template_id_f616a71c_render,
-  FieldCheckboxvue_type_template_id_f616a71c_staticRenderFns,
+  FieldCheckboxvue_type_template_id_97d3c312_render,
+  FieldCheckboxvue_type_template_id_97d3c312_staticRenderFns,
   false,
   null,
   null,
@@ -6553,6 +6563,7 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
 //
 //
 //
+//
 
 
 
@@ -6603,6 +6614,9 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
     },
     options: {
       type: Array
+    },
+    disabled: {
+      type: Boolean
     }
   },
   data: function data() {
@@ -6684,8 +6698,8 @@ FieldAddress_component.options.__file = "FieldAddress.vue"
 
 var Field_component = normalizeComponent(
   components_Fieldvue_type_script_lang_js_,
-  Fieldvue_type_template_id_06a56011_render,
-  Fieldvue_type_template_id_06a56011_staticRenderFns,
+  Fieldvue_type_template_id_2fb29d06_render,
+  Fieldvue_type_template_id_2fb29d06_staticRenderFns,
   false,
   null,
   null,
@@ -6867,12 +6881,12 @@ var OrderFormSender_component = normalizeComponent(
 
 OrderFormSender_component.options.__file = "OrderFormSender.vue"
 /* harmony default export */ var OrderFormSender = (OrderFormSender_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=70e34a1e&
-var OrderFormDeliveryvue_type_template_id_70e34a1e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"},on:{"submit":_vm.confirm}},[_c('FormGroup',{attrs:{"label":"Recipient","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","helpMsg":"please ensure first and last names are given","autocomplete":"name","rules":"text,required"},model:{value:(_vm.x_rcv_name),callback:function ($$v) {_vm.x_rcv_name=$$v},expression:"x_rcv_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"phone","rules":"tel","helpMsg":"include recipients phone no. whenever possible"},model:{value:(_vm.x_rcv_phone),callback:function ($$v) {_vm.x_rcv_phone=$$v},expression:"x_rcv_phone"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","rules":"email","helpMsg":"optional"},model:{value:(_vm.x_rcv_email),callback:function ($$v) {_vm.x_rcv_email=$$v},expression:"x_rcv_email"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","rules":"address,specific,nsw,required","helpMsg":"please start typing and select from the autocomplete list","placeholder":"Business Name or Street Address, City"},on:{"address-changed":_vm.updateAddress},model:{value:(_vm.x_rcv_address),callback:function ($$v) {_vm.x_rcv_address=$$v},expression:"x_rcv_address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Additional Delivery Info","rules":"text","helpMsg":"please help the driver locate the recipient or delivery place","placeholder":"Suite, Unit, Floor, Level, Shop, Room, Where to leave"},model:{value:(_vm.x_rcv_special),callback:function ($$v) {_vm.x_rcv_special=$$v},expression:"x_rcv_special"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_business),callback:function ($$v) {_vm.x_rcv_business=$$v},expression:"x_rcv_business"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_street),callback:function ($$v) {_vm.x_rcv_street=$$v},expression:"x_rcv_street"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_city),callback:function ($$v) {_vm.x_rcv_city=$$v},expression:"x_rcv_city"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_zip),callback:function ($$v) {_vm.x_rcv_zip=$$v},expression:"x_rcv_zip"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_state),callback:function ($$v) {_vm.x_rcv_state=$$v},expression:"x_rcv_state"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_country),callback:function ($$v) {_vm.x_rcv_country=$$v},expression:"x_rcv_country"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_latitude),callback:function ($$v) {_vm.x_rcv_latitude=$$v},expression:"x_rcv_latitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_longitude),callback:function ($$v) {_vm.x_rcv_longitude=$$v},expression:"x_rcv_longitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_is_extra),callback:function ($$v) {_vm.x_rcv_is_extra=$$v},expression:"x_rcv_is_extra"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.x_subscription? 'Starting Day' : 'Day of Delivery',"name":"x_start","rules":"date,future,before1pm,delivery","helpMsg":"within next 90 days"},model:{value:(_vm.x_start),callback:function ($$v) {_vm.x_start=$$v},expression:"x_start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","helpMsg":"Order contains multiple deliveries","rules":"boolean"},model:{value:(_vm.x_subscription),callback:function ($$v) {_vm.x_subscription=$$v},expression:"x_subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.x_subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","min":_vm.x_subscription ? 3 : 1,"max":_vm.x_subscription ? 50 : 1,"rules":"integer"},model:{value:(_vm.x_number),callback:function ($$v) {_vm.x_number=$$v},expression:"x_number"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"rules":"enum"},model:{value:(_vm.x_freq),callback:function ($$v) {_vm.x_freq=$$v},expression:"x_freq"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","rules":"text, days"},model:{value:(_vm.x_days),callback:function ($$v) {_vm.x_days=$$v},expression:"x_days"}})],1)],1),_c('FormGroup',[(_vm.confirmValidationMsg)?_c('div',{staticClass:"has-error col-md-12"},[_c('p',{staticClass:"help-block text-right mt8 mb16"},[_vm._v(_vm._s(_vm.confirmValidationMsg))])]):_vm._e(),_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/delivery"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
-var OrderFormDeliveryvue_type_template_id_70e34a1e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/forms/OrderFormDelivery.vue?vue&type=template&id=0705372d&
+var OrderFormDeliveryvue_type_template_id_0705372d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"post"},on:{"submit":_vm.confirm}},[_c('FormGroup',{attrs:{"label":"Recipient","top":""}},[_c('Field',{staticClass:"col-md-4",attrs:{"label":"Name","helpMsg":"please ensure first and last names are given","autocomplete":"name","rules":"text,required"},model:{value:(_vm.x_rcv_name),callback:function ($$v) {_vm.x_rcv_name=$$v},expression:"x_rcv_name"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Phone","autocomplete":"phone","rules":"tel","helpMsg":"include recipients phone no. whenever possible"},model:{value:(_vm.x_rcv_phone),callback:function ($$v) {_vm.x_rcv_phone=$$v},expression:"x_rcv_phone"}}),_c('Field',{staticClass:"col-md-4",attrs:{"label":"Email","autocomplete":"email","rules":"email","helpMsg":"optional"},model:{value:(_vm.x_rcv_email),callback:function ($$v) {_vm.x_rcv_email=$$v},expression:"x_rcv_email"}}),_c('Field',{staticClass:"clearfix col-md-6",attrs:{"label":"Delivery Address","rules":"address,specific,nsw,required","helpMsg":"please start typing and select from the autocomplete list","placeholder":"Business Name or Street Address, City"},on:{"address-changed":_vm.updateAddress},model:{value:(_vm.x_rcv_address),callback:function ($$v) {_vm.x_rcv_address=$$v},expression:"x_rcv_address"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Additional Delivery Info","rules":"text","helpMsg":"please help the driver locate the recipient or delivery place","placeholder":"Suite, Unit, Floor, Level, Shop, Room, Where to leave"},model:{value:(_vm.x_rcv_special),callback:function ($$v) {_vm.x_rcv_special=$$v},expression:"x_rcv_special"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_business),callback:function ($$v) {_vm.x_rcv_business=$$v},expression:"x_rcv_business"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_street),callback:function ($$v) {_vm.x_rcv_street=$$v},expression:"x_rcv_street"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_city),callback:function ($$v) {_vm.x_rcv_city=$$v},expression:"x_rcv_city"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_zip),callback:function ($$v) {_vm.x_rcv_zip=$$v},expression:"x_rcv_zip"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_state),callback:function ($$v) {_vm.x_rcv_state=$$v},expression:"x_rcv_state"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_country),callback:function ($$v) {_vm.x_rcv_country=$$v},expression:"x_rcv_country"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_latitude),callback:function ($$v) {_vm.x_rcv_latitude=$$v},expression:"x_rcv_latitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_longitude),callback:function ($$v) {_vm.x_rcv_longitude=$$v},expression:"x_rcv_longitude"}}),_c('Field',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],model:{value:(_vm.x_rcv_is_extra),callback:function ($$v) {_vm.x_rcv_is_extra=$$v},expression:"x_rcv_is_extra"}})],1),_c('FormGroup',{attrs:{"label":"Delivery Information"}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":_vm.x_subscription? 'Starting Day' : 'Day of Delivery',"name":"x_start","rules":"date,future,before1pm,delivery","helpMsg":"within next 90 days"},model:{value:(_vm.x_start),callback:function ($$v) {_vm.x_start=$$v},expression:"x_start"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Subscription Posy","disabled":"","helpMsg":"Order contains multiple deliveries","rules":"boolean"},model:{value:(_vm.x_subscription),callback:function ($$v) {_vm.x_subscription=$$v},expression:"x_subscription"}}),_c('FormTransition',{staticClass:"clearfix",attrs:{"show":_vm.x_subscription}},[_c('Field',{staticClass:"col-md-6",attrs:{"label":"Number of Deliveries","min":_vm.x_subscription ? 3 : 1,"max":_vm.x_subscription ? 50 : 1,"rules":"integer"},model:{value:(_vm.x_number),callback:function ($$v) {_vm.x_number=$$v},expression:"x_number"}}),_c('Field',{staticClass:"col-md-6",attrs:{"label":"Delivery Frequency","options":['Daily','Weekly','Fortnightly','Monthly','Other'],"rules":"enum"},model:{value:(_vm.x_freq),callback:function ($$v) {_vm.x_freq=$$v},expression:"x_freq"}}),_c('Field',{staticClass:"clearfix col-md-12",attrs:{"label":"Delivery Days","rules":"text, days"},model:{value:(_vm.x_days),callback:function ($$v) {_vm.x_days=$$v},expression:"x_days"}})],1)],1),_c('FormGroup',[(_vm.confirmValidationMsg)?_c('div',{staticClass:"has-error col-md-12"},[_c('p',{staticClass:"help-block text-right mt8 mb16"},[_vm._v(_vm._s(_vm.confirmValidationMsg))])]):_vm._e(),_c('div',{staticClass:"col-md-12"},[_c('a',{staticClass:"btn btn-default mb32",attrs:{"href":"/shop/cart"}},[_c('span',{staticClass:"fa fa-long-arrow-left"}),_vm._v(" Return to Cart")]),_c('button',{staticClass:"btn btn-default btn-primary pull-right mb32 ",attrs:{"href":"/shop/delivery"}},[_vm._v("Confirm "),_c('span',{staticClass:"fa fa-long-arrow-right"})])])])],1)}
+var OrderFormDeliveryvue_type_template_id_0705372d_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=70e34a1e&
+// CONCATENATED MODULE: ./src/forms/OrderFormDelivery.vue?vue&type=template&id=0705372d&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"47426207-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/layout/FormTransition.vue?vue&type=template&id=b445a816&
 var FormTransitionvue_type_template_id_b445a816_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.show),expression:"show"}]},[_vm._t("default")],2)])}
@@ -7138,8 +7152,8 @@ FormTransition_component.options.__file = "FormTransition.vue"
 
 var OrderFormDelivery_component = normalizeComponent(
   forms_OrderFormDeliveryvue_type_script_lang_js_,
-  OrderFormDeliveryvue_type_template_id_70e34a1e_render,
-  OrderFormDeliveryvue_type_template_id_70e34a1e_staticRenderFns,
+  OrderFormDeliveryvue_type_template_id_0705372d_render,
+  OrderFormDeliveryvue_type_template_id_0705372d_staticRenderFns,
   false,
   null,
   null,
