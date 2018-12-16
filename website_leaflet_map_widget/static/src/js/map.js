@@ -28,6 +28,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 "Free Delivery", 
                 "$5 Delivery",
                 "$10 Delivery",
+                "$15 Delivery",
+                "$20 Delivery",
                 "No Deliveries",
             ];
         },
@@ -75,8 +77,10 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             function getColor(d) {
                 return d == "Free Delivery" ? 'hsla(120,100%,40%,40%)' :  // '#800026' :
                 		d == "$5 Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
-                		d == "$10 Delivery"  ? 'hsla(0,75%,64%,70%)' :  //'#FD8D3C' :
-                		d == "No Deliveries"  ? 'hsla(340,100%,25%,56%)' :  //'#FED976' :
+                		d == "$10 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
+                		d == "$15 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
+                		d == "$20 Delivery"  ? 'hsla(340,85%,30%,60%)' :  //'#FD8D3C' :
+                		d == "No Deliveries"  ? 'hsla(325,100%,15%,60%)' :  //'#FED976' :
                 					'blue';
             }
         
@@ -155,6 +159,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             addCityLayer(self, { delivery_id: self.zones[1]});
             addCityLayer(self, { delivery_id: self.zones[2]});
             addCityLayer(self, { delivery_id: self.zones[3]});
+            addCityLayer(self, { delivery_id: self.zones[4]});
+            addCityLayer(self, { delivery_id: self.zones[5]});
         
         },
 
