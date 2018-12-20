@@ -30,6 +30,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 "$10 Delivery",
                 "$15 Delivery",
                 "$20 Delivery",
+                "$30 Delivery",
                 "No Deliveries",
             ];
         },
@@ -80,8 +81,9 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 		d == "$10 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
                 		d == "$15 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
                 		d == "$20 Delivery"  ? 'hsla(340,85%,30%,60%)' :  //'#FD8D3C' :
-                		d == "No Deliveries"  ? 'hsla(325,100%,15%,60%)' :  //'#FED976' :
-                					'blue';
+                		d == "$30 Delivery"  ? 'hsla(325,100%,15%,70%)' :  //'#FED976' :
+                		d == "No Deliveries"  ? 'purple' :  
+                					'cyan';
             }
         
             function style(feature) {
@@ -161,6 +163,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             addCityLayer(self, { delivery_id: self.zones[3]});
             addCityLayer(self, { delivery_id: self.zones[4]});
             addCityLayer(self, { delivery_id: self.zones[5]});
+            addCityLayer(self, { delivery_id: self.zones[6]});
         
         },
 
