@@ -6,7 +6,7 @@ const daily = {
         { d: [2,3,4,5,6,7], h: [13], m: [0] },         // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
         { D: [14], M: [2], h: [13], m: [0] },          // Valentines Day: 14th of February at 1pm
         { dc: [2], d: [1], M: [3], h: [13], m: [0] },  // Mothers Day: 2nd Sunday of March at 1pm
-        { D: [23], M: [12], Y: [2018], h: [13], m: [0] },         // Xmas Sunday 30th December at 1pm
+        { D: [23], M: [12], Y: [2018], h: [13], m: [0] },         // Xmas Sunday 23rd December 2018 at 1pm
     ],
     exceptions: [
         { D: [25], M: [12], h: [13], m: [0] },         // Christmas Day: 25th of December at 1pm
