@@ -5370,6 +5370,13 @@ var daily = {
     M: [3],
     h: [13],
     m: [0]
+  }, // Mothers Day: 2nd Sunday of March at 1pm
+  {
+    D: [23],
+    M: [12],
+    Y: [2018],
+    h: [13],
+    m: [0]
   }],
   exceptions: [{
     D: [25],
