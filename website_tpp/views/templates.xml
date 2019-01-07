@@ -99,6 +99,28 @@
             </t>
         </template>
 
+        <template id="products_feature_row">
+            <section class="s_three_columns">
+                <div class="container">
+                    <div class="row">
+                        <t t-set="products" t-value="request.env['product.template'].browse(product_ids)" />
+                        <t t-foreach="products" t-as="product">
+                            <t t-if="product.website_published">
+                                <div class="col-md-4 mb48">
+                                    <a t-att-href="product.website_url">
+                                        <img class="img img-responsive shadow" t-att-src="'/web/image/product.template/%s/image/600x600' % product.id"  t-att-alt="product.name" data-original-title=""/>
+                                    </a>
+                                    <h3 class="mt8"><t t-esc="product.name" /></h3>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+
+
 
     <!-- Fully replace the BillTo view on the /shop/payment page -->
     <template id='website_sale.bill_to' name="Bill to">
