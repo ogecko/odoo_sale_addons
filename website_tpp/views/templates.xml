@@ -103,7 +103,7 @@
             <section class="s_three_columns">
                 <div class="container">
                     <div class="row">
-                        <t t-set="products" t-value="request.env['product.template'].browse(product_ids)" />
+                        <t t-set="products" t-value="request.env['product.template'].sudo().browse(product_ids)" />
                         <t t-foreach="products" t-as="product">
                             <t t-if="product.website_published">
                                 <div class="col-md-4 mb48">
