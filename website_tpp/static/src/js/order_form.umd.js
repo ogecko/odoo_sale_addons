@@ -5410,6 +5410,13 @@ var daily = {
     m: [0]
   }, // Australia: 26th of January at 1pm
   {
+    D: [28],
+    M: [1],
+    Y: [2019],
+    h: [13],
+    m: [0]
+  }, // Australia Day Monday Holiday
+  {
     D: [25],
     M: [4],
     h: [13],

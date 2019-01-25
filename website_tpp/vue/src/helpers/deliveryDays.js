@@ -15,6 +15,7 @@ const daily = {
         { D: [1],  M: [1], h: [13], m: [0] },          // New Years Day: 1st of January at 1pm
         { D: [2],  M: [1], h: [13], m: [0] },          // Post New Years Day Break: 2nd of January at 1pm
         { D: [26], M: [1], h: [13], m: [0] },          // Australia: 26th of January at 1pm
+        { D: [28], M: [1], Y: [2019], h: [13], m: [0] },    // Australia Day Monday Holiday
         { D: [25], M: [4], h: [13], m: [0] },          // Anzac Day: 25th of April at 1pm
         { dc: [2], d: [2], M: [6], h: [13], m: [0] },  // Queens Birthday: 2nd Monday of June at 1pm
         { dc: [1], d: [2], M: [10], h: [13], m: [0] }, // NSW Labour Day: 1st Monday of October at 1pm
