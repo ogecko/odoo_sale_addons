@@ -63,6 +63,7 @@
                                         t-att-phone="order.x_rcv_phone"
                                         t-att-address="order.x_rcv_address"
                                         t-att-special="order.x_rcv_special"
+                                        t-att-products="products"
                                         t-att-start="time.strftime('%d-%b-%Y',time.strptime(order.x_start,'%Y-%m-%d'))"
                                         t-att-subscription="order.x_subscription"
                                         t-att-freq="order.x_freq"

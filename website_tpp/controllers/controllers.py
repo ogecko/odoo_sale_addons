@@ -172,6 +172,7 @@ class WebsiteSaleTPP(WebsiteSale):
         # otherwise form has just been called up
         values = {
             'order': order,
+            'products': '\n'.join([line['name'].split('\n')[0] for line in order.order_line]),
             'google_maps_api_key': google_maps_api_key,
         }
 

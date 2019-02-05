@@ -100,6 +100,7 @@ export default {
     placeholder: { type: String },
     helpMsg: { type: String },
     rules: { type: String, default: 'text' },
+    rulescontext: { type: String },                 // used to pass any context to validation rules
     value: { type: [ String, Boolean, Number ] },
     min: { type: Number },
     max: { type: Number },

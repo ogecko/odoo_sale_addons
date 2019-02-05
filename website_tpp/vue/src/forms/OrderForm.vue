@@ -2,11 +2,11 @@
     <div class="container">
       <h1>Test Harness for TPP Order Forms</h1>
       <button :class="['btn', {'btn-primary': route==pages[0]}]" @click="route = pages[0]">Sender</button>
-      <button :class="['btn', {'btn-primary': route==pages[1]}]" @click="route = pages[1]; subscription = 'False'">Delivery1</button>
-      <button :class="['btn', {'btn-primary': route==pages[1]}]" @click="route = pages[1]; subscription = 'True'">Delivery3</button>
+      <button :class="['btn', {'btn-primary': route==pages[1]}]" @click="route = pages[1]; subscription = 'False'; products='Daily Posy (Standard Gift Card, Small)\nVase (Small)\nChocolates (Medium)'">Delivery1</button>
+      <button :class="['btn', {'btn-primary': route==pages[1]}]" @click="route = pages[1]; subscription = 'True'; products=''">Delivery3</button>
       <button :class="['btn', {'btn-primary': route==pages[2]}]" @click="route = pages[2]">Daily</button>
       <button :class="['btn', {'btn-primary': route==pages[3]}]" @click="route = pages[3]">Day</button>
-      <component :is="route" :subscription="subscription"/>
+      <component :is="route" :subscription="subscription" :products="products"/>
     </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
             sample: 'abc',
             route: OrderFormSender,
             subscription: 'False',
+            products: '',
             pages: [ OrderFormSender, OrderFormDelivery, OrderFormDaily, OrderFormDayOfWeek ],
         }
     },

@@ -4,6 +4,7 @@ import { isValidDeliveryDay, isAfter1PM, isBeforeToday } from '../helpers/delive
 const getFieldAddressTypes = property(['$children', '0', 'localValueResult', 'types']);
 const getFieldAddressState = property(['$children', '0', 'localValueResult', 'state']);
 const getFieldisValidatedAddress = property(['$children', '0', 'isValidatedAddress']);
+const getRulesContext = property(['$props','rulescontext']);
 
 // Each of these functions checks the input string for a validation rule
 // If there is a validation error then the function returns the error message string that is shown to the user
@@ -96,6 +97,14 @@ const validationRuleFunctions = {
         const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /(establishment)/.test(check))
             return 'Establishments require a street address in Additional Delivery Info.';
+    },
+    // restrict the sale of certain products on certain days
+    restrict(str,vm) {
+        const check = vm ? getRulesContext(vm)+str : str;
+        if (check && /14-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check))
+            return 'This posy size is unavailable on Valentines Day. Please choose a larger size.';
+        if (check && /(11-May-2019|12-May-2019)/.test(str) && /Posy.*(Small|Regular)/i.test(check))
+            return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
     },
     // <text> address types
     nsw(str, vm) {

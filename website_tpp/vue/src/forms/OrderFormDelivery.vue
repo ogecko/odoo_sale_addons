@@ -21,7 +21,9 @@
             <Field v-show="false" v-model="x_rcv_is_extra"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
-            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" rules="date,future,before1pm,delivery" helpMsg="within next 90 days" class="col-md-6"/>
+            <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" 
+                    rules="date,future,before1pm,delivery,restrict" :rulescontext="products"
+                    helpMsg="within next 90 days" class="col-md-6"/>
             <Field label="Subscription Posy" disabled v-model="x_subscription" helpMsg="Order contains multiple deliveries" rules="boolean" class="col-md-6"/>
             <FormTransition :show="x_subscription" class="clearfix">
                 <Field label="Number of Deliveries" v-model="x_number" :min="x_subscription ? 3 : 1" :max="x_subscription ? 50 : 1" rules="integer" class="col-md-6"/>
@@ -57,7 +59,8 @@ export default {
         email: { type: String, default: '' },
         phone: { type: String, default: '' },
         address: { type: String, default: '' },
-        special: { type: String, default: '' },
+        special: { type: String, default: '' },             // flags whether this is a special subscription order True or False
+        products: { type: String, default: '' },            // concatenation of the short descriptions of products ordered, passed as context to Start Date
         start: { type: String, default: '' },
         subscription: { type: String, default: 'False' },   // Comes in as 'True' or 'False' from Odoo
         freq: { type: String, default: 'Daily' },
