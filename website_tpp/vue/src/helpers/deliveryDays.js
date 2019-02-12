@@ -1,10 +1,15 @@
 /* global moment */
 import later from '@/helpers/later';
 
+
+// Note: To change Order Close hour on a particular special day
+// 1. Add the day to the daily schedules structure below with the later closing time
+// 2. Add the day to the isAfter1PM() function setting the new closing time
+
 const daily = {
     schedules: [ 
         { d: [2,3,4,5,6,7], h: [13], m: [0] },         // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
-        { D: [14], M: [2], h: [13], m: [0] },          // Valentines Day: 14th of February at 1pm
+        { D: [14], M: [2], h: [15], m: [0] },          // Valentines Day: 14th of February at ** 3pm **
         { dc: [2], d: [1], M: [5], h: [13], m: [0] },  // Mothers Day: 2nd Sunday of May at 1pm
         { D: [23], M: [12], Y: [2018], h: [13], m: [0] },         // Xmas Sunday 23rd December 2018 at 1pm
     ],
@@ -119,8 +124,11 @@ export function isBeforeToday(str) {
     return (parseDate(str).second(1).isBefore(moment().hour(0).minute(0).second(0)));
 }
 
+// determine if its a late order eg if order delivery is for today and its after 1PM (order close)
 export function isAfter1PM(str) {
-    return (isToday(str) && moment().isAfter(moment().hour(13).minute(0).second(0)));
+    let closingHour = 13;                           // Normal closing 1PM
+    if (isToday('14-Feb-2019')) closingHour = 15;   // Special closing 3PM
+    return (isToday(str) && moment().isAfter(moment().hour(closingHour).minute(0).second(0)));
 }
 
 export function isValidDeliveryDay(str) {
