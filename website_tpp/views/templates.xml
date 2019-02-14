@@ -100,20 +100,38 @@
             </t>
         </template>
 
+        <template id="products_feature_main">
+            <div>
+                <t t-set="products" t-value="request.env['product.template'].sudo().browse(product_ids).filtered('website_published')" />
+                <t t-foreach="products" t-as="product">
+                    <div t-att-class="'%s mb48' % ('col-md-8 mt32' if large_ids and product.id in large_ids else 'col-md-4')">
+                        <a t-att-href="product.website_url">
+                            <img class="img img-responsive shadow" t-att-src="'/web/image/product.template/%s/image/600x600' % product.id"  t-att-alt="product.name" data-original-title=""/>
+                        </a>
+                        <h3 class="mt8">
+                            <t t-esc="product.name" />
+                            <t t-if="large_ids and product.id in large_ids">
+                                <span id="vueapp"><Widget /></span>
+                                <script>vm = new Vue({ el: '#vueapp', components: { Widget: order_form.DayOfWeek } });</script>
+                            </t>
+                        </h3>
+                    </div>
+                </t>
+            </div>
+        </template>
+
         <template id="products_feature_row">
             <section class="s_three_columns">
                 <div class="container">
                     <div class="row">
-                        <t t-set="products" t-value="request.env['product.template'].sudo().browse(product_ids)" />
+                        <t t-set="products" t-value="request.env['product.template'].sudo().browse(product_ids).filtered('website_published')" />
                         <t t-foreach="products" t-as="product">
-                            <t t-if="product.website_published">
-                                <div class="col-md-4 mb48">
-                                    <a t-att-href="product.website_url">
-                                        <img class="img img-responsive shadow" t-att-src="'/web/image/product.template/%s/image/600x600' % product.id"  t-att-alt="product.name" data-original-title=""/>
-                                    </a>
-                                    <h3 class="mt8"><t t-esc="product.name" /></h3>
-                                </div>
-                            </t>
+                            <div class="col-md-4 mb48">
+                                <a t-att-href="product.website_url">
+                                    <img class="img img-responsive shadow" t-att-src="'/web/image/product.template/%s/image/600x600' % product.id"  t-att-alt="product.name" data-original-title=""/>
+                                </a>
+                                <h3 class="mt8"><t t-esc="product.name" /></h3>
+                            </div>
                         </t>
                     </div>
                 </div>
