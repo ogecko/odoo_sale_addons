@@ -30,7 +30,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 "$10 Delivery",
                 "$15 Delivery",
                 "$20 Delivery",
-                "$30 Delivery",
+                "$25 Delivery",
                 "No Deliveries",
             ];
         },
@@ -81,7 +81,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 		d == "$10 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
                 		d == "$15 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
                 		d == "$20 Delivery"  ? 'hsla(340,85%,30%,60%)' :  //'#FD8D3C' :
-                		d == "$30 Delivery"  ? 'hsla(325,100%,15%,70%)' :  //'#FED976' :
+                		d == "$25 Delivery"  ? 'hsla(325,100%,15%,70%)' :  //'#FED976' :
                 		d == "No Deliveries"  ? 'purple' :  
                 					'cyan';
             }

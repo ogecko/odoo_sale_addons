@@ -6,6 +6,9 @@ import later from '@/helpers/later';
 // 1. Add the day to the daily schedules structure below with the later closing time
 // 2. Add the day to the isAfter1PM() function setting the new closing time
 
+// Note: To restrict sale of specific variant on a particular special day
+// 1. Edit validate.js and modify the restrict() validation function
+
 const daily = {
     schedules: [ 
         { d: [2,3,4,5,6,7], h: [13], m: [0] },         // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
