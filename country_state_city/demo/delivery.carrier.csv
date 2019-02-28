@@ -5,6 +5,5 @@ country_state_city.delivery_zone_2,$10 Delivery,10,Fixed Price
 country_state_city.delivery_zone_3,$15 Delivery.,15,Fixed Price
 country_state_city.delivery_zone_4,$20 Delivery.,20,Fixed Price
 country_state_city.delivery_zone_5,$25 Delivery.,25,Fixed Price
-country_state_city.delivery_zone_5,$30 Delivery.,30,Fixed Price
 country_state_city.delivery_zone_exclude,No Deliveries,30,Fixed Price
 country_state_city.delivery_extra,Additional Delivery Charge,7.50,Fixed Price
