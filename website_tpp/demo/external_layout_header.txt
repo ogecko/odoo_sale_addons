@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<t t-name="report.external_layout_header">
+    <div class="header">
+        <div class="row">
+            <div class="col-xs-2">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px; margin-bottom:10px;"/>
+            </div>
+            <div class="col-xs-3" name="company_address">
+                <h4 t-field="company.partner_id.name" />
+                <span t-field="company.partner_id.vat" /><br />
+                <span t-field="company.partner_id.street" /><br />
+                <span t-field="company.partner_id.city" /> <span t-field="company.partner_id.state_id.code" /> <span t-field="company.partner_id.zip" /><br />
+            </div>
+            <div class="col-xs-7 text-right">
+                <h4  t-field="company.rml_header1" />
+            </div>
+        </div>
+        <div class="row zero_min_height">
+            <div class="col-xs-12">
+                <div style="border-bottom: 1px solid black;"/>
+            </div>
+        </div>
+    </div>
+</t>

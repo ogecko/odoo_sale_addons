@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<t name="Sales Order" t-name="website_portal_sale.orders_followup">
+      <t t-call="website.layout">
+        <div id="wrap">
+            <div class="container">
+              <div class="oe_structure">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ol class="breadcrumb mt8">
+                            <li><a href="/my/home"><i class="fa fa-home"/></a></li>
+                            <li>
+                              <a t-attf-href="/my/#{'quotes' if order.state == 'sent' else 'orders'}?{{ keep_query()}}">
+                                <t t-if="order.state == 'sent'">
+                                    My Quotes
+                                </t>
+                                <t t-if="order.state != 'sent'">
+                                    My Orders
+                                </t>
+                              </a>
+                            </li>
+                            <li>
+                              <t t-if="order.state == 'sent'">
+                                  Quotation
+                              </t>
+                              <t t-if="order.state != 'sent'">
+                                  Order
+                              </t>
+                              <t t-esc="order.name"/>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+              </div>
+              <div id="optional_placeholder"/>
+              <div class="container">
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h4>
+                            <t t-if="order.state == 'sent'">
+                              Quotation
+                            </t>
+                            <t t-if="order.state != 'sent'">
+                              Order
+                            </t>
+                            <span t-esc="order.name"/>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <!-- <hr/> -->
+                      <div class="mb8">
+                          <strong>Date:</strong> <span t-field="order.create_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div>
+                            <strong>Invoicing Contact</strong>
+                          </div>
+                          <div>
+                            <div t-field="order.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;name&quot;, &quot;phone&quot;, &quot;fax&quot;, &quot;email&quot;]}"/>
+                          </div>
+                          <div t-if="order.x_message" class="mt16">
+                              <strong>Message</strong>
+                              <p t-field="order.x_message" />
+                          </div>
+                          <div t-if="order.payment_acquirer_id" class="mt16">
+                              <strong>Payment Method</strong>
+                              <p t-field="order.payment_acquirer_id" />
+                          </div>
+
+
+                          <t t-set="invoices" t-value="[i for i in order.invoice_ids if i.state not in ['draft', 'cancel']]"/>
+                          <t t-if="invoices == 'remove == to show this'">
+                            <div>
+                              <strong>Invoices</strong>
+                            </div>
+                            <div>
+                              <t t-foreach="invoices" t-as="i">
+                                <t t-set="report_url" t-value="'/report/pdf/account.report_invoice/%s' % i.id"/>
+                                <div>
+                                  <a t-att-href="report_url"><span class="fa fa-download"/></a>
+                                  <a t-att-href="report_url"><span t-esc="i.number"/></a>
+                                  <span class="text-muted" t-field="i.date_invoice"/>
+                                  <t t-if="i.state == 'paid'">
+                                    <span class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> Paid</span>
+                                  </t>
+                                  <t t-if="i.state != 'paid'">
+                                    <span class="label label-info orders_label_text_align"><i class="fa fa-fw fa-clock-o"/> Waiting</span>
+                                  </t>
+                                </div>
+                              </t>
+                            </div>
+                          </t>
+                        </div>
+                        <div id="shipping_address" class="col-md-6">
+                          <div>
+                            <strong>Delivery Contact and Address</strong>
+                          </div>
+                          <div>
+                            <p t-field="order.x_rcv_name" class="mb0"/>
+                            <div t-field="order.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;phone&quot;, &quot;fax&quot;, &quot;email&quot;]}"/>
+                            <p t-field="order.x_rcv_address" />
+                            <p t-field="order.x_rcv_special" />
+                          </div>
+                          <div t-if="order.x_days" class="mt16">
+                              <strong>Delivery date(s)</strong>
+                              <p t-field="order.x_days" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr/>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <strong>Product</strong>
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <strong>Unit Price</strong>
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <strong>Quantity</strong>
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <strong>Subtotal</strong>
+                        </div>
+                      </div>
+                      <t t-foreach="order.order_line" t-as="ol">
+                        <div class="row orders_vertical_align">
+                            <div class="col-md-1 text-center">
+                                <img t-att-src="ol.product_id.image_small and ('data:image/png;base64,' + ol.product_id.image_small) or '/web/static/src/img/placeholder.png'"/>
+                            </div>
+                            <div id="product_name" class="col-md-5">
+                              <span t-esc="ol.product_id.name"/>
+                            </div>
+                          <div class="col-md-2 text-right">
+                            <span t-field="ol.price_unit" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: order.pricelist_id.currency_id}"/>
+                          </div>
+                          <div class="col-md-2 text-right">
+                            <t t-if="ol._name == 'sale.order.line'">
+                              <span t-esc="ol.product_uom_qty"/>
+                            </t>
+                            <t t-if="ol._name == 'account.invoice.line'">
+                              <span t-esc="ol.quantity"/>
+                            </t>
+                          </div>
+                          <div class="col-md-2 text-right">
+                            <span t-field="ol.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: order.pricelist_id.currency_id}"/>
+                          </div>
+                        </div>
+                      </t>
+
+                      <hr/>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div>
+                            <strong>Contact</strong>
+                            <p><i class='fa fa-envelope'/> contactus@theposyplace.com.au</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-10 text-right">
+                              Untaxed Amount:
+                            </div>
+                            <div class="col-md-2 text-right">
+                              <span t-field="order.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: order.pricelist_id.currency_id}"/>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-10 text-right">
+                              Taxes:
+                            </div>
+                            <div class="col-md-2 text-right">
+                              <span t-field="order.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: order.pricelist_id.currency_id}"/>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-10 text-right">
+                              <strong>Total:</strong>
+                            </div>
+                            <div class="col-md-2 text-right">
+                              <strong><span t-field="order.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: order.pricelist_id.currency_id}"/></strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="oe_structure mb32"/>
+          </div>
+        </div>
+      </t>
+    </t>
