@@ -1,6 +1,15 @@
 <template>
     <form method="post" @submit="confirm">
         <FormGroup label="Recipient" top>
+            <div class="clearfix">
+                <div class="alert alert-dismissable" role="alert" style="background-color: #d5d1c7;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Contact Information:</strong>
+Please ensure you include a recipient phone number and that any Company Name is included in the delivery addresses or additional info. 
+Many times our couriers are required to leave the flowers in the mail room of larger companies.
+It is important to include the recipients contact number on the order.
+                </div>
+            </div>
             <Field label="Name" v-model="x_rcv_name" helpMsg="please ensure first and last names are given" autocomplete="name" rules="text,required" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="include recipients phone no. whenever possible" class="col-md-4"/>
             <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" helpMsg="optional" class="col-md-4"/>
@@ -21,6 +30,16 @@
             <Field v-show="false" v-model="x_rcv_is_extra"/>
         </FormGroup>
         <FormGroup label="Delivery Information">
+            <div class="clearfix">
+                <div class="alert alert-dismissable" role="alert" style="background-color: #d5d1c7;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Delivery Times:</strong>
+We endeavor to deliver at the earliest possible times. Orders are dispatched from our store at 1pm every day. 
+We aim to deliver to businesses before 5pm and residential addresses before 7pm, but often we will deliver earlier.
+When your delivery is complicated or time critical please call us and we will do our best to accommodate. 
+We do have a VIP Courier service when flowers need to be delivered faster or earlier.
+                </div>
+            </div>
             <Field :label="x_subscription? 'Starting Day' : 'Day of Delivery'" v-model="x_start" name="x_start" 
                     rules="date,future,before1pm,delivery,restrict" :rulescontext="products"
                     helpMsg="within next 90 days" class="col-md-6"/>
