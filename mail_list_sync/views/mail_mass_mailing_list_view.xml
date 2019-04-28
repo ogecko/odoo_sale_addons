@@ -28,7 +28,7 @@
                                 type="object"
                                 string="Sync now"
                                 icon="fa-exclamation-triangle"
-                                class="btn-danger"
+                                class="btn-danger ml32"
                                 attrs="{'invisible': [('is_synced', '=', True)]}"
                             />
                             <button
@@ -36,6 +36,7 @@
                                 type="object"
                                 string="Sync now"
                                 icon="fa-refresh"
+                                class="ml32"
                                 attrs="{'invisible': [('is_synced', '=', False)]}"
                             />
                         </div>

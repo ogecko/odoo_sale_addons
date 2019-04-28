@@ -10,6 +10,5 @@ class MassMailing(models.Model):
 
     def send_mail(self):
         """Sync dynamic lists before sending mailings to them."""
-        # comment this out as it takes too long. Better to manually sync on the odd occasion
-        # self.contact_list_ids.action_sync()
+        self.contact_list_ids.action_sync()
         return super(MassMailing, self).send_mail()
