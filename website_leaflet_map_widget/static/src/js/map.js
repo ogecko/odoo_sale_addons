@@ -1,3 +1,5 @@
+var setDelivery = undefined;
+
 odoo.define('website_leaflet_map_widget.map', function(require) {
     "use strict";
     var Widget = require('web.Widget');
@@ -19,11 +21,13 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 'token': 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
                 'mapstyle': 'mapbox.light',
                 'attribution': 'Map Data © OpenStreetMap, Boundaries ©PSMA Australia Ltd',
+                'keyboard': true,
             });
             this.token = this.options.token;
             this.mapstyle = this.options.mapstyle;
             this.attribution = this.options.attribution;
             this.geojson = undefined;
+            this.selectedFeatures = {}; // used to store all selected cities (stores leaflet keyed by city name)
             this.zones = [
                 "Free Delivery", 
                 "$5 Delivery",
@@ -58,10 +62,43 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             }
         
             function resetHighlight(e) {
+                const tgtId = e.target.feature.id;
+                // if not selected then reset its style (ie leave selected features highlighted)
+                if (tgtId && !self.selectedFeatures[tgtId]) 
+                   self.geojson.resetStyle(e.target);
                 self.info.update();
-                self.geojson.resetStyle(e.target);
             }
         
+            function toggleSelectedFeature(e) {
+                const tgtId = e.target.feature.id;
+                // if selected then remove it from the selected list and reset its style
+                if (tgtId && self.selectedFeatures[tgtId]) {
+                    console.log('Unselecting ', tgtId)
+                    const old = self.selectedFeatures[tgtId];
+                    delete self.selectedFeatures[tgtId];
+                    resetHighlight(old);
+                // if not selected then add it to the selected list 
+                } else if (tgtId) {
+                    self.selectedFeatures[tgtId] = e;
+                    console.log('Now Selected', Object.keys(self.selectedFeatures))
+                }
+            }
+
+            function setDeliveryPrivateFn(id) {
+                console.log('Delivery ',id, Object.keys(self.selectedFeatures))
+                self.rpc('/web/geojson/set_delivery', { delivery: self.zones[id], cities: Object.keys(self.selectedFeatures) })            
+                    .then(res => {
+                        console.log('Delivery result ', res);
+                        if (res.status) Object.keys(self.selectedFeatures).forEach(city =>{
+                            self.selectedFeatures[city].target.feature.properties.delivery_id=self.zones[id];
+                            self.selectedFeatures[city].target.setStyle(self.selectedFeatures[city].target.feature);
+                            toggleSelectedFeature(self.selectedFeatures[city]);
+                        })
+                    }, err => {
+                        console.log('Delivery set failed',err)
+                    });
+            }
+            
             function zoomToFeature(e) {
                 self.map.fitBounds(e.target.getBounds());
             }
@@ -70,7 +107,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                 layer.on({
                     mouseover: highlightFeature,
                     mouseout: resetHighlight,
-                    click: zoomToFeature
+                    click: zoomToFeature,
+                    contextmenu: toggleSelectedFeature,
                 });
             }
         
@@ -118,8 +156,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
                     // loop through our zones, inserting an icon and label
                     for (var i = 0; i < self.zones.length; i++) {
                         div.innerHTML +=
-                            '<i style="background:' + getColor(self.zones[i]) + '"></i> ' +
-                            self.zones[i] + (self.zones[i + 1] ? '<br>' : '');
+                            `<span onclick="setDelivery(${i})"><i style="background:${getColor(self.zones[i])}"></i> ${self.zones[i]}</span>`
+                             + (self.zones[i + 1] ? '<br>' : '');
                     }
                     return div;
                 };
@@ -138,6 +176,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             }
 
             self._super(self);
+            setDelivery = setDeliveryPrivateFn.bind(this);
             self.$el.css('width','100%');
             self.$el.css('height','100%');
             self.map = L.map(self.$el[0]).setView([-33.804521,151.0051], 11);
@@ -164,6 +203,8 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             addCityLayer(self, { delivery_id: self.zones[4]});
             addCityLayer(self, { delivery_id: self.zones[5]});
             addCityLayer(self, { delivery_id: self.zones[6]});
+
+
         
         },
 

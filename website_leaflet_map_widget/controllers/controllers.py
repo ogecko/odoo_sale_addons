@@ -26,3 +26,14 @@ class WebsiteLeafletMapWidget(http.Controller):
             })
         return res
 
+    @http.route('/web/geojson/set_delivery', auth='user', type='json')
+    def set_delivery(self, **kw):
+        
+        if http.request.session.login in ['jdmorriso@gmail.com', 'contactus@theposyplace.com.au']:
+            delivery = http.request.env['delivery.carrier'].search([('name','=',kw['delivery'])])
+            cities = http.request.env["res.country.state.city"].search([('name','in', kw['cities'])])
+            if len(delivery) == 1:
+                cities.write({ 'delivery_id': delivery.id })
+                return { 'status': True }
+
+        return { 'status': False }
