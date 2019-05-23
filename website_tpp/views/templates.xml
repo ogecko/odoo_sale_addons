@@ -59,6 +59,7 @@
                                     <div id="vueapp" class="container">
                                     <Widget id="vueform"
                                         t-att-name="order.x_rcv_name"
+                                        t-att-business="order.x_rcv_business"
                                         t-att-email="order.x_rcv_email"
                                         t-att-phone="order.x_rcv_phone"
                                         t-att-address="order.x_rcv_address"
@@ -185,6 +186,7 @@
                         </group>
                         <group string="Receiver Details" name="receiver">
                             <field name="x_rcv_name" />
+                            <field name="x_rcv_business" />
                             <field name="x_rcv_email" />
                             <field name="x_rcv_phone" />
                             <field name="x_rcv_address" />

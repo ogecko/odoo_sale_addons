@@ -314,6 +314,7 @@ class WebsiteSaleTPP(WebsiteSale):
                 },
                 'rcv': {
                     'name': order.x_rcv_name, 
+                    'business': order.x_rcv_business, 
                     'email': order.x_rcv_email, 
                     'phone': order.x_rcv_phone, 
                     'address': order.x_rcv_address, 

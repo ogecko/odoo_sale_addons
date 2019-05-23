@@ -10,16 +10,16 @@ Many times our couriers are required to leave the flowers in the mail room of la
 It is important to include the recipients contact number on the order.
                 </div>
             </div>
-            <Field label="Name" v-model="x_rcv_name" helpMsg="please ensure first and last names are given" autocomplete="name" rules="text,required" class="col-md-4"/>
-            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="include recipients phone no. whenever possible" class="col-md-4"/>
-            <Field label="Email" v-model="x_rcv_email" autocomplete="email" rules="email" helpMsg="optional" class="col-md-4"/>
+            <Field label="Name" v-model="x_rcv_name" helpMsg="include first and last names" autocomplete="name" rules="text,required" class="col-md-4"/>
+            <Field label="Company / Business Name" v-model="x_rcv_business" autocomplete="email" rules="text" class="col-md-4"/>
+            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="recipient's contact number" class="col-md-4"/>
             <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,required"  
                    @address-changed="updateAddress" helpMsg="please start typing and select from the autocomplete list"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
             <Field label="Additional Delivery Info" v-model="x_rcv_special" rules="text" 
                    helpMsg="please help the driver locate the recipient or delivery place"
                    placeholder="Suite, Unit, Floor, Level, Shop, Room, Where to leave" class="col-md-6"/>
-            <Field v-show="false" v-model="x_rcv_business"/>
+            <Field v-show="false" v-model="x_rcv_email"/>
             <Field v-show="false" v-model="x_rcv_street"/>
             <Field v-show="false" v-model="x_rcv_city"/>
             <Field v-show="false" v-model="x_rcv_zip"/>
@@ -75,6 +75,7 @@ import validate from '@/helpers/validate.js';
 export default {
     props: {
         name: { type: String, default: '' },
+        business: { type: String, default: '' },
         email: { type: String, default: '' },
         phone: { type: String, default: '' },
         address: { type: String, default: '' },
@@ -98,7 +99,7 @@ export default {
             x_rcv_phone: this.phone,
             x_rcv_address: this.address,
             x_rcv_special: this.special,
-            x_rcv_business: '',
+            x_rcv_business: this.business,
             x_rcv_street: '',
             x_rcv_city: '',
             x_rcv_zip: '',
@@ -128,7 +129,6 @@ export default {
         },
         updateAddress(event) {
             const is_extra_schools_malls_medical = validate(event.types,'extra');
-            this.x_rcv_business = event.business;
             this.x_rcv_street = [
                 event.subpremise? event.subpremise+' /' : undefined, 
                 event.street_number, event.street_name

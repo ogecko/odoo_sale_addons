@@ -15,6 +15,7 @@ class sale_order(models.Model):
     x_message = fields.Text(string="Message")
 
     x_rcv_name = fields.Char(string="Receiver Name")
+    x_rcv_business = fields.Char(string="Receiver Business")
     x_rcv_email = fields.Char(string="Receiver Email")
     x_rcv_phone = fields.Char(string="Receiver Phone")
     x_rcv_address = fields.Text(string="Delivery Address")
