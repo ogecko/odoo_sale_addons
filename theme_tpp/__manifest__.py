@@ -7,7 +7,7 @@
     'description': 'This theme module is exclusively for master to keep the support of Bootswatch themes which were previously part of the website module in 8.0.',
     'author': "oGecko Solutions",
     'website': "http://www.ogecko.com",
-    'category': 'Theme',
+    'category': 'Mass Mail',
     'sequence': 900,
     'version': '1.0',
     'depends': ['website'],

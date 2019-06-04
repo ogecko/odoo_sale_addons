@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_mail_themes" inherit_id="mass_mailing.assets_mail_themes">
+        <xpath expr="//link" position="replace">
+            <link rel="stylesheet" type="text/less" href="/theme_mail_tpp/static/src/less/theme_boilerplate.less"/>
+        </xpath>
+    </template>
+</odoo>

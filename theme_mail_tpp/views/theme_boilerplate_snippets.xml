@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- ADDITIONAL SNIPPETS -->
+  <template id="email_designer_snippets_boilerplate" inherit_id="mass_mailing.email_designer_snippets" name="Theme Boilerplate Snippets">
+    <xpath expr="//div[@id='email_designer_default_headers']/div[2]" position="inside">
+      <!-- HEADER SNIPPETS 
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_header_social" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_header_banner" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_text_social.png"/>
+      -->
+    </xpath>
+    <xpath expr="//div[@id='email_designer_default_body']/div[2]" position="inside">
+      <!-- BODY SNIPPETS 
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_three_icon" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_slogan_bar" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_main_content_panel" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_half_left" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_half_right" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_youtube_panel" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_cta" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_features" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_specifications" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      -->
+    </xpath>
+    <xpath expr="//div[@id='email_designer_default_extra']/div[2]" position="inside">
+      <!-- EXTRA SNIPPETS 
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_brand_cards" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_group_banner" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      -->
+    </xpath>
+    <xpath expr="//div[@id='email_designer_default_footer']/div[2]" position="inside">
+      <!-- FOOTER SNIPPETS 
+      <t t-snippet="theme_mail_tpp.boilerplate_mail_block_footer" t-thumbnail="/theme_mail_tpp/static/src/img/blocks/block_header_social.png"/>
+      -->
+    </xpath>
+  </template>
+
+
+  <!-- SNIPPET TEMPLATES -->
+  <!-- SNIPPET HEADER TEMPLATES -->
+  <template id="boilerplate_mail_block_header_social" name="Header Logo + Social">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+  
+  <template id="boilerplate_mail_block_header_banner" name="Header Banner">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+  
+    <!-- SNIPPET BODY TEMPLATES -->
+    
+  <template id="boilerplate_mail_block_three_icon" name="3 Icon + Text">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+      
+  <template id="boilerplate_mail_block_slogan_bar" name="Slogan Bar">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+        
+  <template id="boilerplate_mail_block_main_content_panel" name="Main Panel">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+          
+  <template id="boilerplate_mail_block_half_left" name="Left Text + Picture">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+            
+  <template id="boilerplate_mail_block_half_right" name="Right Text + Picture">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+              
+  <template id="boilerplate_mail_block_youtube_panel" name="Youtube Panel">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+                
+  <template id="boilerplate_mail_block_cta" name="Call to Action">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+                  
+  <template id="boilerplate_mail_block_features" name="Features Panel">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+                    
+  <template id="boilerplate_mail_block_specifications" name="Specifications Panel">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+    
+    <!-- SNIPPET EXTRA TEMPLATES -->
+    
+    <template id="boilerplate_mail_block_brand_cards" name="3 Cards">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+      
+    <template id="boilerplate_mail_block_group_banner" name="Text Banner">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+      
+    <!-- SNIPPET FOOTER TEMPLATES -->
+    
+    <template id="boilerplate_mail_block_footer" name="Footer">
+    <div class="o_mail_block_header_social">
+      <div class="o_mail_snippet_general">
+        <!-- CONTENT HERE -->
+      </div>
+    </div>
+  </template>
+  </odoo>
