@@ -14,8 +14,10 @@
                       <p t-field="doc.date_order"/>
                     </div>
                     <div class="mt16">
-                      <strong>Message:</strong>
-                      <span t-if="doc.x_message"><span t-field="doc.x_message"/></span>
+                      <strong t-if="doc.x_message">Message:</strong>
+                      <p t-if="doc.x_to">A Posy For: <span t-field="doc.x_to"/></p>
+                      <p t-if="doc.x_message"><span t-field="doc.x_message"/></p>
+                      <p t-if="doc.x_from">From: <span t-field="doc.x_from"/></p>
                     </div>
                 </div>
                 <div class="col-xs-6">
@@ -38,7 +40,7 @@
                     <strong>Your Reference:</strong>
                     <p t-field="doc.client_order_ref"/>
                 </div>
-                <div t-if="doc.date_order" class="col-xs-3">
+                <div t-if="doc.x_days" class="col-xs-3">
                     <strong>Delivery Date(s):</strong>
                     <p t-field="doc.x_days" />
                 </div>
