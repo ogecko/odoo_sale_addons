@@ -50,6 +50,10 @@ const validationRuleFunctions = {
         if (!/^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*|)$/.test(s))
             return 'Please enter a valid email address.';
     },
+    fullname(s) {
+        if (!/[a-zA-Z0-9]+\s+[a-zA-Z0-9]+/.test(s))
+            return 'Please enter both first and last names.';
+    },
     tel(s) {
         if (!/^([0-9()+ *#,;/]{0,40}|)$/.test(s))
             return 'Please enter a valid phone number.';
@@ -99,7 +103,7 @@ const validationRuleFunctions = {
             return 'Establishments require a street address in Additional Delivery Info.';
     },
     // restrict the sale of certain products on certain days
-    restrict(str,vm) {
+    restrict(str, vm) {
         const check = vm ? getRulesContext(vm)+str : str;
         if (check && /14-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable on Valentines Day. Please choose a larger size.';

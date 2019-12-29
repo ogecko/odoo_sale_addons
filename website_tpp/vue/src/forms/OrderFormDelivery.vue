@@ -10,7 +10,7 @@ Many times our couriers are required to leave the flowers in the mail room of la
 It is important to include the recipients contact number on the order.
                 </div>
             </div>
-            <Field label="Name" v-model="x_rcv_name" helpMsg="include first and last names" autocomplete="name" rules="text,required" class="col-md-4"/>
+            <Field label="Name" v-model="x_rcv_name" helpMsg="include first and last names" autocomplete="name" rules="text,fullname,required" class="col-md-4"/>
             <Field label="Company / Business Name" v-model="x_rcv_business" autocomplete="email" rules="text" class="col-md-4"/>
             <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="recipient's contact number" class="col-md-4"/>
             <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,required"  
