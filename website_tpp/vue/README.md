@@ -1,4 +1,6 @@
 # vue
+Currently using node 10.7
+    nvm use 10.7
 
 ## Project setup
 ```
