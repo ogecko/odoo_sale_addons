@@ -6,7 +6,7 @@
             <Field label="Phone" v-model="x_snd_phone" autocomplete="work phone" rules="tel" helpMsg="in case of order issues" class="col-md-4"/>
         </FormGroup>
         <FormGroup label="Personalised Card">
-            <Field label="A Posy For" name="x_to" v-model="x_to" class="col-md-6"/>
+            <Field label="To" name="x_to" v-model="x_to" class="col-md-6"/>
             <Field label="From" name="x_from" v-model="x_from" class="col-md-6"/>
             <Field label="Message" name="x_message" v-model="x_message" rules="textarea" helpMsg="maximum 200 characters" class="clearfix col-md-12"/>
             <!-- <Field label="Help me choose a message" @input="getCardMessage" helpMsg="keep clicking until you find one" value="" :options="['Birthday','Anniversary','Thanks','Congrats','Sorry','Random']" rules="enum" class="col-md-12"/> -->
