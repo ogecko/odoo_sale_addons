@@ -27,7 +27,7 @@ const daily = {
         { D: [27], M: [1], Y: [2025], h: [13], m: [0] },    // Australia Day Monday Holiday
         { D: [28], M: [1], Y: [2030], h: [13], m: [0] },    // Australia Day Monday Holiday
         { D: [27], M: [1], Y: [2031], h: [13], m: [0] },    // Australia Day Monday Holiday
-        { D: [25], M: [4], h: [13], m: [0] },               // Anzac Day: 25th of April at 1pm
+        // { D: [25], M: [4], h: [13], m: [0] },               // Anzac Day: 25th of April at 1pm
         { dc: [2], d: [2], M: [6], h: [13], m: [0] },       // Queens Birthday: 2nd Monday of June at 1pm
         { dc: [1], d: [2], M: [10], h: [13], m: [0] },      // NSW Labour Day: 1st Monday of October at 1pm
         // Easter Friday and Monday for the next 10 years

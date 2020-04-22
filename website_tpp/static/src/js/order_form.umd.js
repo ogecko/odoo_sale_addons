@@ -5442,12 +5442,7 @@ var daily = {
     h: [13],
     m: [0]
   }, // Australia Day Monday Holiday
-  {
-    D: [25],
-    M: [4],
-    h: [13],
-    m: [0]
-  }, // Anzac Day: 25th of April at 1pm
+  // { D: [25], M: [4], h: [13], m: [0] },               // Anzac Day: 25th of April at 1pm
   {
     dc: [2],
     d: [2],
