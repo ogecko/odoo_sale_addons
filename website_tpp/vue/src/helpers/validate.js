@@ -88,7 +88,7 @@ const validationRuleFunctions = {
     specific(str, vm) {
         const check = vm ? getFieldAddressTypes(vm) : str;
         if (check && /^(route|neighborhood, political|locality, political|administrative_area_level_1, political|country, political)$/.test(check))
-            return 'Please select a specific delivery address.';
+            return 'Please select a specific delivery address. For Appartments you may need to enter the Unit Number in the Additional Delivery Info field.';
     },
     // <text> address types that incur an additional delivery fee
     extra(str, vm) {
