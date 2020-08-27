@@ -115,9 +115,9 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
         
               // get color depending on delivery zone value
             function getColor(d) {
-                return d == "Free Delivery" ? 'hsla(120,100%,40%,40%)' :  // '#800026' :
-                        d == "$10 Delivery"  ? 'hsla(110,85%,30%,50%)' :  //'#E31A1C' :
-                        d == "$15 Delivery"  ? 'hsla(100,65%,15%,60%)' :  //'#E31A1C' :
+                return d == "Free Delivery" ? 'hsla(120,100%,50%,50%)' :  // '#800026' :
+                        d == "$10 Delivery"  ? 'hsla(100,85%,30%,50%)' :  //'#E31A1C' :
+                        d == "$15 Delivery"  ? 'hsla(90,65%,15%,60%)' :  //'#E31A1C' :
                         d == "$20 Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
                 		d == "$25 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
                 		d == "$30 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
@@ -205,6 +205,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             addCityLayer(self, { delivery_id: self.zones[4]});
             addCityLayer(self, { delivery_id: self.zones[5]});
             addCityLayer(self, { delivery_id: self.zones[6]});
+            addCityLayer(self, { delivery_id: self.zones[7]});
 
 
         
