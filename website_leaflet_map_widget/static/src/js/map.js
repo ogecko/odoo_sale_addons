@@ -30,11 +30,12 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             this.selectedFeatures = {}; // used to store all selected cities (stores leaflet keyed by city name)
             this.zones = [
                 "Free Delivery", 
-                "$5 Delivery",
                 "$10 Delivery",
                 "$15 Delivery",
                 "$20 Delivery",
                 "$25 Delivery",
+                "$30 Delivery",
+                "$40 Delivery",
                 "No Deliveries",
             ];
         },
@@ -115,11 +116,12 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
               // get color depending on delivery zone value
             function getColor(d) {
                 return d == "Free Delivery" ? 'hsla(120,100%,40%,40%)' :  // '#800026' :
-                		d == "$5 Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
-                		d == "$10 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
-                		d == "$15 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
-                		d == "$20 Delivery"  ? 'hsla(340,85%,30%,60%)' :  //'#FD8D3C' :
-                		d == "$25 Delivery"  ? 'hsla(325,100%,15%,70%)' :  //'#FED976' :
+                        d == "$10 Delivery"  ? 'hsla(110,85%,30%,50%)' :  //'#E31A1C' :
+                        d == "$15 Delivery"  ? 'hsla(100,65%,15%,60%)' :  //'#E31A1C' :
+                        d == "$20 Delivery"  ? 'hsla(25,92%,72%,70%)' :  //'#E31A1C' :
+                		d == "$25 Delivery"  ? 'hsla(10,85%,64%,60%)' :  //'#FD8D3C' :
+                		d == "$30 Delivery"  ? 'hsla(355,65%,45%,60%)' :  //'#FD8D3C' :
+                		d == "$40 Delivery"  ? 'hsla(325,100%,15%,70%)' :  //'#FED976' :
                 		d == "No Deliveries"  ? 'purple' :  
                 					'cyan';
             }
