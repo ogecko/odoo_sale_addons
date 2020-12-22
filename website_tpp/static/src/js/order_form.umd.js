@@ -5395,6 +5395,12 @@ var daily = {
     h: [13],
     m: [0]
   }, // Boxing Day: 26th of December at 1pm
+  {
+    D: [27, 28],
+    M: [12],
+    h: [13],
+    m: [0]
+  }, // Post Xmas Break: 27-28 Dec
   // { D: [27,28,29,30,31], M: [12], h: [13], m: [0] },         // Post Xmas Break: 27-31 Dec
   {
     D: [1],
