@@ -5422,7 +5422,7 @@ var daily = {
     m: [0]
   }, // Post New Years Day Break: 3-5 January at 1pm
   {
-    D: [25],
+    D: [11, 25],
     M: [1],
     Y: [2021],
     h: [13],
