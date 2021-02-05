@@ -5366,20 +5366,13 @@ var daily = {
   {
     D: [14],
     M: [2],
-    h: [15],
+    h: [13],
     m: [0]
-  }, // Valentines Day: 14th of February at ** 3pm **
+  }, // Valentines Day: 14th of February at ** 1pm **
   {
     dc: [2],
     d: [1],
     M: [5],
-    h: [13],
-    m: [0]
-  }, // Mothers Day: 2nd Sunday of May at 1pm
-  {
-    D: [23],
-    M: [12],
-    Y: [2018],
     h: [13],
     m: [0]
   }],
@@ -5414,20 +5407,8 @@ var daily = {
     h: [13],
     m: [0]
   }, // Post New Years Day Break: 2nd of January at 1pm
-  {
-    D: [3, 4, 5],
-    M: [1],
-    Y: [2021],
-    h: [13],
-    m: [0]
-  }, // Post New Years Day Break: 3-5 January at 1pm
-  {
-    D: [11, 25],
-    M: [1],
-    Y: [2021],
-    h: [13],
-    m: [0]
-  }, // Pre Australia: 26th of January at 1pm
+  // { D: [3,4,5],  M: [1], Y: [2021], h: [13], m: [0] },       // Post New Years Day Break: 3-5 January at 1pm
+  // { D: [11,25],  M: [1], Y: [2021], h: [13], m: [0] },       // Pre Australia: 26th of January at 1pm
   {
     D: [26],
     M: [1],
@@ -5766,7 +5747,7 @@ var validationRuleFunctions = {
   // restrict the sale of certain products on certain days
   restrict: function restrict(str, vm) {
     var check = vm ? getRulesContext(vm) + str : str;
-    if (check && /14-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Valentines Day. Please choose a larger size.';
+    if (check && /(12|13|14)-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
     if (check && /(09-May-2020|10-May-2020)/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
     if (check && /(18|19|20|21|22|23|24)-Dec/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Xmas. Please choose a larger size.';
   },

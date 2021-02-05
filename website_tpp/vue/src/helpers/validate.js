@@ -105,8 +105,8 @@ const validationRuleFunctions = {
     // restrict the sale of certain products on certain days
     restrict(str, vm) {
         const check = vm ? getRulesContext(vm)+str : str;
-        if (check && /14-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check))
-            return 'This posy size is unavailable on Valentines Day. Please choose a larger size.';
+        if (check && /(12|13|14)-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check))
+            return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
         if (check && /(09-May-2020|10-May-2020)/.test(str) && /Posy.*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
         if (check && /(18|19|20|21|22|23|24)-Dec/.test(str) && /Posy.*(Small|Regular)/i.test(check))
