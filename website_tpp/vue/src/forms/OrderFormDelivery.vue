@@ -12,7 +12,7 @@ It is important to include the recipients contact number on the order.
             </div>
             <Field label="Name" v-model="x_rcv_name" helpMsg="include first and last names" autocomplete="name" rules="text,fullname,required" class="col-md-4"/>
             <Field label="Company / Business Name" v-model="x_rcv_business" autocomplete="email" rules="text" class="col-md-4"/>
-            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel" helpMsg="recipient's contact number" class="col-md-4"/>
+            <Field label="Phone" v-model="x_rcv_phone" autocomplete="phone" rules="tel,required" helpMsg="recipient's contact number" class="col-md-4"/>
             <Field label="Delivery Address" v-model="x_rcv_address" rules="address,specific,nsw,required"  
                    @address-changed="updateAddress" helpMsg="please start typing and select from the autocomplete list"
                    placeholder="Business Name or Street Address, City" class="clearfix col-md-6"/>
