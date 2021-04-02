@@ -107,7 +107,7 @@ const validationRuleFunctions = {
         const check = vm ? getRulesContext(vm)+str : str;
         if (check && /(12|13|14)-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
-        if (check && /(03-Apr-2021)/.test(str) && /Posy.*(Small|Regular)/i.test(check))
+        if (check && /(03-Apr-2020)/.test(str) && /Posy.*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable over Easter. Please choose a larger size.';
         if (check && /(08-May-2021|09-May-2021)/.test(str) && /Posy.*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
