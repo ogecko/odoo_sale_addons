@@ -19,7 +19,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
             this._super(parent);
             this.options = _.defaults(options || {}, {
                 'token': 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
-                'mapstyle': 'mapbox.light',
+                'mapstyle': 'mapbox/light-v10',
                 'attribution': 'Map Data © OpenStreetMap, Boundaries ©PSMA Australia Ltd',
                 'keyboard': true,
             });
@@ -185,7 +185,7 @@ odoo.define('website_leaflet_map_widget.map', function(require) {
 
             // add the background map tile layer
             setTimeout(function(){
-                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={token}', {
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={token}', {
                     maxZoom: 18, 
                     id: self.mapstyle,
                     attribution: self.attribution,
