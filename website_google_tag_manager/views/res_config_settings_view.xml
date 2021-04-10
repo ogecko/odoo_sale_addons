@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_website_config_settings" model="ir.ui.view">
+        <field name="name">Google Tag Manager</field>
+        <field name="model">website.config.settings</field>
+        <field name="inherit_id" ref="website.view_website_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='google_analytics_key']" position="after">
+                <label for="google_tag_manager" string="Google Tag Manager"/>
+                <div name="google_tag_manager">
+                    <div class="text-muted">
+                        Manage all your tags without editing code. Follow
+                        <a href="https://support.google.com/tagmanager/answer/6103696#install?hl=en" target="_blank">
+                            the instructions
+                        </a>
+                        on how to get your GTM container ID.
+                    </div>
+                    <div>
+                        <label for="google_tag_manager_key"/>
+                        <field name="google_tag_manager_key" placeholder="GTM-XXXXX" class="oe_inline"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
