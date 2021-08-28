@@ -5377,6 +5377,13 @@ var daily = {
     m: [0]
   }],
   exceptions: [{
+    D: [4],
+    M: [9],
+    Y: [2021],
+    h: [13],
+    m: [0]
+  }, // Shop closed day Sat 4-Sep-2021
+  {
     D: [25],
     M: [12],
     h: [13],
@@ -5443,7 +5450,12 @@ var daily = {
     h: [13],
     m: [0]
   }, // Australia Day Monday Holiday
-  // { D: [25], M: [4], h: [13], m: [0] },               // Anzac Day: 25th of April at 1pm
+  {
+    D: [25],
+    M: [4],
+    h: [13],
+    m: [0]
+  }, // Anzac Day: 25th of April at 1pm
   {
     dc: [2],
     d: [2],
@@ -5746,8 +5758,6 @@ var validationRuleFunctions = {
   },
   // restrict the sale of certain products on certain days
   restrict: function restrict(str, vm) {
-    return; // no longer restrict small and regular on special days
-
     var check = vm ? getRulesContext(vm) + str : str;
     if (check && /(12|13|14)-Feb/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
     if (check && /(03-Apr-2020)/.test(str) && /Posy.*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';

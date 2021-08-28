@@ -22,12 +22,12 @@ describe('deliveryDays.js', () => {
 
     it('Daily frequency skips Christmas', () => {
         expect(deliveryDays('24-Dec-18','Daily',3))
-        .toEqual('24-Dec-2018, 27-Dec-2018, 28-Dec-2018');
+        .toEqual('24-Dec-2018, 29-Dec-2018, 31-Dec-2018');
     });
 
     it('Daily frequency skips New Years Day', () => {
         expect(deliveryDays('31-Dec-18','Daily',3))
-        .toEqual('31-Dec-2018, 02-Jan-2019, 03-Jan-2019');
+        .toEqual('31-Dec-2018, 03-Jan-2019, 04-Jan-2019');
     });
 
     it('Daily frequency skips Australia Day', () => {
@@ -57,17 +57,17 @@ describe('deliveryDays.js', () => {
 
     it('Weekly frequency skips Christmas', () => {
         expect(deliveryDays('18-Dec-18','Weekly',3))
-        .toEqual('18-Dec-2018, 27-Dec-2018, 02-Jan-2019');
+        .toEqual('18-Dec-2018, 29-Dec-2018, 03-Jan-2019');
     });
 
     it('Fortnightly frequency skips Christmas', () => {
         expect(deliveryDays('11-Dec-18','Fortnightly',3))
-        .toEqual('11-Dec-2018, 27-Dec-2018, 08-Jan-2019');
+        .toEqual('11-Dec-2018, 29-Dec-2018, 08-Jan-2019');
     });
 
     it('Monthly frequency skips Christmas', () => {
         expect(deliveryDays('25-Nov-18','Monthly',3))
-        .toEqual('26-Nov-2018, 27-Dec-2018, 25-Jan-2019');
+        .toEqual('26-Nov-2018, 29-Dec-2018, 25-Jan-2019');
     });
 
     it('Can handle just finding a single next date', () => {
