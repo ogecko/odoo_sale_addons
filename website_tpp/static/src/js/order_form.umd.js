@@ -5376,13 +5376,7 @@ var daily = {
     h: [13],
     m: [0]
   }],
-  exceptions: [{
-    D: [4],
-    M: [9],
-    Y: [2021],
-    h: [13],
-    m: [0]
-  }, // Shop closed day Sat 4-Sep-2021
+  exceptions: [// { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
   {
     D: [25],
     M: [12],

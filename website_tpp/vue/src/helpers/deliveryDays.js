@@ -17,7 +17,7 @@ const daily = {
         // { D: [23], M: [12], Y: [2018], h: [13], m: [0] },         // Xmas Sunday 23rd December 2018 at 1pm
     ],
     exceptions: [
-        { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
+        // { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
         { D: [25], M: [12], h: [13], m: [0] },              // Christmas Day: 25th of December at 1pm
         { D: [26], M: [12], h: [13], m: [0] },              // Boxing Day: 26th of December at 1pm
         { D: [27,28], M: [12], h: [13], m: [0] },           // Post Xmas Break: 27-28 Dec
