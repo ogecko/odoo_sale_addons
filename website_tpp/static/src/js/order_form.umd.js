@@ -5364,6 +5364,12 @@ var daily = {
     m: [0]
   }, // Weekdays: Mon, Tue, Wed, Thu, Fri, Sat at 1pm
   {
+    D: [13],
+    M: [2],
+    h: [13],
+    m: [0]
+  }, // Day before Valentines Day: 13th of February at ** 1pm **
+  {
     D: [14],
     M: [2],
     h: [13],
