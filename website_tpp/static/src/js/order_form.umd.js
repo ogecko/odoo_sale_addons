@@ -5463,6 +5463,13 @@ var daily = {
     m: [0]
   }, // Anzac Day: 25th of April at 1pm
   {
+    D: [22],
+    M: [9],
+    Y: [2022],
+    h: [13],
+    m: [0]
+  }, // Queens Day of Mourning 2022
+  {
     dc: [2],
     d: [2],
     M: [6],
