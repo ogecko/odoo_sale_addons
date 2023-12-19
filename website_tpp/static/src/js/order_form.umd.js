@@ -5381,6 +5381,13 @@ var daily = {
     M: [5],
     h: [13],
     m: [0]
+  }, // Mothers Day: 2nd Sunday of May at 1pm
+  {
+    D: [24],
+    M: [12],
+    Y: [2023],
+    h: [13],
+    m: [0]
   }],
   exceptions: [// { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
   {
@@ -5395,12 +5402,7 @@ var daily = {
     h: [13],
     m: [0]
   }, // Boxing Day: 26th of December at 1pm
-  {
-    D: [27],
-    M: [12],
-    h: [13],
-    m: [0]
-  }, // Post Xmas Break: 27th Dec
+  // { D: [27], M: [12], h: [13], m: [0] },              // Post Xmas Break: 27th Dec
   // { D: [27,28,29,30,31], M: [12], h: [13], m: [0] },         // Post Xmas Break: 27-31 Dec
   {
     D: [1],
@@ -5415,9 +5417,9 @@ var daily = {
     m: [0]
   }, // Post New Years Day Break: 2nd of January at 1pm
   {
-    D: [3],
+    D: [3, 4, 5, 6, 7],
     M: [1],
-    Y: [2023],
+    Y: [2024],
     h: [13],
     m: [0]
   }, // Post New Years Day Break: 3-? January at 1pm

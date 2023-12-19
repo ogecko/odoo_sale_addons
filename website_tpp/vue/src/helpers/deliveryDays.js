@@ -15,17 +15,17 @@ const daily = {
         { D: [13], M: [2], h: [13], m: [0] },          // Day before Valentines Day: 13th of February at ** 1pm **
         { D: [14], M: [2], h: [13], m: [0] },          // Valentines Day: 14th of February at ** 1pm **
         { dc: [2], d: [1], M: [5], h: [13], m: [0] },  // Mothers Day: 2nd Sunday of May at 1pm
-        // { D: [23], M: [12], Y: [2018], h: [13], m: [0] },         // Xmas Sunday 23rd December 2018 at 1pm
+        { D: [24], M: [12], Y: [2023], h: [13], m: [0] },         // Xmas Sunday 24rd December 2018 at 1pm
     ],
     exceptions: [
         // { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
         { D: [25], M: [12], h: [13], m: [0] },              // Christmas Day: 25th of December at 1pm
         { D: [26], M: [12], h: [13], m: [0] },              // Boxing Day: 26th of December at 1pm
-        { D: [27], M: [12], h: [13], m: [0] },              // Post Xmas Break: 27th Dec
+        // { D: [27], M: [12], h: [13], m: [0] },              // Post Xmas Break: 27th Dec
         // { D: [27,28,29,30,31], M: [12], h: [13], m: [0] },         // Post Xmas Break: 27-31 Dec
         { D: [1],  M: [1], h: [13], m: [0] },               // New Years Day: 1st of January at 1pm
         { D: [2],  M: [1], h: [13], m: [0] },               // Post New Years Day Break: 2nd of January at 1pm
-        { D: [3],  M: [1], Y: [2023], h: [13], m: [0] },       // Post New Years Day Break: 3-? January at 1pm
+        { D: [3,4,5,6,7],  M: [1], Y: [2024], h: [13], m: [0] },       // Post New Years Day Break: 3-? January at 1pm
         // { D: [11,25],  M: [1], Y: [2021], h: [13], m: [0] },       // Pre Australia: 26th of January at 1pm
         { D: [26], M: [1], h: [13], m: [0] },               // Australia: 26th of January at 1pm
         { D: [27], M: [1], Y: [2020], h: [13], m: [0] },    // Australia Day Monday Holiday
