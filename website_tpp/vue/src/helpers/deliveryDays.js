@@ -26,7 +26,7 @@ const daily = {
         { D: [1],  M: [1], h: [13], m: [0] },               // New Years Day: 1st of January at 1pm
         { D: [2],  M: [1], h: [13], m: [0] },               // Post New Years Day Break: 2nd of January at 1pm
         { D: [3,4,5,6,7],  M: [1], Y: [2024], h: [13], m: [0] },       // Post New Years Day Break: 3-? January at 1pm
-        // { D: [11,25],  M: [1], Y: [2021], h: [13], m: [0] },       // Pre Australia: 26th of January at 1pm
+        { D: [13,27],  M: [1], Y: [2024], h: [13], m: [0] },       // Pre Australia: 26th of January at 1pm
         { D: [26], M: [1], h: [13], m: [0] },               // Australia: 26th of January at 1pm
         { D: [27], M: [1], Y: [2020], h: [13], m: [0] },    // Australia Day Monday Holiday
         { D: [27], M: [1], Y: [2025], h: [13], m: [0] },    // Australia Day Monday Holiday

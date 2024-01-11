@@ -5423,7 +5423,13 @@ var daily = {
     h: [13],
     m: [0]
   }, // Post New Years Day Break: 3-? January at 1pm
-  // { D: [11,25],  M: [1], Y: [2021], h: [13], m: [0] },       // Pre Australia: 26th of January at 1pm
+  {
+    D: [13, 27],
+    M: [1],
+    Y: [2024],
+    h: [13],
+    m: [0]
+  }, // Pre Australia: 26th of January at 1pm
   {
     D: [26],
     M: [1],
