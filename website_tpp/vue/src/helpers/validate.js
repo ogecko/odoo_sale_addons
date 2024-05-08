@@ -109,7 +109,7 @@ const validationRuleFunctions = {
             return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
         if (check && /(08-Apr-2023)/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable over Easter. Please choose a larger size.';
-        if (check && /(07-May-2022|08-May-2022)/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check))
+        if (check && /(11-May-2024|12-May-2024)/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
         if (check && /(22|23|24)-Dec/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check))
             return 'This posy size is unavailable over Xmas. Please choose a larger size.';
