@@ -5383,9 +5383,9 @@ var daily = {
     m: [0]
   }, // Mothers Day: 2nd Sunday of May at 1pm
   {
-    D: [24],
+    D: [22],
     M: [12],
-    Y: [2023],
+    Y: [2024],
     h: [13],
     m: [0]
   }],
@@ -5417,19 +5417,12 @@ var daily = {
     m: [0]
   }, // Post New Years Day Break: 2nd of January at 1pm
   {
-    D: [3, 4, 5, 6, 7],
+    D: [3, 4, 6, 7, 8, 9, 10, 11, 13, 14],
     M: [1],
-    Y: [2024],
+    Y: [2025],
     h: [13],
     m: [0]
-  }, // Post New Years Day Break: 3-? January at 1pm
-  {
-    D: [13, 27],
-    M: [1],
-    Y: [2024],
-    h: [13],
-    m: [0]
-  }, // Pre Australia: 26th of January at 1pm
+  }, // Post New Years Day Break: 3-8 January at 1pm
   {
     D: [26],
     M: [1],
