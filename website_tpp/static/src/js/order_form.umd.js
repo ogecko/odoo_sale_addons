@@ -5437,12 +5437,12 @@ var daily = {
     m: [0]
   }, // Australia Day Monday Holiday
   {
-    D: [27],
+    D: [25, 27],
     M: [1],
     Y: [2025],
     h: [13],
     m: [0]
-  }, // Australia Day Monday Holiday
+  }, // Australia Day Monday Holiday 2025
   {
     D: [28],
     M: [1],
