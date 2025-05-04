@@ -5774,8 +5774,8 @@ var validationRuleFunctions = {
   restrict: function restrict(str, vm) {
     var check = vm ? getRulesContext(vm) + str : str;
     if (check && /(12|13|14)-Feb/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
-    if (check && /(08-Apr-2023)/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';
-    if (check && /(11-May-2024|12-May-2024)/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
+    if (check && /(04|05)-Apr-2026/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';
+    if (check && /(10|11)-May-2025/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
     if (check && /(22|23|24)-Dec/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Xmas. Please choose a larger size.';
   },
   // <text> address types
