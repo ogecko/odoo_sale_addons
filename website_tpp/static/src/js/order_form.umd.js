@@ -5381,13 +5381,6 @@ var daily = {
     M: [5],
     h: [13],
     m: [0]
-  }, // Mothers Day: 2nd Sunday of May at 1pm
-  {
-    D: [22],
-    M: [12],
-    Y: [2024],
-    h: [13],
-    m: [0]
   }],
   exceptions: [// { D: [4], M: [9], Y: [2021], h: [13], m: [0] },   // Shop closed day Sat 4-Sep-2021
   {
@@ -5402,8 +5395,13 @@ var daily = {
     h: [13],
     m: [0]
   }, // Boxing Day: 26th of December at 1pm
-  // { D: [27], M: [12], h: [13], m: [0] },              // Post Xmas Break: 27th Dec
-  // { D: [27,28,29,30,31], M: [12], h: [13], m: [0] },         // Post Xmas Break: 27-31 Dec
+  {
+    D: [27],
+    M: [12],
+    h: [13],
+    m: [0]
+  }, // Post Xmas Break: 27th Dec
+  // { D: [28,29,30,31], M: [12], h: [13], m: [0] },         // Post Xmas Break: 28-31 Dec
   {
     D: [1],
     M: [1],
@@ -5417,32 +5415,31 @@ var daily = {
     m: [0]
   }, // Post New Years Day Break: 2nd of January at 1pm
   {
-    D: [3, 4, 6, 7, 8, 9, 10, 11, 13, 14],
+    D: [3],
     M: [1],
-    Y: [2025],
     h: [13],
     m: [0]
-  }, // Post New Years Day Break: 3-8 January at 1pm
+  }, // Post New Years Day Break: 3rd of January at 1pm
+  {
+    D: [5, 6, 7, 8, 9, 10],
+    M: [1],
+    Y: [2026],
+    h: [13],
+    m: [0]
+  }, // Post New Years Day Break
+  {
+    D: [12, 13, 14, 15, 16, 17],
+    M: [1],
+    Y: [2026],
+    h: [13],
+    m: [0]
+  }, // Post New Years Day Break
   {
     D: [26],
     M: [1],
     h: [13],
     m: [0]
   }, // Australia: 26th of January at 1pm
-  {
-    D: [27],
-    M: [1],
-    Y: [2020],
-    h: [13],
-    m: [0]
-  }, // Australia Day Monday Holiday
-  {
-    D: [25, 27],
-    M: [1],
-    Y: [2025],
-    h: [13],
-    m: [0]
-  }, // Australia Day Monday Holiday 2025
   {
     D: [28],
     M: [1],
@@ -5463,13 +5460,6 @@ var daily = {
     h: [13],
     m: [0]
   }, // Anzac Day: 25th of April at 1pm
-  {
-    D: [22],
-    M: [9],
-    Y: [2022],
-    h: [13],
-    m: [0]
-  }, // Queens Day of Mourning 2022
   {
     dc: [2],
     d: [2],
