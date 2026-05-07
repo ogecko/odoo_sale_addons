@@ -5476,48 +5476,6 @@ var daily = {
   }, // NSW Labour Day: 1st Monday of October at 1pm
   // Easter Friday and Monday for the next 10 years
   {
-    D: [19, 22],
-    M: [4],
-    Y: [2019],
-    h: [13],
-    m: [0]
-  }, {
-    D: [10, 13],
-    M: [4],
-    Y: [2020],
-    h: [13],
-    m: [0]
-  }, {
-    D: [2, 5],
-    M: [4],
-    Y: [2021],
-    h: [13],
-    m: [0]
-  }, {
-    D: [15, 18],
-    M: [4],
-    Y: [2022],
-    h: [13],
-    m: [0]
-  }, {
-    D: [7, 10],
-    M: [4],
-    Y: [2023],
-    h: [13],
-    m: [0]
-  }, {
-    D: [29, 30],
-    M: [3],
-    Y: [2024],
-    h: [13],
-    m: [0]
-  }, {
-    D: [1],
-    M: [4],
-    Y: [2024],
-    h: [13],
-    m: [0]
-  }, {
     D: [18, 21],
     M: [4],
     Y: [2025],
@@ -5557,6 +5515,25 @@ var daily = {
     D: [19, 22],
     M: [4],
     Y: [2030],
+    h: [13],
+    m: [0]
+  }, // Holiday
+  {
+    D: [18, 19, 20, 21, 22, 23],
+    M: [5],
+    Y: [2026],
+    h: [13],
+    m: [0]
+  }, {
+    D: [25, 26, 27, 28, 29, 30],
+    M: [5],
+    Y: [2026],
+    h: [13],
+    m: [0]
+  }, {
+    D: [1, 2],
+    M: [6],
+    Y: [2026],
     h: [13],
     m: [0]
   }]
@@ -5764,8 +5741,9 @@ var validationRuleFunctions = {
   restrict: function restrict(str, vm) {
     var check = vm ? getRulesContext(vm) + str : str;
     if (check && /(12|13|14)-Feb/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable around Valentines Day. Please choose a larger size.';
-    if (check && /(04|05)-Apr-2026/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';
-    if (check && /(10|11)-May-2025/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
+    if (check && /(09|10)-May-2026/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable on Mothers Day. Please choose a larger size.';
+    if (check && /(08|09)-May-2027/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';
+    if (check && /(13|14)-May-2028/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Easter. Please choose a larger size.';
     if (check && /(22|23|24)-Dec/.test(str) && /(Posy|Bouquet).*(Small|Regular)/i.test(check)) return 'This posy size is unavailable over Xmas. Please choose a larger size.';
   },
   // <text> address types
