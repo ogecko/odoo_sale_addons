@@ -2,6 +2,7 @@
 
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import AccessError
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.addons.website_sale.controllers import main
 
@@ -259,9 +260,15 @@ class WebsiteSaleTPP(WebsiteSale):
 
 
 
+    # Only logged in sales users (ie TPP Operations) may use the operations interface
+    def _check_tpp_operations_user(self):
+        if not request.env.user.has_group('sales_team.group_sale_salesman'):
+            raise AccessError('TPP Operations interface requires a sales user')
+
     # Interface for TPP Operations to ship orders
-    @http.route('/web/ordership', auth='public', type='json')
+    @http.route('/web/ordership', auth='user', type='json')
     def ordership(self, **kw):
+        self._check_tpp_operations_user()
         if 'delivery' in kw:
             _logger.info('Ship Order %s / %s', kw['order'], kw['delivery'])  # debug
         else:
@@ -286,8 +293,9 @@ class WebsiteSaleTPP(WebsiteSale):
 
 
     # Interface for TPP Operations to scrape orders
-    @http.route('/web/orderjson', auth='public', type='json')
+    @http.route('/web/orderjson', auth='user', type='json')
     def geojson(self, **kw):
+        self._check_tpp_operations_user()
         domain = [('state','=','sale')]
         if 'start' in kw:
             domain.append(('write_date','>=', kw['start']))
